@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>se.iths</groupId>
-    <artifactId>loppis</artifactId>
+    <artifactId>autofix</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>loppis</name>
-    <description>Demo project for JU19</description>
+    <name>autofix</name>
+    <description>Project in course Complex Java</description>
 
     <properties>
         <java.version>11</java.version>

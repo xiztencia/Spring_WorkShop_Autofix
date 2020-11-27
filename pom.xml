@@ -12,14 +12,44 @@
     <artifactId>Autofix</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Autofix</name>
-    <description>Demo project for JU19</description>
+    <description>Demo project Car-parts seller</description>
+    <developers>
+        <developer>
+            <name>Elena Ten</name>
+            <email>xiztencia@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Luis Gutierrez</name>
+            <email>lfgn84@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Nicklas Johansson</name>
+            <email>Nicklas.c.Johansson@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Rauf Rajput</name>
+            <email>r.rajput@hotmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
 
+    </developers>
     <properties>
         <java.version>11</java.version>
     </properties>
 
     <dependencies>
-         <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

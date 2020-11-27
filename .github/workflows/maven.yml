@@ -7,10 +7,10 @@ on:
   push:
     branches: 
     - main
-    - nicklas
-    - elena
-    - luis
-    - rauf
+ #   - nicklas
+ #   - elena
+ #   - luis
+ #   - rauf
   pull_request:
     branches: [ main ]
 

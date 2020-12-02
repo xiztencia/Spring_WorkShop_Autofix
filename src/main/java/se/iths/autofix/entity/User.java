@@ -11,17 +11,32 @@ public class User {
     private Long id;
     @NotEmpty
     private String username;
-    private String vehicle;
+
     private String email;
     private String password;
 
+//    @OneToMany(mappedBy ="uehicle", CascadeType.ALL)
+//    private Vehicle vehicle;
 
-    public User(String username, String email, String password, String vehicle) {
+//    public Vehicle getVehicle() {
+//        return vehicle;
+//    }
+//
+//    public void setVehicle(Vehicle vehicle) {
+//        this.vehicle = vehicle;
+//    }
+
+
+
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.vehicle = vehicle;
+
     }
+
+
+
 
     public User() {
 

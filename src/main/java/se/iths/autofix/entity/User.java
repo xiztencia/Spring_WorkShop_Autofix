@@ -11,14 +11,16 @@ public class User {
     private Long id;
     @NotEmpty
     private String username;
+    private String vehicle;
     private String email;
     private String password;
 
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, String vehicle) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.vehicle = vehicle;
     }
 
     public User() {

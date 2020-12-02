@@ -1,9 +1,9 @@
 package se.iths.autofix.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class ShoppingCart {
@@ -16,6 +16,9 @@ public class ShoppingCart {
     private int quantity;
     private double totalPrice;
 
+    @OneToMany(mappedBy = "shoppingcart_sales")
+    private List<Sale> addedItemsOnCart;
+
     public ShoppingCart(){
 
     }
@@ -25,6 +28,7 @@ public class ShoppingCart {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
+
 
     public Long getId() {
         return id;

@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Service {
+public class Service extends Sale {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//   private Long id;
 
     private String type;
     private double price;
@@ -30,13 +30,13 @@ public Service(){
 
 }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getType() {
         return type;

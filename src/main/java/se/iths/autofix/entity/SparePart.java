@@ -22,7 +22,7 @@ public class SparePart {
 
 
     public SparePart(Long id, String category, String part, double price, int quantity) {
-        this.id = id;
+        //this.id = id;
         this.category = category;
         this.part = part;
         this.price = price;

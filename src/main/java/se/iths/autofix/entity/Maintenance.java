@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Service {
+public class Maintenance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,14 +19,14 @@ public class Service {
     private Date checkInDate;
     private Date checkOutDate;
 
-    public Service(String type, double price, Date checkInDate, Date checkOutDate) {
+    public Maintenance(String type, double price, Date checkInDate, Date checkOutDate) {
         this.type = type;
         this.price = price;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
 
-public Service(){
+public Maintenance(){
 
 }
 
@@ -37,6 +37,7 @@ public Service(){
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getType() {
         return type;
@@ -69,10 +70,5 @@ public Service(){
     public void setCheckOutDate(Date checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
-
-
-
-
-
 
 }

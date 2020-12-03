@@ -36,11 +36,11 @@ public class VehicleService {
         return vehicleRepository.findById(id);
     }
 
-    public Iterable<Vehicle> findAllVehicle() {
+    public Iterable<Vehicle> findAllVehicles() {
         return vehicleRepository.findAll();
     }
 
     public Vehicle getVehicleByPlateNumber(String plateNumber) {
-        return vehicleRepository.findVehiclebyNumberPlate(plateNumber);
+        return vehicleRepository.findVehicleByNumberPlate(plateNumber);
     }
 }

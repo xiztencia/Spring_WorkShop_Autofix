@@ -15,21 +15,30 @@ public class Employee {
 
     private String name;
     private String email;
+    private String password;
 
 //    public enum range {
 //        ADMIN, USER
 //    }
 
-    public Employee(Long id, String name, String email) {
-        this.id = id;
+    public Employee(String name, String email, String password) {
         this.name = name;
         this.email = email;
+        this.password = password;
     }
 
 
 
     public Employee(){
 
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getId() {

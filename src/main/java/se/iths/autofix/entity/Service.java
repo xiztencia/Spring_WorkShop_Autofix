@@ -38,6 +38,7 @@ public Service(){
 //        this.id = id;
 //    }
 
+
     public String getType() {
         return type;
     }
@@ -69,10 +70,5 @@ public Service(){
     public void setCheckOutDate(Date checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
-
-
-
-
-
 
 }

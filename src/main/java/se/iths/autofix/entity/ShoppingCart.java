@@ -62,9 +62,4 @@ public class ShoppingCart {
         this.totalPrice = totalPrice;
     }
 
-
-
-
-
-
 }

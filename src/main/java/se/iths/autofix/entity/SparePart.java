@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class SparePart extends Sale{
+public class SparePart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

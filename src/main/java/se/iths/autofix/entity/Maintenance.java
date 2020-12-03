@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Maintenance extends Sale {
+public class Maintenance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

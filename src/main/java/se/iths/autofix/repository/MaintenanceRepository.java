@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import se.iths.autofix.entity.Maintenance;
 
 @Repository
-public interface MaintenanceRepository extends CrudRepository<Maintenance, String> {
+public interface MaintenanceRepository extends CrudRepository<Maintenance, Long> {
 
 //    @Query("SELECT i FROM Item i WHERE i.user.id = :id")
 //    Iterable<Service> findSevicesByServiceType(String type);

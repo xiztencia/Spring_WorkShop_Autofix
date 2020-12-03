@@ -1,4 +1,4 @@
-package se.iths.autofix.entity;
+/*package se.iths.autofix.entity;
 
 import javax.persistence.*;
 
@@ -17,4 +17,4 @@ public class Sale {
     public void setId(long id) {
         this.id = id;
     }
-}
+}*/

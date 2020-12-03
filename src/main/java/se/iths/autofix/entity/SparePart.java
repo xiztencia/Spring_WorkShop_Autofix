@@ -9,9 +9,9 @@ import javax.persistence.Id;
 @Entity
 public class SparePart extends Sale{
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String category;
     private String part;
@@ -31,13 +31,13 @@ public class SparePart extends Sale{
 
     public SparePart(){}
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCategory() {
         return category;

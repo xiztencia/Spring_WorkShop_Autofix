@@ -1,5 +1,7 @@
 package se.iths.autofix.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +18,12 @@ public class ShoppingCart {
     private int quantity;
     private double totalPrice;
 
-    @OneToMany(mappedBy = "shoppingcart_sales")
-    private List<Sale> addedItemsOnCart;
+//    @OneToMany(mappedBy = "shoppingcart_sales")
+//    private List<Sale> addedItemsOnCart;
+    @OneToOne
+    private Maintenance maintenance;
+    @OneToOne
+    private SparePart sparePart;
 
     public ShoppingCart(){
 

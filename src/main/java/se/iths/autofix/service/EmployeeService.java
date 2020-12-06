@@ -53,16 +53,16 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployeeByName(String name) {
-        return employeeRepository.findByEmployeeName(name);
-    }
+//    public Employee getEmployeeByName(String name) {
+//        return employeeRepository.findByEmployeeName(name);
+//    }
 
 
-    public Employee getAuthenticatedEmployee() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String authenticatedEmployeeName = authentication.getName();
-        return getEmployeeByName(authenticatedEmployeeName);
-    }
+//    public Employee getAuthenticatedEmployee() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String authenticatedEmployeeName = authentication.getName();
+//        return getEmployeeByName(authenticatedEmployeeName);
+//    }
 
 
 }

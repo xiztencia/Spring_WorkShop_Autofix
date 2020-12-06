@@ -45,8 +45,8 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
     }
 
-    @GetMapping("/getauthenticatedemployee")
-    public Employee getAuthenticatedEmployee() {
-        return employeeService.getAuthenticatedEmployee();
-    }
+//    @GetMapping("/getauthenticatedemployee")
+//    public Employee getAuthenticatedEmployee() {
+//        return employeeService.getAuthenticatedEmployee();
+//    }
 }

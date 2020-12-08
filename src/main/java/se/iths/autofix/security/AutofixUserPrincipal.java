@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import se.iths.autofix.entity.AuthGroup;
+import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.User;
 
 import java.util.*;
@@ -11,11 +12,18 @@ import java.util.*;
 public class AutofixUserPrincipal implements UserDetails {
 
     private User user;
+    private Employee employee;
     private List<AuthGroup> authGroups;
 
     public AutofixUserPrincipal(User user, List<AuthGroup> authGroups) {
         super();
         this.user = user;
+        this.authGroups = authGroups;
+    }
+
+    public AutofixUserPrincipal(Employee employee, List<AuthGroup> authGroups) {
+        super();
+        this.employee = employee;
         this.authGroups = authGroups;
     }
 
@@ -28,7 +36,6 @@ public class AutofixUserPrincipal implements UserDetails {
         authGroups.forEach(group->{
             grantedAuthorities.add(new SimpleGrantedAuthority(group.getAuthGroup()));
         });
-
         return grantedAuthorities;
     }
 

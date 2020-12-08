@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.User;
 import se.iths.autofix.repository.AuthGroupRepository;
+import se.iths.autofix.repository.EmployeeRepository;
 import se.iths.autofix.repository.UserRepository;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 public class AutofixUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;
+    private EmployeeRepository employeeRepository;
     private AuthGroupRepository authGroupRepository;
 
     public AutofixUserDetailsService(UserRepository userRepository, AuthGroupRepository authGroupRepository) {
@@ -22,6 +24,12 @@ public class AutofixUserDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
         this.authGroupRepository = authGroupRepository;
     }
+
+//    public AutofixUserDetailsService(EmployeeRepository employeeRepository, AuthGroupRepository authGroupRepository) {
+//        super();
+//        this.employeeRepository = employeeRepository;
+//        this.authGroupRepository = authGroupRepository;
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

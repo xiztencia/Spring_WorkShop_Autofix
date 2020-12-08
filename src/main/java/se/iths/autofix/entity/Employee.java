@@ -13,7 +13,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    private String username;
     private String email;
     private String password;
 
@@ -21,8 +21,8 @@ public class Employee {
 //        ADMIN, USER
 //    }
 
-    public Employee(String name, String email, String password) {
-        this.name = name;
+    public Employee(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -50,11 +50,11 @@ public class Employee {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

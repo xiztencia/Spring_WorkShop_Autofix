@@ -19,8 +19,8 @@ public class SparePart {
     private int quantity;
     //    private String model;
 //    @ManyToOne(cascade = CascadeType.PERSIST)
-//    @JoinColumn(part = "part_user")
-//    private User user;
+//    @JoinColumn(part = "part_client")
+//    private Client client;
 
 
     public SparePart(String category, @NotEmpty String part, double price, int quantity) {

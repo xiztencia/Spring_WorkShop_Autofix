@@ -27,8 +27,8 @@ public class EmployeeService {
 
     // Setter injection
 //    @Autowired
-//    void setUserRepository(UserRepository userRepository) {
-//        this.userRepository = userRepository;
+//    void setClientRepository(ClientRepository clientRepository) {
+//        this.clientRepository = clientRepository;
 //    }
 
 

@@ -9,23 +9,24 @@ import se.iths.autofix.entity.Employee;
 
 import java.util.*;
 
-public class AutofixUserPrincipal implements UserDetails {
+public class AutofixClientPrincipal implements UserDetails {
+    //AutofixUserPrincipal
 
     private Client client;
-    private Employee employee;
+   // private Employee employee;
     private List<AuthGroup> authGroups;
 
-    public AutofixUserPrincipal(Client client, List<AuthGroup> authGroups) {
+    public AutofixClientPrincipal(Client client, List<AuthGroup> authGroups) {
         super();
         this.client = client;
         this.authGroups = authGroups;
     }
 
-    public AutofixUserPrincipal(Employee employee, List<AuthGroup> authGroups) {
-        super();
-        this.employee = employee;
-        this.authGroups = authGroups;
-    }
+//    public AutofixClientPrincipal(Employee employee, List<AuthGroup> authGroups) {
+//        super();
+//        this.employee = employee;
+//        this.authGroups = authGroups;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,6 +44,7 @@ public class AutofixUserPrincipal implements UserDetails {
     public String getPassword() {
         return this.client.getPassword();
     }
+
 
     @Override
     public String getUsername() {

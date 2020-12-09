@@ -21,13 +21,13 @@ import se.iths.autofix.security.jwt.config.JwtRequestFilter;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private AutofixUserDetailsService userDetailsService;
+    private AutofixClientDetailsService clientDetailsService;
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private JwtRequestFilter jwtRequestFilter;
 
-    public SecurityConfig(AutofixUserDetailsService userDetailsService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
+    public SecurityConfig(AutofixClientDetailsService clientDetailsService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
                           JwtRequestFilter jwtRequestFilter) {
-        this.userDetailsService = userDetailsService;
+        this.clientDetailsService = clientDetailsService;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtRequestFilter = jwtRequestFilter;
     }
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
+        provider.setUserDetailsService(clientDetailsService);
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
         provider.setAuthoritiesMapper(authoritiesMapper());
         return provider;
@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/user/create", "/authenticate").permitAll()
+                .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated();

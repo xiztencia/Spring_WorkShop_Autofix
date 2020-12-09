@@ -36,14 +36,14 @@ public class SparePartController {
         sparePartService.deleteSparePart(id);
     }
 
-//    @GetMapping("/findbyuser/{id}")
-//    public Iterable<SparePart> getAllSparePartsByUser(@PathVariable Long id) {
-//        return sparePartService.findSparePartsByUserId(id);
+//    @GetMapping("/findbyclient/{id}")
+//    public Iterable<SparePart> getAllSparePartsByClient(@PathVariable Long id) {
+//        return sparePartService.findSparePartsByClientId(id);
 //    }
 //
-//    @GetMapping("/findallsparepartsbyuser")
-//    Iterable<Item> findAllSparePartsByUser() {
-//        return sparePartService.findAllByUser();
+//    @GetMapping("/findallsparepartsbyclient")
+//    Iterable<Item> findAllSparePartsByClient() {
+//        return sparePartService.findAllByClient();
 //    }
 
 }

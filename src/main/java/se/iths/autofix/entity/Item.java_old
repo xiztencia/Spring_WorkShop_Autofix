@@ -20,7 +20,7 @@ public class Item {
     private double price;
     private LocalDate createdAt;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "item_user")
+    @JoinColumn(name = "item_client")
     private User client;
 
 

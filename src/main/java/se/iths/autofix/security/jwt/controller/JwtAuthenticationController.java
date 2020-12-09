@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import se.iths.autofix.security.AutofixUserDetailsService;
+import se.iths.autofix.security.AutofixClientDetailsService;
 import se.iths.autofix.security.jwt.config.JwtTokenUtil;
 import se.iths.autofix.security.jwt.model.JwtRequest;
 import se.iths.autofix.security.jwt.model.JwtResponse;
@@ -19,19 +19,19 @@ public class JwtAuthenticationController {
 
     private AuthenticationManager authenticationManager;
     private JwtTokenUtil jwtTokenUtil;
-    private AutofixUserDetailsService userDetailsService;
+    private AutofixClientDetailsService clientDetailsService;
 
     public JwtAuthenticationController(AuthenticationManager authenticationManager,
-                                       JwtTokenUtil jwtTokenUtil, AutofixUserDetailsService userDetailsService) {
+                                       JwtTokenUtil jwtTokenUtil, AutofixClientDetailsService clientDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.userDetailsService = userDetailsService;
+        this.clientDetailsService = clientDetailsService;
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-        final UserDetails userDetails = userDetailsService
+        final UserDetails userDetails = clientDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));

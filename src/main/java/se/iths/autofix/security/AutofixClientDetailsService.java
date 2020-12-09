@@ -13,12 +13,12 @@ import se.iths.autofix.repository.ClientRepository;
 import java.util.List;
 
 @Service
-public class AutofixUserDetailsService implements UserDetailsService {
-
+public class AutofixClientDetailsService implements UserDetailsService {
+//AutofixUserDetailsService
     private ClientRepository clientRepository;
     private AuthGroupRepository authGroupRepository;
 
-    public AutofixUserDetailsService(ClientRepository clientRepository, AuthGroupRepository authGroupRepository) {
+    public AutofixClientDetailsService(ClientRepository clientRepository, AuthGroupRepository authGroupRepository) {
         super();
         this.clientRepository = clientRepository;
         this.authGroupRepository = authGroupRepository;
@@ -37,7 +37,7 @@ public class AutofixUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Can't find username: " + username);
         }
         List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
-        return new AutofixUserPrincipal(client, authGroups);
+        return new AutofixClientPrincipal(client, authGroups);
     }
 
 }

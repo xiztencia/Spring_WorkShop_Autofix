@@ -24,24 +24,14 @@ public class User {
 //    public void setVehicle(Vehicle vehicle) {
 //        this.vehicle = vehicle;
 //    }
-
-
-
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-
     }
-
-
-
-
     public User() {
 
     }
-
-
     public String getPassword() {
         return password;
     }

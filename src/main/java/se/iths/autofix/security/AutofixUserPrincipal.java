@@ -12,7 +12,7 @@ import java.util.*;
 public class AutofixUserPrincipal implements UserDetails {
 
     private Client client;
-    private Employee employee;
+   // private Employee employee;
     private List<AuthGroup> authGroups;
 
     public AutofixUserPrincipal(Client client, List<AuthGroup> authGroups) {
@@ -21,11 +21,11 @@ public class AutofixUserPrincipal implements UserDetails {
         this.authGroups = authGroups;
     }
 
-    public AutofixUserPrincipal(Employee employee, List<AuthGroup> authGroups) {
-        super();
-        this.employee = employee;
-        this.authGroups = authGroups;
-    }
+//    public AutofixUserPrincipal(Employee employee, List<AuthGroup> authGroups) {
+//        super();
+//        this.employee = employee;
+//        this.authGroups = authGroups;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,6 +43,7 @@ public class AutofixUserPrincipal implements UserDetails {
     public String getPassword() {
         return this.client.getPassword();
     }
+
 
     @Override
     public String getUsername() {

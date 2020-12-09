@@ -18,7 +18,7 @@ public class MaintenanceService {
     }
 
     public Maintenance createMaintenance(Maintenance maintenance) {
-        //item.setUser(userService.getAuthenticatedUser());
+        //item.setUser(userService.getAuthenticatedClient());
         return maintenanceRepository.save(maintenance);
     }
 

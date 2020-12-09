@@ -31,23 +31,23 @@ public class ClientController {
     }
 
     @GetMapping("/findall")
-    public Iterable<Client> findAllUsers() {
-        return clientService.findAllUsers();
+    public Iterable<Client> findAllClients() {
+        return clientService.findAllClients();
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Client> findUserById(@PathVariable Long id) {
-        return clientService.findUserById(id);
+    public Optional<Client> findClientById(@PathVariable Long id) {
+        return clientService.findClientById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        clientService.deleteUser(id);
+    public void deleteClient(@PathVariable Long id) {
+        clientService.deleteClient(id);
     }
 
-    @GetMapping("/getauthenticateduser")
-    public Client getAuthenticatedUser() {
-        return clientService.getAuthenticatedUser();
+    @GetMapping("/getauthenticatedclient")
+    public Client getAuthenticatedClient() {
+        return clientService.getAuthenticatedClient();
     }
 
 }

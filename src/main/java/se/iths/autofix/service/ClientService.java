@@ -40,28 +40,28 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public void deleteUser(Long id) {
-        Optional<Client> foundUser = clientRepository.findById(id);
-        clientRepository.deleteById(foundUser.get().getId());
+    public void deleteClient(Long id) {
+        Optional<Client> foundClient = clientRepository.findById(id);
+        clientRepository.deleteById(foundClient.get().getId());
     }
 
-    public Optional<Client> findUserById(Long id) {
+    public Optional<Client> findClientById(Long id) {
         return clientRepository.findById(id);
     }
 
-    public Iterable<Client> findAllUsers() {
+    public Iterable<Client> findAllClients() {
         return clientRepository.findAll();
     }
 
-    public Client getUserByUsername(String username) {
+    public Client getClientByUsername(String username) {
         return clientRepository.findByUsername(username);
     }
 
 
-    public Client getAuthenticatedUser() {
+    public Client getAuthenticatedClient() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String authenticatedUsername = authentication.getName();
-        return getUserByUsername(authenticatedUsername);
+        return getClientByUsername(authenticatedUsername);
     }
 
 }

@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 
 
 @Entity
-public class User {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,12 +24,12 @@ public class User {
 //    public void setVehicle(Vehicle vehicle) {
 //        this.vehicle = vehicle;
 //    }
-    public User(String username, String email, String password) {
+    public Client(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
-    public User() {
+    public Client() {
 
     }
     public String getPassword() {

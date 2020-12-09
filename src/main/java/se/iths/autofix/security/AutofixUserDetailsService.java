@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.AuthGroup;
-import se.iths.autofix.entity.User;
+import se.iths.autofix.entity.Client;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.EmployeeRepository;
 import se.iths.autofix.repository.UserRepository;
@@ -33,12 +33,12 @@ public class AutofixUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if(user==null) {
+        Client client = userRepository.findByUsername(username);
+        if(client ==null) {
             throw new UsernameNotFoundException("Can't find username: " + username);
         }
         List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
-        return new AutofixUserPrincipal(user, authGroups);
+        return new AutofixUserPrincipal(client, authGroups);
     }
 
 }

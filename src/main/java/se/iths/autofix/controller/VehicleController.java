@@ -3,9 +3,7 @@ package se.iths.autofix.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import se.iths.autofix.entity.User;
 import se.iths.autofix.entity.Vehicle;
-import se.iths.autofix.service.UserService;
 import se.iths.autofix.service.VehicleService;
 
 import java.util.Optional;

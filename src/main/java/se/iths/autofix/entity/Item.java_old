@@ -21,7 +21,7 @@ public class Item {
     private LocalDate createdAt;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "item_user")
-    private User user;
+    private User client;
 
 
 
@@ -43,11 +43,11 @@ public class Item {
 
 
     public User getUser() {
-        return user;
+        return client;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(User client) {
+        this.client = client;
     }
 
     public LocalDate getCreatedAt() {

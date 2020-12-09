@@ -5,7 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import se.iths.autofix.entity.User;
+import se.iths.autofix.entity.Client;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.UserRepository;
 
@@ -32,33 +32,33 @@ public class UserService {
 //    }
 
 
-    public User createUser(User user) {
+    public Client createUser(Client client) {
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "ADMIN"));
-        return userRepository.save(user);
+        return userRepository.save(client);
     }
 
     public void deleteUser(Long id) {
-        Optional<User> foundUser = userRepository.findById(id);
+        Optional<Client> foundUser = userRepository.findById(id);
         userRepository.deleteById(foundUser.get().getId());
     }
 
-    public Optional<User> findUserById(Long id) {
+    public Optional<Client> findUserById(Long id) {
         return userRepository.findById(id);
     }
 
-    public Iterable<User> findAllUsers() {
+    public Iterable<Client> findAllUsers() {
         return userRepository.findAll();
     }
 
-    public User getUserByUsername(String username) {
+    public Client getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
 
-    public User getAuthenticatedUser() {
+    public Client getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String authenticatedUsername = authentication.getName();
         return getUserByUsername(authenticatedUsername);

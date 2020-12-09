@@ -4,20 +4,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import se.iths.autofix.entity.AuthGroup;
+import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
-import se.iths.autofix.entity.User;
 
 import java.util.*;
 
 public class AutofixUserPrincipal implements UserDetails {
 
-    private User user;
+    private Client client;
     private Employee employee;
     private List<AuthGroup> authGroups;
 
-    public AutofixUserPrincipal(User user, List<AuthGroup> authGroups) {
+    public AutofixUserPrincipal(Client client, List<AuthGroup> authGroups) {
         super();
-        this.user = user;
+        this.client = client;
         this.authGroups = authGroups;
     }
 
@@ -41,12 +41,12 @@ public class AutofixUserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.user.getPassword();
+        return this.client.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return this.client.getUsername();
     }
 
     @Override

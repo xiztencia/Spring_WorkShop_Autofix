@@ -1,7 +1,6 @@
 package se.iths.autofix.controller;
 
 import org.springframework.web.bind.annotation.*;
-import se.iths.autofix.entity.Item;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.service.SparePartService;
 

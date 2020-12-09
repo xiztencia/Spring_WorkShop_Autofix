@@ -25,7 +25,6 @@ public class User {
 //        this.vehicle = vehicle;
 //    }
 
-
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;

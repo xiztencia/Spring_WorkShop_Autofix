@@ -8,20 +8,19 @@ import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.EmployeeRepository;
-import se.iths.autofix.repository.UserRepository;
+import se.iths.autofix.repository.ClientRepository;
 
 import java.util.List;
 
 @Service
 public class AutofixUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
-    private EmployeeRepository employeeRepository;
+    private ClientRepository clientRepository;
     private AuthGroupRepository authGroupRepository;
 
-    public AutofixUserDetailsService(UserRepository userRepository, AuthGroupRepository authGroupRepository) {
+    public AutofixUserDetailsService(ClientRepository clientRepository, AuthGroupRepository authGroupRepository) {
         super();
-        this.userRepository = userRepository;
+        this.clientRepository = clientRepository;
         this.authGroupRepository = authGroupRepository;
     }
 
@@ -33,7 +32,7 @@ public class AutofixUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Client client = userRepository.findByUsername(username);
+        Client client = clientRepository.findByUsername(username);
         if(client ==null) {
             throw new UsernameNotFoundException("Can't find username: " + username);
         }

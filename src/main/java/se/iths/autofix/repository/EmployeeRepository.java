@@ -6,5 +6,5 @@ import se.iths.autofix.entity.Employee;
 
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-//    Employee findByEmployeeName (String name);
+   Employee findByUsername (String username);
 }

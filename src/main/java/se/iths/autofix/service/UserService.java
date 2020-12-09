@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.repository.AuthGroupRepository;
-import se.iths.autofix.repository.UserRepository;
+import se.iths.autofix.repository.ClientRepository;
 
 import java.util.Optional;
 
@@ -17,18 +17,18 @@ public class UserService {
     @Autowired
     AuthGroupRepository authGroupRepository;
 
-    private UserRepository userRepository;
+    private ClientRepository clientRepository;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // Constructor injection
-    public UserService(UserRepository userRepository, TestScopes testScopes) {
-        this.userRepository = userRepository;
+    public UserService(ClientRepository clientRepository, TestScopes testScopes) {
+        this.clientRepository = clientRepository;
     }
 
     // Setter injection
 //    @Autowired
-//    void setUserRepository(UserRepository userRepository) {
-//        this.userRepository = userRepository;
+//    void setClientRepository(ClientRepository clientRepository) {
+//        this.clientRepository = clientRepository;
 //    }
 
 
@@ -37,24 +37,24 @@ public class UserService {
         client.setPassword(passwordEncoder.encode(client.getPassword()));
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "ADMIN"));
-        return userRepository.save(client);
+        return clientRepository.save(client);
     }
 
     public void deleteUser(Long id) {
-        Optional<Client> foundUser = userRepository.findById(id);
-        userRepository.deleteById(foundUser.get().getId());
+        Optional<Client> foundUser = clientRepository.findById(id);
+        clientRepository.deleteById(foundUser.get().getId());
     }
 
     public Optional<Client> findUserById(Long id) {
-        return userRepository.findById(id);
+        return clientRepository.findById(id);
     }
 
     public Iterable<Client> findAllUsers() {
-        return userRepository.findAll();
+        return clientRepository.findAll();
     }
 
     public Client getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return clientRepository.findByUsername(username);
     }
 
 

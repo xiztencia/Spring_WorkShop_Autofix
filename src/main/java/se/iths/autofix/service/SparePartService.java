@@ -1,7 +1,6 @@
 package se.iths.autofix.service;
 
 import org.springframework.stereotype.Service;
-import se.iths.autofix.entity.Item;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.repository.SparePartRepository;
 

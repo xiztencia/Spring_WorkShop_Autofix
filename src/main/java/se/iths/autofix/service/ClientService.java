@@ -12,7 +12,7 @@ import se.iths.autofix.repository.ClientRepository;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class ClientService {
 
     @Autowired
     AuthGroupRepository authGroupRepository;
@@ -21,7 +21,7 @@ public class UserService {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // Constructor injection
-    public UserService(ClientRepository clientRepository, TestScopes testScopes) {
+    public ClientService(ClientRepository clientRepository, TestScopes testScopes) {
         this.clientRepository = clientRepository;
     }
 
@@ -32,7 +32,7 @@ public class UserService {
 //    }
 
 
-    public Client createUser(Client client) {
+    public Client createClient(Client client) {
 
         client.setPassword(passwordEncoder.encode(client.getPassword()));
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));

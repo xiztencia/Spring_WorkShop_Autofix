@@ -1,3 +1,4 @@
+/*
 package se.iths.autofix.service;
 
 import org.springframework.stereotype.Service;
@@ -47,3 +48,4 @@ public class ItemService {
     }
 
 }
+*/

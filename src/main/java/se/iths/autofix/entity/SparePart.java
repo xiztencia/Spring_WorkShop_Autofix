@@ -1,10 +1,8 @@
 package se.iths.autofix.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class SparePart {
@@ -13,16 +11,19 @@ public class SparePart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String category;
+    @NotEmpty
     private String part;
 
+    private String category;
     private double price;
     private int quantity;
     //    private String model;
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+//    @JoinColumn(part = "part_user")
+//    private User user;
 
 
-    public SparePart(Long id, String category, String part, double price, int quantity) {
-        //this.id = id;
+    public SparePart(String category, @NotEmpty String part, double price, int quantity) {
         this.category = category;
         this.part = part;
         this.price = price;
@@ -70,12 +71,5 @@ public class SparePart {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-
-
-
-
-
-
 
 }

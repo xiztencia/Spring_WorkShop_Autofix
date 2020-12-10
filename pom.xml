@@ -50,10 +50,10 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
-<!--        </dependency>-->
+        <dependency>-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -117,7 +117,13 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub {owner} Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/{owner}/{repo-name}</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>

@@ -50,7 +50,7 @@
     </properties>
 
     <dependencies>
-        <dependency>-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
@@ -121,7 +121,7 @@
         <repository>
             <id>github</id>
             <name>GitHub {owner} Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/{owner}/{repo-name}</url>
+            <url>https://maven.pkg.github.com/xiztencia/Spring_WorkShop_Autofix/</url>
         </repository>
     </distributionManagement>
     <build>

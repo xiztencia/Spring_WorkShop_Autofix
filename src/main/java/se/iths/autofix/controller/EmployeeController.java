@@ -24,7 +24,7 @@ public class EmployeeController {
     public Employee createEmployee(@RequestBody Employee employee) {
 //           logger.trace("Vi loggar på TRACE-nivå");
 //           logger.debug("Vi loggar på DEBUG-nivå");
-        logger.info("createEmployee() was called with name: " + employee.getName());
+        logger.info("createEmployee() was called with name: " + employee.getUsername());
 //           logger.warn("Vi loggar på WARN-nivå");
 //           logger.error("Vi loggar på ERROR-nivå");
         return employeeService.createEmployee(employee);

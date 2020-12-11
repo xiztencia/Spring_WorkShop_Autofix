@@ -71,8 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Kolla upp CSRF
         http
                 .csrf().disable();
-  /*              .authorizeRequests()
-                .antMatchers("/", "/home", "/user/create", "/authenticate").permitAll()
+
+  /*                .authorizeRequests()
+                .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -83,6 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .invalidateHttpSession(true)
 //                .clearAuthentication(true)
 //                .permitAll();
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()

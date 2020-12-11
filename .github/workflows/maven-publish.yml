@@ -30,4 +30,4 @@ jobs:
       - name: Publish to GitHub Packages Apache Maven
         run: mvn -B deploy 
         env:
-          GITHUB_TOKEN: ${{TOKEN_PUBLISH}}
+          SUPER_SECRET: ${{TOKEN_PUBLISH}}

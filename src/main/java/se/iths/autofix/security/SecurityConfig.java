@@ -21,13 +21,13 @@ import se.iths.autofix.security.jwt.config.JwtRequestFilter;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private AutofixClientDetailsService clientDetailsService;
+    private AutofixClientDetailsService userDetailsService;
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private JwtRequestFilter jwtRequestFilter;
 
-    public SecurityConfig(AutofixClientDetailsService clientDetailsService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
+    public SecurityConfig(AutofixClientDetailsService userDetailsService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
                           JwtRequestFilter jwtRequestFilter) {
-        this.clientDetailsService = clientDetailsService;
+        this.userDetailsService = userDetailsService;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtRequestFilter = jwtRequestFilter;
     }
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(clientDetailsService);
+        provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
         provider.setAuthoritiesMapper(authoritiesMapper());
         return provider;
@@ -70,13 +70,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // Kolla upp CSRF
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
+                .csrf().disable();
+  /*              .authorizeRequests()
+                .antMatchers("/", "/home", "/user/create", "/authenticate").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated();
-//                .and()
+                .anyRequest().authenticated()
+                .and()
 //                .formLogin()
 //                .loginPage("/login").permitAll()
 //                .and()
@@ -84,12 +83,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .invalidateHttpSession(true)
 //                .clearAuthentication(true)
 //                .permitAll();
-//                .and()
-//                .exceptionHandling()
-//                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
         http.headers().frameOptions().disable();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 

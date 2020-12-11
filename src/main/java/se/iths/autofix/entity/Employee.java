@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Employee {
@@ -13,7 +14,11 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
     private String username;
+
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
 
@@ -21,10 +26,12 @@ public class Employee {
 //        ADMIN, USER
 //    }
 
-    public Employee(String username, String email, String password) {
+    public Employee(@NotEmpty String username, String lastname, String firstname, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
 
@@ -49,11 +56,11 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
+    public String getUsername() {
         return username;
     }
 
-    public void setName(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -65,8 +72,20 @@ public class Employee {
         this.email = email;
     }
 
+    public String getFirstname() {
+        return firstname;
+    }
 
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
+    public String getLastname() {
+        return lastname;
+    }
 
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
 }

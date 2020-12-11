@@ -11,6 +11,9 @@ public class Client {
     private Long id;
     @NotEmpty
     private String username;
+
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
 
@@ -24,8 +27,10 @@ public class Client {
 //    public void setVehicle(Vehicle vehicle) {
 //        this.vehicle = vehicle;
 //    }
-    public Client(String username, String email, String password) {
+    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {
         this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.password = password;
     }
@@ -64,5 +69,20 @@ public class Client {
         this.email = email;
     }
 
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
 }

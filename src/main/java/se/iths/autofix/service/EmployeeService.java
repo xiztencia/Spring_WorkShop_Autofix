@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.EmployeeRepository;
@@ -36,7 +37,7 @@ public class EmployeeService {
 
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));
-//        authGroupRepository.save(new AuthGroup(user.getUsername(), "ADMIN"));
+        authGroupRepository.save(new AuthGroup(employee.getUsername(), "ADMIN"));
         return employeeRepository.save(employee);
     }
 

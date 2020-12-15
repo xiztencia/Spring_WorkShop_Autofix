@@ -14,13 +14,13 @@ import se.iths.autofix.repository.ClientRepository;
 import java.util.List;
 
 @Service
-public class AutofixClientDetailsService implements UserDetailsService {
+public class AutofixUserDetailsService implements UserDetailsService {
 //AutofixUserDetailsService
     private ClientRepository clientRepository;
     private EmployeeRepository employeeRepository;
     private AuthGroupRepository authGroupRepository;
 
-    public AutofixClientDetailsService(ClientRepository clientRepository, EmployeeRepository employeeRepository,AuthGroupRepository authGroupRepository) {
+    public AutofixUserDetailsService(ClientRepository clientRepository, EmployeeRepository employeeRepository, AuthGroupRepository authGroupRepository) {
         super();
         this.clientRepository = clientRepository;
         this.authGroupRepository = authGroupRepository;
@@ -37,11 +37,11 @@ public class AutofixClientDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Client client = clientRepository.findByUsername(username);
         Employee employee = employeeRepository.findByUsername(username);
+        List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
+
         if(!(client ==null)) {
-            List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
             return new AutofixClientPrincipal(client, authGroups);
         }else if(!(employee ==null)){
-            List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
             return new AutofixEmployeePrincipal(employee, authGroups);
         }else{
             throw new UsernameNotFoundException("Can't find username: " + username);

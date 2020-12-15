@@ -9,20 +9,20 @@ import se.iths.autofix.entity.Employee;
 
 import java.util.*;
 
-public class AutofixClientPrincipal implements UserDetails {
+public class AutofixEmployeePrincipal implements UserDetails {
     //AutofixUserPrincipal
 
-    private Client client;
+    //private Client client;
    private Employee employee;
     private List<AuthGroup> authGroups;
 
-    public AutofixClientPrincipal(Client client, List<AuthGroup> authGroups) {
+  /*  public AutofixEmployeePrincipal(Client client, List<AuthGroup> authGroups) {
         super();
         this.client = client;
         this.authGroups = authGroups;
     }
-
-    public AutofixClientPrincipal(Employee employee, List<AuthGroup> authGroups) {
+*/
+    public AutofixEmployeePrincipal(Employee employee, List<AuthGroup> authGroups) {
         super();
         this.employee = employee;
         this.authGroups = authGroups;
@@ -42,13 +42,13 @@ public class AutofixClientPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.client.getPassword();
+        return this.employee.getPassword();
     }
 
 
     @Override
     public String getUsername() {
-        return this.client.getUsername();
+        return this.employee.getUsername();
     }
 
     @Override

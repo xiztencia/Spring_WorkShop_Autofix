@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.Client;
+import se.iths.autofix.entity.Employee;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.EmployeeRepository;
 import se.iths.autofix.repository.ClientRepository;
@@ -16,12 +17,14 @@ import java.util.List;
 public class AutofixClientDetailsService implements UserDetailsService {
 //AutofixUserDetailsService
     private ClientRepository clientRepository;
+    private EmployeeRepository employeeRepository;
     private AuthGroupRepository authGroupRepository;
 
-    public AutofixClientDetailsService(ClientRepository clientRepository, AuthGroupRepository authGroupRepository) {
+    public AutofixClientDetailsService(ClientRepository clientRepository, EmployeeRepository employeeRepository,AuthGroupRepository authGroupRepository) {
         super();
         this.clientRepository = clientRepository;
         this.authGroupRepository = authGroupRepository;
+        this.employeeRepository =employeeRepository;
     }
 
 //    public AutofixUserDetailsService(EmployeeRepository employeeRepository, AuthGroupRepository authGroupRepository) {
@@ -33,11 +36,17 @@ public class AutofixClientDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Client client = clientRepository.findByUsername(username);
-        if(client ==null) {
+        Employee employee = employeeRepository.findByUsername(username);
+        if(!(client ==null)) {
+            List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
+            return new AutofixClientPrincipal(client, authGroups);
+        }else if(!(employee ==null)){
+            List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
+            return new AutofixEmployeePrincipal(employee, authGroups);
+        }else{
             throw new UsernameNotFoundException("Can't find username: " + username);
         }
-        List<AuthGroup> authGroups = authGroupRepository.findByUsername(username);
-        return new AutofixClientPrincipal(client, authGroups);
+
     }
 
 }

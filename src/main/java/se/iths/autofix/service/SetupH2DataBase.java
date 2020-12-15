@@ -27,7 +27,7 @@ public class SetupH2DataBase {
             if( System.getProperty("SPRING_DRIVER_CLASS")=="org.h2.Driver") {
                 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
                 //New empty database, add some persons
-                Employee employee = new Employee("ADMIN","ADMIN","ADMIN","ADMIN","GOD");
+                Employee employee = new Employee("admin","admin","admin","admin","god");
                 employee.setPassword(passwordEncoder.encode(employee.getPassword()));
                 repository.save(employee);
                 logger.info("Added to database " + employee.getUsername());

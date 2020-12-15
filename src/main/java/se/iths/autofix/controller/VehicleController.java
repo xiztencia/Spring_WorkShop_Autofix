@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/vehicle")
-public class VehicleController {
+public class VehicleController{
     Logger logger = LoggerFactory.getLogger(VehicleController.class);
 
     private VehicleService vehicleService;

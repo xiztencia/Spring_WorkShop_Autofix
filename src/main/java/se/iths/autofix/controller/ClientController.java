@@ -30,6 +30,7 @@ public class ClientController {
 //           logger.error("Vi loggar på ERROR-nivå");
            return clientService.createClient(client);
     }
+
     @RolesAllowed("ADMIN")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {

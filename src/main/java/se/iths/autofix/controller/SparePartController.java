@@ -36,14 +36,24 @@ public class SparePartController {
         sparePartService.deleteSparePart(id);
     }
 
-//    @GetMapping("/findbyclient/{id}")
-//    public Iterable<SparePart> getAllSparePartsByClient(@PathVariable Long id) {
-//        return sparePartService.findSparePartsByClientId(id);
-//    }
-//
-//    @GetMapping("/findallsparepartsbyclient")
-//    Iterable<Item> findAllSparePartsByClient() {
-//        return sparePartService.findAllByClient();
-//    }
+    @GetMapping("/findbyclient/{id}")
+    public Iterable<SparePart> getAllSparePartsByClient(@PathVariable Long id) {
+        return sparePartService.findSparePartsByClientId(id);
+    }
+
+    @GetMapping("/findallsparepartsbyclientusername")
+    Iterable<SparePart> findAllSparePartsByClientUsername() {
+        return sparePartService.findAllSparePartsByClientUsername();
+    }
+
+    @GetMapping("/findbyemployee/{id}")
+    public Iterable<SparePart> getAllSparePartsByEmployee(@PathVariable Long id) {
+        return sparePartService.findSparePartsByEmployeeId(id);
+    }
+
+    @GetMapping("/findallsparepartsbyemployeeusername")
+    Iterable<SparePart> findAllSparePartsByEmployeeUsername() {
+        return sparePartService.findAllSparePartsByEmployeeUsername();
+    }
 
 }

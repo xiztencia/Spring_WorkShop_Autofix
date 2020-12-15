@@ -18,10 +18,13 @@ public class SparePart {
     private double price;
     private int quantity;
     //    private String model;
-//    @ManyToOne(cascade = CascadeType.PERSIST)
-//    @JoinColumn(part = "part_client")
-//    private Client client;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "sparepart_client")
+    private Client client;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "sparepart_employee")
+    private Employee employee;
 
     public SparePart(String category, @NotEmpty String part, double price, int quantity) {
         this.category = category;

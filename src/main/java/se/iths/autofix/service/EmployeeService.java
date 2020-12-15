@@ -36,7 +36,6 @@ public class EmployeeService {
     public Employee createEmployee(Employee employee) {
 
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-//        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));
         authGroupRepository.save(new AuthGroup(employee.getUsername(), "ADMIN"));
         return employeeRepository.save(employee);
     }

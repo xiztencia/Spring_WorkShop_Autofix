@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.service.EmployeeService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
+@RolesAllowed("ADMIN")
 @RequestMapping("/employee")
 public class EmployeeController {
 

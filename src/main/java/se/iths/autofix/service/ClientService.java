@@ -37,7 +37,6 @@ public class ClientService {
 
         client.setPassword(passwordEncoder.encode(client.getPassword()));
         authGroupRepository.save(new AuthGroup(client.getUsername(), "USER"));
-//        authGroupRepository.save(new AuthGroup(user.getUsername(), "ADMIN"));
         return clientRepository.save(client);
     }
 

@@ -70,12 +70,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // Kolla upp CSRF
         http
-                .csrf().disable();
+                .csrf().disable()
 
-  /*                .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
+                //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
                 .anyRequest().authenticated()
                 .and()
 //                .formLogin()
@@ -84,13 +85,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .logout()
 //                .invalidateHttpSession(true)
 //                .clearAuthentication(true)
-//                .permitAll();
-                .and()
+//                .permitAll()
+//                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.headers().frameOptions().disable();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 

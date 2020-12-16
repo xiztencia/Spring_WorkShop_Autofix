@@ -1,12 +1,11 @@
 package se.iths.autofix.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.service.MaintenanceService;
-import sun.security.tools.keytool.Main;
+
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/maintenance")
@@ -20,6 +19,25 @@ public class MaintenanceController {
     public Maintenance createMaintenance(@RequestBody Maintenance maintenance){
         return maintenanceService.createMaintenance(maintenance);
     }
+
+    @GetMapping("/findall")
+    public Iterable<Maintenance> findAllMaintenances(){
+        return maintenanceService.findAllMaintenances();
+    }
+
+    @GetMapping("/id{id}")
+    public Optional<Maintenance> findMaintenanceById(@PathVariable Long id){
+        return maintenanceService.findMaintenanceById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteMaintenance(@PathVariable Long id){
+        maintenanceService.deleteMaintenance(id);
+    }
+
+//    @GetMapping("/findbyclient/{id}")
+//    public Iterable<Maintenance>
+
 
 
 }

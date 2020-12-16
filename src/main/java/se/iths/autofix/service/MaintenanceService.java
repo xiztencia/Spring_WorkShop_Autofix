@@ -24,10 +24,10 @@ public class MaintenanceService {
         return maintenanceRepository.save(maintenance);
     }
 
-//    public void deleteMaintenance(Long id) {
-//        Optional<Maintenance> foundMaintenance = maintenanceRepository.findById(id);
-//        maintenanceRepository.deleteById(foundMaintenance.get().getId());
-//    }
+    public void deleteMaintenance(Long id) {
+        Optional<Maintenance> foundMaintenance = maintenanceRepository.findById(id);
+        maintenanceRepository.deleteById(foundMaintenance.get().getId());
+    }
 
     public Optional<Maintenance> findMaintenanceById(Long id) {
         return maintenanceRepository.findById(id);

@@ -26,10 +26,10 @@ public class ClientController {
     public Client createClient(@RequestBody Client client) {
 //           logger.trace("Vi loggar på TRACE-nivå");
 //           logger.debug("Vi loggar på DEBUG-nivå");
-           logger.info("createClient() was called with username: " + client.getUsername());
+        logger.info("createClient() was called with username: " + client.getUsername());
 //           logger.warn("Vi loggar på WARN-nivå");
 //           logger.error("Vi loggar på ERROR-nivå");
-           return clientService.createClient(client);
+        return clientService.createClient(client);
     }
 
 

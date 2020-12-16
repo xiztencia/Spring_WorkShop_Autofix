@@ -19,7 +19,7 @@ public class Client {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy ="client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles = new HashSet<>();
 
     public void addVehicle(Vehicle vehicle) {
@@ -32,7 +32,7 @@ public class Client {
         vehicle.setClient(null);
     }
 
-    public Set<Vehicle> getVehicles(){
+    public Set<Vehicle> getVehicles() {
         return vehicles;
     }
 
@@ -43,6 +43,7 @@ public class Client {
         this.email = email;
         this.password = password;
     }
+
     public Client() {
     }
 

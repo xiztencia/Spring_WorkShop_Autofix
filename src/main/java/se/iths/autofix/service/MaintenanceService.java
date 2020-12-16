@@ -3,7 +3,6 @@ package se.iths.autofix.service;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.Maintenance;
-import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.repository.MaintenanceRepository;
 
 import java.time.LocalDate;

@@ -33,7 +33,8 @@ public class SparePart {
         this.quantity = quantity;
     }
 
-    public SparePart(){}
+    public SparePart() {
+    }
 
     public Long getId() {
         return id;

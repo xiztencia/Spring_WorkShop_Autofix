@@ -12,12 +12,12 @@ public class SparePartController {
 
     private SparePartService sparePartService;
 
-    public SparePartController(SparePartService sparePartService){
+    public SparePartController(SparePartService sparePartService) {
         this.sparePartService = sparePartService;
     }
 
     @PostMapping("/create")
-    public SparePart createSparePart(@RequestBody SparePart sparePart){
+    public SparePart createSparePart(@RequestBody SparePart sparePart) {
         return sparePartService.createSparePart(sparePart);
     }
 

@@ -3,6 +3,7 @@ package se.iths.autofix.service;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.Maintenance;
+import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.repository.MaintenanceRepository;
 
 import java.time.LocalDate;
@@ -10,7 +11,6 @@ import java.util.Optional;
 
 @Service
 public class MaintenanceService {
-
 
     private MaintenanceRepository maintenanceRepository;
 
@@ -44,18 +44,27 @@ public class MaintenanceService {
             throw new Exception();
 
         String jobHistory = servicejob.get().getJobHistory();
-        jobHistory = jobHistory + "\n "+ LocalDate.now()+" : "+employee.getUsername()+" "+message;
+        jobHistory = jobHistory + "\n " + LocalDate.now() + " : " + employee.getUsername() + " " + message;
         servicejob.get().setJobHistory(jobHistory);
         maintenanceRepository.save(servicejob.get());
     }
 
-//    public Iterable<Maintenance> findMaintenancesByUserId(Long id) {
-//        return maintenanceRepository.findMaintenancesByUserId(id);
-//    }
-//
-//    public Iterable<Maintenance> findAllByUser() {
-//        Iterable<Item> allMaintenancesByUser = maintenanceRepository.findAllByUser();
-//        return allMaintenancesByUser;
-//    }
+    public Iterable<Maintenance> findAllMaintenancesByClientId(Long id) {
+        return maintenanceRepository.findAllMaintenancesByClientId(id);
+    }
+
+    public Iterable<Maintenance> findAllMaintenancesByClientUsername() {
+        Iterable<Maintenance> allMaintenancesByClientUsername = maintenanceRepository.findAllMaintenancesByClientUsername();
+        return allMaintenancesByClientUsername;
+    }
+
+    public Iterable<Maintenance> findAllMaintenancesByEmployeeId(Long id) {
+        return maintenanceRepository.findAllMaintenancesByEmployeeId(id);
+    }
+
+    public Iterable<Maintenance> findAllMaintenancesByEmployeeUsername() {
+        Iterable<Maintenance> allMaintenancesByEmployeeUsername = maintenanceRepository.findAllMaintenancesByEmployeeUsername();
+        return allMaintenancesByEmployeeUsername;
+    }
 }
 

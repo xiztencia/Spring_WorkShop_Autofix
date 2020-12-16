@@ -2,6 +2,7 @@ package se.iths.autofix.controller;
 
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Maintenance;
+import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.service.MaintenanceService;
 
 
@@ -35,8 +36,25 @@ public class MaintenanceController {
         maintenanceService.deleteMaintenance(id);
     }
 
-//    @GetMapping("/findbyclient/{id}")
-//    public Iterable<Maintenance>
+    @GetMapping("/findbyclient/{id}")
+    public Iterable<Maintenance> getAllMaintenancesByClient(@PathVariable Long id){
+        return maintenanceService.findAllMaintenancesByClientId(id);
+    }
+
+    @GetMapping("/findallmaintenancessbyclientusername")
+    Iterable<Maintenance> findAllMaintenancesByClientUsername() {
+        return maintenanceService.findAllMaintenancesByClientUsername();
+    }
+
+    @GetMapping("/findallmaintenancesbyemployee/{id}")
+    public Iterable<Maintenance> getAllMaintenancesByEmployee(@PathVariable Long id) {
+        return maintenanceService.findAllMaintenancesByEmployeeId(id);
+    }
+
+    @GetMapping("/findallmaintenancesbyemployeeusername")
+    Iterable<Maintenance> findAllMaintenancesByEmployeeUsername() {
+        return maintenanceService.findAllMaintenancesByEmployeeUsername();
+    }
 
 
 

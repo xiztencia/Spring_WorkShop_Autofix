@@ -9,6 +9,7 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotEmpty
     private String numberPlate;
     private String maker;
@@ -62,10 +63,5 @@ public class Vehicle {
     public void setModel(String model) {
         this.model = model;
     }
-
-
-
-
-
 
 }

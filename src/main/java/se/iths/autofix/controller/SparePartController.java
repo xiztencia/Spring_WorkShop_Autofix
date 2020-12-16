@@ -46,7 +46,7 @@ public class SparePartController {
         return sparePartService.findAllSparePartsByClientUsername();
     }
 
-    @GetMapping("/findbyemployee/{id}")
+    @GetMapping("/findallsparepartsbyemployee/{id}")
     public Iterable<SparePart> getAllSparePartsByEmployee(@PathVariable Long id) {
         return sparePartService.findSparePartsByEmployeeId(id);
     }

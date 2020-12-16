@@ -2,6 +2,7 @@ package se.iths.autofix.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.service.ClientService;
@@ -31,7 +32,8 @@ public class ClientController {
            return clientService.createClient(client);
     }
 
-    @RolesAllowed("ADMIN")
+    //@RolesAllowed("ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {
         return clientService.findAllClients();

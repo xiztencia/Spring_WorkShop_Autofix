@@ -32,9 +32,10 @@ public class ClientController {
            return clientService.createClient(client);
     }
 
-    //@RolesAllowed("ADMIN")
-    @PreAuthorize("hasRole('ADMIN')")
+
     @GetMapping("/findall")
+    @RolesAllowed("ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<Client> findAllClients() {
         return clientService.findAllClients();
     }

@@ -1,9 +1,11 @@
 package se.iths.autofix.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.repository.MaintenanceRepository;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -33,6 +35,18 @@ public class MaintenanceService {
 
     public Iterable<Maintenance> findAllMaintenances() {
         return maintenanceRepository.findAll();
+    }
+
+    public void addJobHistoryEvent(Employee employee, String message, Long id) throws Exception {
+        Optional<Maintenance> servicejob = maintenanceRepository.findById(id);
+
+        if (!servicejob.isPresent())
+            throw new Exception();
+
+        String jobHistory = servicejob.get().getJobHistory();
+        jobHistory = jobHistory + "\n "+ LocalDate.now()+" : "+employee.getUsername()+" "+message;
+        servicejob.get().setJobHistory(jobHistory);
+        maintenanceRepository.save(servicejob.get());
     }
 
 //    public Iterable<Maintenance> findMaintenancesByUserId(Long id) {

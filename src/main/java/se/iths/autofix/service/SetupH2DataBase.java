@@ -27,7 +27,7 @@ public class SetupH2DataBase {
                                    ClientRepository clientRepository,
                                    AuthGroupRepository authGroupRepository) {
         return args -> {
-            if( System.getProperty("SPRING_DRIVER_CLASS")=="org.h2.Driver") {
+            if(System.getProperty("SPRING_DRIVER_CLASS").equals("org.h2.Driver")) {
                 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
                 //New empty database, add some persons
                 Employee employee = new Employee("admin","admin","admin","admin","god");

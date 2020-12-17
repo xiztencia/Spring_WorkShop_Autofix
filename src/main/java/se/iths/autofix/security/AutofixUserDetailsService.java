@@ -27,12 +27,6 @@ public class AutofixUserDetailsService implements UserDetailsService {
         this.employeeRepository =employeeRepository;
     }
 
-//    public AutofixUserDetailsService(EmployeeRepository employeeRepository, AuthGroupRepository authGroupRepository) {
-//        super();
-//        this.employeeRepository = employeeRepository;
-//        this.authGroupRepository = authGroupRepository;
-//    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Client client = clientRepository.findByUsername(username);

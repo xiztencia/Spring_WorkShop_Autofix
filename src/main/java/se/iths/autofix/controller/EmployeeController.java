@@ -11,7 +11,7 @@ import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("/employee")
 public class EmployeeController {
 

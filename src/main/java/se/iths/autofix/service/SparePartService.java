@@ -32,13 +32,21 @@ public class SparePartService {
         return sparePartRepository.findAll();
     }
 
-//    public Iterable<SparePart> findSparePartsByUserId(Long id) {
-//        return sparePartRepository.findSparePartsByUserId(id);
-//    }
-//
-//    public Iterable<SparePart> findAllByUser() {
-//        Iterable<SparePart> allSparePartsByUser = sparePartRepository.findAllByUser();
-//        return allSparePartsByUser;
-//    }
+    public Iterable<SparePart> findSparePartsByClientId(Long id) {
+        return sparePartRepository.findSparePartsByClientId(id);
+    }
 
+    public Iterable<SparePart> findAllSparePartsByClientUsername() {
+        Iterable<SparePart> allSparePartsByClientUsername = sparePartRepository.findAllSparePartsByClientUsername();
+        return allSparePartsByClientUsername;
+    }
+
+    public Iterable<SparePart> findSparePartsByEmployeeId(Long id) {
+        return sparePartRepository.findSparePartsByEmployeeId(id);
+    }
+
+    public Iterable<SparePart> findAllSparePartsByEmployeeUsername() {
+        Iterable<SparePart> allSparePartsByEmployeeUsername = sparePartRepository.findAllSparePartsByEmployeeUsername();
+        return allSparePartsByEmployeeUsername;
+    }
 }

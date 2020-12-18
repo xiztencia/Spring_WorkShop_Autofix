@@ -2,15 +2,19 @@ package se.iths.autofix.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.service.ClientService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/client")
 public class ClientController {
+
 
     Logger logger = LoggerFactory.getLogger(ClientController.class);
 
@@ -24,12 +28,14 @@ public class ClientController {
     public Client createClient(@RequestBody Client client) {
 //           logger.trace("Vi loggar på TRACE-nivå");
 //           logger.debug("Vi loggar på DEBUG-nivå");
-           logger.info("createClient() was called with username: " + client.getUsername());
+        logger.info("createClient() was called with username: " + client.getUsername());
 //           logger.warn("Vi loggar på WARN-nivå");
 //           logger.error("Vi loggar på ERROR-nivå");
-           return clientService.createClient(client);
+        return clientService.createClient(client);
     }
 
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {
         return clientService.findAllClients();

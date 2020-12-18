@@ -28,7 +28,7 @@ public class Cashier {
     }
 
 
-    public Cashier(){
+    public Cashier() {
 
     }
 
@@ -71,8 +71,6 @@ public class Cashier {
     public void setDateTime(Date dateTime) {
         DateTime = dateTime;
     }
-
-
 
 
 }

@@ -12,12 +12,12 @@ public class SparePartController {
 
     private SparePartService sparePartService;
 
-    public SparePartController(SparePartService sparePartService){
+    public SparePartController(SparePartService sparePartService) {
         this.sparePartService = sparePartService;
     }
 
     @PostMapping("/create")
-    public SparePart createSparePart(@RequestBody SparePart sparePart){
+    public SparePart createSparePart(@RequestBody SparePart sparePart) {
         return sparePartService.createSparePart(sparePart);
     }
 
@@ -36,14 +36,24 @@ public class SparePartController {
         sparePartService.deleteSparePart(id);
     }
 
-//    @GetMapping("/findbyclient/{id}")
-//    public Iterable<SparePart> getAllSparePartsByClient(@PathVariable Long id) {
-//        return sparePartService.findSparePartsByClientId(id);
-//    }
-//
-//    @GetMapping("/findallsparepartsbyclient")
-//    Iterable<Item> findAllSparePartsByClient() {
-//        return sparePartService.findAllByClient();
-//    }
+    @GetMapping("/findbyclient/{id}")
+    public Iterable<SparePart> getAllSparePartsByClient(@PathVariable Long id) {
+        return sparePartService.findSparePartsByClientId(id);
+    }
+
+    @GetMapping("/findallsparepartsbyclientusername")
+    Iterable<SparePart> findAllSparePartsByClientUsername() {
+        return sparePartService.findAllSparePartsByClientUsername();
+    }
+
+    @GetMapping("/findallsparepartsbyemployee/{id}")
+    public Iterable<SparePart> getAllSparePartsByEmployee(@PathVariable Long id) {
+        return sparePartService.findSparePartsByEmployeeId(id);
+    }
+
+    @GetMapping("/findallsparepartsbyemployeeusername")
+    Iterable<SparePart> findAllSparePartsByEmployeeUsername() {
+        return sparePartService.findAllSparePartsByEmployeeUsername();
+    }
 
 }

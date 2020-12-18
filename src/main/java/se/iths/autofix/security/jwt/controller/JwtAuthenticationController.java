@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import se.iths.autofix.security.AutofixClientDetailsService;
+import se.iths.autofix.security.AutofixUserDetailsService;
 import se.iths.autofix.security.jwt.config.JwtTokenUtil;
 import se.iths.autofix.security.jwt.model.JwtRequest;
 import se.iths.autofix.security.jwt.model.JwtResponse;
@@ -19,10 +19,10 @@ public class JwtAuthenticationController {
 
     private AuthenticationManager authenticationManager;
     private JwtTokenUtil jwtTokenUtil;
-    private AutofixClientDetailsService clientDetailsService;
+    private AutofixUserDetailsService clientDetailsService;
 
     public JwtAuthenticationController(AuthenticationManager authenticationManager,
-                                       JwtTokenUtil jwtTokenUtil, AutofixClientDetailsService clientDetailsService) {
+                                       JwtTokenUtil jwtTokenUtil, AutofixUserDetailsService clientDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.clientDetailsService = clientDetailsService;

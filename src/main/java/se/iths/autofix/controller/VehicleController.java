@@ -2,10 +2,12 @@ package se.iths.autofix.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Vehicle;
 import se.iths.autofix.service.VehicleService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
@@ -19,8 +21,6 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
-    //REFORMATERA:
-
     @PostMapping("/create")
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
 //           logger.trace("Vi loggar på TRACE-nivå");
@@ -31,6 +31,7 @@ public class VehicleController {
         return vehicleService.createVehicle(vehicle);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Vehicle> findAllVehicles() {
         return vehicleService.findAllVehicles();

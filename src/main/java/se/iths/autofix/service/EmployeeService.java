@@ -36,7 +36,6 @@ public class EmployeeService {
     public Employee createEmployee(Employee employee) {
 
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-//        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));
         authGroupRepository.save(new AuthGroup(employee.getUsername(), "ADMIN"));
         return employeeRepository.save(employee);
     }
@@ -54,16 +53,16 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-//    public Employee getEmployeeByName(String name) {
-//        return employeeRepository.findByEmployeeName(name);
-//    }
+    public Employee getEmployeeByName(String name) {
+        return employeeRepository.findByUsername(name);
+    }
 
 
-//    public Employee getAuthenticatedEmployee() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String authenticatedEmployeeName = authentication.getName();
-//        return getEmployeeByName(authenticatedEmployeeName);
-//    }
+    public Employee getAuthenticatedEmployee() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String authenticatedEmployeeName = authentication.getName();
+        return getEmployeeByName(authenticatedEmployeeName);
+    }
 
 
 }

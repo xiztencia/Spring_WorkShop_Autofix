@@ -14,27 +14,26 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-   // private String type;
+    // private String type;
     private int quantity;
     private double totalPrice;
 
-//    @OneToMany(mappedBy = "shoppingcart_sales")
+    //    @OneToMany(mappedBy = "shoppingcart_sales")
 //    private List<Sale> addedItemsOnCart;
     @OneToOne
     private Maintenance maintenance;
     @OneToOne
     private SparePart sparePart;
 
-    public ShoppingCart(){
+    public ShoppingCart() {
 
     }
 
-    public ShoppingCart( int quantity, double totalPrice) {
-      //  this.type = type;
+    public ShoppingCart(int quantity, double totalPrice) {
+        //  this.type = type;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
-
 
     public Long getId() {
         return id;

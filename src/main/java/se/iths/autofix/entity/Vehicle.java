@@ -1,9 +1,7 @@
 package se.iths.autofix.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Vehicle {
@@ -11,24 +9,28 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotEmpty
     private String numberPlate;
-    private String make;
+    private String maker;
     private String model;
 
-    public Vehicle(Long id, String numberPlate, String make, String model) {
-        this.id = id;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "vehicle_client")
+    private Client client;
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Vehicle(@NotEmpty String numberPlate, String maker, String model) {
         this.numberPlate = numberPlate;
-        this.make = make;
+        this.maker = maker;
         this.model = model;
     }
 
-
-
     public Vehicle() {
-
     }
-
-
 
     public Long getId() {
         return id;
@@ -46,12 +48,12 @@ public class Vehicle {
         this.numberPlate = numberPlate;
     }
 
-    public String getMake() {
-        return make;
+    public String getMaker() {
+        return maker;
     }
 
-    public void setMake(String make) {
-        this.make = make;
+    public void setMaker(String maker) {
+        this.maker = maker;
     }
 
     public String getModel() {
@@ -61,10 +63,5 @@ public class Vehicle {
     public void setModel(String model) {
         this.model = model;
     }
-
-
-
-
-
 
 }

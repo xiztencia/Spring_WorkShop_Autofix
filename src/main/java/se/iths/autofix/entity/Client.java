@@ -2,6 +2,8 @@ package se.iths.autofix.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -17,16 +19,23 @@ public class Client {
     private String email;
     private String password;
 
-//    @OneToMany(mappedBy ="uehicle", CascadeType.ALL)
-//    private Vehicle vehicle;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Vehicle> vehicles = new HashSet<>();
 
-//    public Vehicle getVehicle() {
-//        return vehicle;
-//    }
-//
-//    public void setVehicle(Vehicle vehicle) {
-//        this.vehicle = vehicle;
-//    }
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+        vehicle.setClient(this);
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        vehicles.remove(vehicle);
+        vehicle.setClient(null);
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
     public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {
         this.username = username;
         this.firstname = firstname;
@@ -34,9 +43,10 @@ public class Client {
         this.email = email;
         this.password = password;
     }
-    public Client() {
 
+    public Client() {
     }
+
     public String getPassword() {
         return password;
     }

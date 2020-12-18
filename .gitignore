@@ -12,7 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-./src/main/java/se/iths/autofix/service/SetupH2DataBase.java
+/src/main/java/se/iths/autofix/service/SetupH2DataBase.java
 ### Logs###
 *.log
 

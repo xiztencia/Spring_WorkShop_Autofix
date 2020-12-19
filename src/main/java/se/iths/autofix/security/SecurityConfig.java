@@ -15,6 +15,7 @@ import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import se.iths.autofix.security.jwt.config.JwtAuthenticationEntryPoint;
 import se.iths.autofix.security.jwt.config.JwtRequestFilter;
 
@@ -57,7 +58,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authorityMapper.setDefaultAuthority("USER");
         return authorityMapper;
     }
-
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
     @Bean
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
@@ -72,15 +76,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Kolla upp CSRF
-        http
+        http.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.cors().and()
                 .csrf().disable()
-
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
              //   .antMatchers("/admin").hasRole("ADMIN")
                 //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
-                .anyRequest().authenticated()
+                .anyRequest()
+                    .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
@@ -96,7 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.headers().frameOptions().disable();
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
 
 
     }

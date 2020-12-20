@@ -12,7 +12,7 @@ import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping(path={"/client","/api/client"})
 public class ClientController {
 
 
@@ -35,7 +35,7 @@ public class ClientController {
     }
 
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {
         return clientService.findAllClients();

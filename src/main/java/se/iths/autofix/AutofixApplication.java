@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AutofixApplication {
 
     public static void main(String[] args) {
-       // System.out.println(System.getenv("SPRING_DATASOURCE_URL"));
+        System.out.println(System.getenv("SPRING_DATASOURCE_URL"));
         if (System.getenv("SPRING_DATASOURCE_URL")==null){
             System.setProperty("SPRING_DATASOURCE_URL","jdbc:h2:mem:test");
             System.setProperty("SPRING_DATASOURCE_USERNAME","sa");
@@ -16,8 +16,6 @@ public class AutofixApplication {
             System.setProperty("SPRING_DRIVER_CLASS","org.h2.Driver");
             System.setProperty("SPRING_H2_CONSOLE","true");
         }
-
-
         SpringApplication.run(AutofixApplication.class, args);
     }
 

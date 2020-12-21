@@ -150,7 +150,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
 //                .logoutUrl("/logout")
 //                .logoutSuccessUrl("/") ------
                 .authorizeRequests()
-                .antMatchers("/**", "/home").permitAll()
+                .antMatchers("/", "/home").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest()
                 .authenticated()

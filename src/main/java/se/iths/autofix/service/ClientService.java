@@ -40,6 +40,10 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+//    public Client update(Client client){
+//
+//    }
+
     public void deleteClient(Long id) {
         Optional<Client> foundClient = clientRepository.findById(id);
         clientRepository.deleteById(foundClient.get().getId());

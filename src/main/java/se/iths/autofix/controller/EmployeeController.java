@@ -11,8 +11,8 @@ import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@PreAuthorize("hasAuthority('ADMIN')")
-@RequestMapping("/employee")
+@PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
+@RequestMapping(path={"/employee","/api/employee"})
 public class EmployeeController {
 
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -48,8 +48,8 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
     }
 
-//    @GetMapping("/getauthenticatedemployee")
-//    public Employee getAuthenticatedEmployee() {
-//        return employeeService.getAuthenticatedEmployee();
-//    }
+    @GetMapping("/getauthenticatedemployee")
+    public Employee getAuthenticatedEmployee() {
+        return employeeService.getAuthenticatedEmployee();
+    }
 }

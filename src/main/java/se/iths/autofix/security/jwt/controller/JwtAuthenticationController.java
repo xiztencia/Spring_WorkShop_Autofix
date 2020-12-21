@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.iths.autofix.security.AutofixUserDetailsService;
 import se.iths.autofix.security.jwt.config.JwtTokenUtil;
@@ -15,6 +16,7 @@ import se.iths.autofix.security.jwt.model.JwtRequest;
 import se.iths.autofix.security.jwt.model.JwtResponse;
 
 @RestController
+@RequestMapping("/api")
 public class JwtAuthenticationController {
 
     private AuthenticationManager authenticationManager;

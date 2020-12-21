@@ -35,7 +35,6 @@ public class Employee {
     }
 
     public Employee() {
-
     }
 
     public String getPassword() {

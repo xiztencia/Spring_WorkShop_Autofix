@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import se.iths.autofix.security.jwt.config.JwtAuthenticationEntryPoint;
 import se.iths.autofix.security.jwt.config.JwtRequestFilter;
-import se.iths.autofix.security.jwt.config.JwtTokenUtil;
 
 
 @EnableWebSecurity
@@ -123,6 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             http.headers().frameOptions().disable();
         }
     }
+
 @Configuration
 @Order(2)
 public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {

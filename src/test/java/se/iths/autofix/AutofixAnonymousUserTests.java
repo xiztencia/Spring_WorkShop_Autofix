@@ -43,6 +43,22 @@ class AutofixAnonymousUserTests {
     void anonymousUserTrytoAccessClientIdReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/client/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isForbidden());
+        ).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithAnonymousUser
+    void anonymousUserTrytoDeleteClientIdReturnUnauthorized() throws Exception{
+        mockMvc.perform(delete("/api/client/delete/id/1")
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isUnauthorized());
+    }
+    @Test
+    @WithAnonymousUser
+    void anonymousUserTrytoCreateClientIdReturnStatusOk() throws Exception{
+        mockMvc.perform(post("/api/client/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"username\":\"kalle\",\"firstname\":\"kalle\",\"lastname\":\"anka\",\"email\":\"anka\",\"password\":\"anka\"}")
+        ).andExpect(status().isOk());
     }
 }

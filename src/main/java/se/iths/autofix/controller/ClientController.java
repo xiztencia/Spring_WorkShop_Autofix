@@ -12,6 +12,7 @@ import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 @RequestMapping(path={"/client","/api/client"})
 public class ClientController {
 
@@ -24,6 +25,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @PreAuthorize("permitAll()")
     @PostMapping("/create")
     public Client createClient(@RequestBody Client client) {
 //           logger.trace("Vi loggar på TRACE-nivå");
@@ -41,16 +43,20 @@ public class ClientController {
         return clientService.findAllClients();
     }
 
+
+
     @GetMapping("/id/{id}")
     public Optional<Client> findClientById(@PathVariable Long id) {
         return clientService.findClientById(id);
     }
 
+   // @PreAuthorize("hasAnyAuthority('ADMIN','USER') or hasAnyRole('ADMIN','USER')")
     @DeleteMapping("/delete/{id}")
     public void deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
     }
 
+    //@PreAuthorize("hasAnyAuthority('ADMIN','USER') or hasAnyRole('ADMIN','USER')")
     @GetMapping("/getauthenticatedclient")
     public Client getAuthenticatedClient() {
         return clientService.getAuthenticatedClient();

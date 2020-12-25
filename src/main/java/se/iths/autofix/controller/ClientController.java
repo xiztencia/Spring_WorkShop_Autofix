@@ -28,11 +28,7 @@ public class ClientController {
     @PreAuthorize("permitAll()")
     @PostMapping("/create")
     public Client createClient(@RequestBody Client client) {
-//           logger.trace("Vi loggar på TRACE-nivå");
-//           logger.debug("Vi loggar på DEBUG-nivå");
         logger.info("createClient() was called with username: " + client.getUsername());
-//           logger.warn("Vi loggar på WARN-nivå");
-//           logger.error("Vi loggar på ERROR-nivå");
         return clientService.createClient(client);
     }
 
@@ -50,13 +46,11 @@ public class ClientController {
         return clientService.findClientById(id);
     }
 
-   // @PreAuthorize("hasAnyAuthority('ADMIN','USER') or hasAnyRole('ADMIN','USER')")
     @DeleteMapping("/delete/{id}")
     public void deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
     }
 
-    //@PreAuthorize("hasAnyAuthority('ADMIN','USER') or hasAnyRole('ADMIN','USER')")
     @GetMapping("/getauthenticatedclient")
     public Client getAuthenticatedClient() {
         return clientService.getAuthenticatedClient();

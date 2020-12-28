@@ -2,6 +2,7 @@ package se.iths.autofix.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,10 +16,12 @@ import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import se.iths.autofix.security.jwt.config.JwtAuthenticationEntryPoint;
 import se.iths.autofix.security.jwt.config.JwtRequestFilter;
+import se.iths.autofix.security.jwt.config.JwtTokenUtil;
 
-@Configuration
+
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -57,7 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authorityMapper.setDefaultAuthority("USER");
         return authorityMapper;
     }
-
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
     @Bean
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
@@ -69,18 +75,88 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        // Kolla upp CSRF
+//        http.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//        http.cors().and()
+//                .csrf().disable()
+//                .exceptionHandling()
+//                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
+//                .antMatchers("/h2-console/**").permitAll()
+//                .anyRequest()
+//                .authenticated()
+//             //   .antMatchers("/admin").hasRole("ADMIN")
+//                //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
+//                .and()
+//                .formLogin()
+//                .loginPage("/login").permitAll()
+//                .and()
+//                .logout()
+//                .invalidateHttpSession(true)
+//                .clearAuthentication(true)
+//                .permitAll();
+//        http.headers().frameOptions().disable();
+//    }
+    @Configuration
+    @Order(1)
+    public class ApiSecurityAdapter extends WebSecurityConfigurerAdapter {
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+            http.antMatcher("/api/**")
+                    //<= Security only available for /api/**
+                    .csrf().disable()
+                    .authorizeRequests()
+                    .antMatchers("/api/authenticate","/api/client/create").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                    .exceptionHandling()
+                    .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                    .and()
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            http.headers().frameOptions().disable();
+        }
+    }
+@Configuration
+@Order(2)
+public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Kolla upp CSRF
-        http
-                .csrf().disable()
-
+        http // <= Security available for others (not /api/)
+//                .authorizeRequests()
+//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/resources/**").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .usernameParameter("email")
+//                .passwordParameter("password")
+//                .defaultSuccessUrl("/central", false)
+//                .failureForwardUrl("/login/fail")
+//                .and()
+//                .logout()
+//                .invalidateHttpSession(true)
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/") ------
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
+                .antMatchers("/", "/home").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .anyRequest()
+                .authenticated()
              //   .antMatchers("/admin").hasRole("ADMIN")
                 //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
-                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
@@ -90,14 +166,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .permitAll()
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .csrf();
         http.headers().frameOptions().disable();
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
-
     }
+}
 }

@@ -1,5 +1,6 @@
 package se.iths.autofix.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.service.SparePartService;
@@ -7,7 +8,7 @@ import se.iths.autofix.service.SparePartService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/sparepart")
+@RequestMapping(path={"/sparepart","/api/sparepart"})
 public class SparePartController {
 
     private SparePartService sparePartService;
@@ -16,6 +17,7 @@ public class SparePartController {
         this.sparePartService = sparePartService;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @PostMapping("/create")
     public SparePart createSparePart(@RequestBody SparePart sparePart) {
         return sparePartService.createSparePart(sparePart);
@@ -31,6 +33,7 @@ public class SparePartController {
         return sparePartService.findSparePartById(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void deleteSparePart(@PathVariable Long id) {
         sparePartService.deleteSparePart(id);

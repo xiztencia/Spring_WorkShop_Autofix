@@ -9,7 +9,7 @@ import se.iths.autofix.service.MaintenanceService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/maintenance")
+@RequestMapping(path={"/maintenance","/api/maintenance"})
 public class MaintenanceController {
 
     private MaintenanceService maintenanceService;
@@ -23,7 +23,7 @@ public class MaintenanceController {
         return maintenanceService.createMaintenance(maintenance);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @PostMapping("/addhistoryevent")
     public void addJobHistoryEvent(@RequestBody Employee employee, String message, Long id) throws Exception {
         maintenanceService.addJobHistoryEvent(employee, message, id);
@@ -54,13 +54,13 @@ public class MaintenanceController {
         return maintenanceService.findAllMaintenancesByClientUsername();
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findallmaintenancesbyemployee/{id}")
     public Iterable<Maintenance> getAllMaintenancesByEmployee(@PathVariable Long id) {
         return maintenanceService.findAllMaintenancesByEmployeeId(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findallmaintenancesbyemployeeusername")
     Iterable<Maintenance> findAllMaintenancesByEmployeeUsername() {
         return maintenanceService.findAllMaintenancesByEmployeeUsername();

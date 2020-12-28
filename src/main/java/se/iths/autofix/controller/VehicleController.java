@@ -11,7 +11,7 @@ import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/vehicle")
+@RequestMapping(path={"/vehicle","/api/vehicle"})
 public class VehicleController {
     Logger logger = LoggerFactory.getLogger(VehicleController.class);
 
@@ -31,7 +31,7 @@ public class VehicleController {
         return vehicleService.createVehicle(vehicle);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Vehicle> findAllVehicles() {
         return vehicleService.findAllVehicles();

@@ -30,8 +30,8 @@ class AutofixUserEmployeeTests {
 
     //<editor-fold desc="Employee API Tests">
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessEmployeeFindAllReturnForbidden() throws Exception{
+
+    void userTrytoAccessEmployeeFindAllReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/employee/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
@@ -39,24 +39,24 @@ class AutofixUserEmployeeTests {
 
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessEmployeeIdReturnUnauthorized() throws Exception{
+
+    void userTrytoAccessEmployeeIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/employee/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoDeleteEmployeeIdReturnUnauthorized() throws Exception{
+
+    void userTrytoDeleteEmployeeIdReturnUnauthorized() throws Exception{
         mockMvc.perform(delete("/api/employee/delete/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoCreateEmployeeIdReturnUnauthorized() throws Exception{
+
+    void userTrytoCreateEmployeeIdReturnUnauthorized() throws Exception{
         mockMvc.perform(post("/api/employee/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"username\":\"kalle\"," +
@@ -68,8 +68,8 @@ class AutofixUserEmployeeTests {
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTryToGetAuthenticatedEmployeeIdReturnUnauthrized() throws Exception{
+
+    void userTryToGetAuthenticatedEmployeeIdReturnUnauthrized() throws Exception{
         mockMvc.perform(get("/api/employee/getauthenticatedemployee")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());

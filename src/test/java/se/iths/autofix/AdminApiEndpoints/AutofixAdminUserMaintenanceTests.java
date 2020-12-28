@@ -30,46 +30,46 @@ class AutofixAdminUserMaintenanceTests {
 
     //<editor-fold desc="Maintenance API Tests">
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceFindAllReturnForbidden() throws Exception{
+
+    void adminUserTrytoAccessMaintenanceFindAllReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/maintenance/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceFindAllClientByUsernameReturnForbidden() throws Exception{
+
+    void adminUserTrytoAccessMaintenanceFindAllClientByUsernameReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoAccessMaintenanceIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/maintenance/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceClientIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoAccessMaintenanceClientIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/maintenance/findbyclient/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoDeleteMaintenanceIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoDeleteMaintenanceIdReturnUnauthorized() throws Exception{
         mockMvc.perform(delete("/api/maintenance/delete/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoCreateMaintenanceIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoCreateMaintenanceIdReturnUnauthorized() throws Exception{
         mockMvc.perform(post("/api/maintenance/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"type\":\"Service\"," +
@@ -80,15 +80,15 @@ class AutofixAdminUserMaintenanceTests {
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
+
+    void adminUserTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());

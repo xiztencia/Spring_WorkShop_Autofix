@@ -30,8 +30,8 @@ class AutofixAdminUserVehicleTests {
 
     //<editor-fold desc="Vehicle API Tests">
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessVehicleFindAllReturnForbidden() throws Exception{
+
+    void adminUserTrytoAccessVehicleFindAllReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/vehicle/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
@@ -39,8 +39,8 @@ class AutofixAdminUserVehicleTests {
 
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessVehicleIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoAccessVehicleIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/vehicle/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
@@ -48,16 +48,16 @@ class AutofixAdminUserVehicleTests {
 
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoDeleteVehicleIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoDeleteVehicleIdReturnUnauthorized() throws Exception{
         mockMvc.perform(delete("/api/vehicle/delete/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoCreateVehicleIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoCreateVehicleIdReturnUnauthorized() throws Exception{
         mockMvc.perform(post("/api/vehicle/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"numberPlate\":\"ABC123\"," +

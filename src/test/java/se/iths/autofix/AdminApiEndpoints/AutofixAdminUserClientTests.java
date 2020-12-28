@@ -30,8 +30,8 @@ class AutofixAdminUserClientTests {
 
     //<editor-fold desc="Client API Tests">
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessClientFindAllReturnForbidden() throws Exception{
+
+    void adminUserTrytoAccessClientFindAllReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/client/findall")
                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isUnauthorized());
@@ -39,24 +39,24 @@ class AutofixAdminUserClientTests {
 
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessClientIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoAccessClientIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/client/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoDeleteClientIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoDeleteClientIdReturnUnauthorized() throws Exception{
         mockMvc.perform(delete("/api/client/delete/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoCreateClientIdReturnStatusOk() throws Exception{
+
+    void adminUserTrytoCreateClientIdReturnStatusOk() throws Exception{
         mockMvc.perform(post("/api/client/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"username\":\"kalle\",\"firstname\":\"kalle\",\"lastname\":\"anka\",\"email\":\"anka\",\"password\":\"anka\"}")
@@ -64,8 +64,8 @@ class AutofixAdminUserClientTests {
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTryToGetAuthenticatedClientIdReturnUnauthorized() throws Exception{
+
+    void adminUserTryToGetAuthenticatedClientIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/client/getauthenticatedclient")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());

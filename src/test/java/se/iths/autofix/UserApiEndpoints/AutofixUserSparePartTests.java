@@ -30,46 +30,46 @@ class AutofixUserSparePartTests {
 
     //<editor-fold desc="SparePart API Tests">
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessSparePartFindAllReturnForbidden() throws Exception{
+
+    void userTrytoAccessSparePartFindAllReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/sparepart/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessSparePartFindAllClientByUsernameReturnForbidden() throws Exception{
+
+    void userTrytoAccessSparePartFindAllClientByUsernameReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/sparepart/findallsparepartssbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessSparePartIdReturnUnauthorized() throws Exception{
+
+    void userTrytoAccessSparePartIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/sparepart/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessSparePartClientIdReturnUnauthorized() throws Exception{
+
+    void userTrytoAccessSparePartClientIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/sparepart/findbyclient/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoDeleteSparePartIdReturnUnauthorized() throws Exception{
+
+    void userTrytoDeleteSparePartIdReturnUnauthorized() throws Exception{
         mockMvc.perform(delete("/api/sparepart/delete/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoCreateSparePartIdReturnUnauthorized() throws Exception{
+
+    void userTrytoCreateSparePartIdReturnUnauthorized() throws Exception{
         mockMvc.perform(post("/api/sparepart/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"part\":\"brake disc\"," +
@@ -80,15 +80,15 @@ class AutofixUserSparePartTests {
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTryToGetSparePartEmployeeByIdReturnUnauthrized() throws Exception{
+
+    void userTryToGetSparePartEmployeeByIdReturnUnauthrized() throws Exception{
         mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployee/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoFinadAallSparePartAllEmployeeByUsernameReturnUnauthorized() throws Exception{
+
+    void userTrytoFinadAallSparePartAllEmployeeByUsernameReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployeeusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());

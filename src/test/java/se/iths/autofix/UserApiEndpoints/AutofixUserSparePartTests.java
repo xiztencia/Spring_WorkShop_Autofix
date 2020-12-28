@@ -1,5 +1,6 @@
-package se.iths.autofix;
+package se.iths.autofix.UserApiEndpoints;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,78 +17,79 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@Disabled
 @RunWith(SpringJUnit4ClassRunner.class)
-@WithMockUser
+@WithMockUser(username = "user", authorities = { "USER"})
 @AutoConfigureMockMvc
 @TestPropertySource(
         locations = "classpath:application.properties")
-class AutofixAnonymousUserMaintenanceTests {
+class AutofixUserSparePartTests {
 
     @Autowired
     private MockMvc mockMvc;
 
-    //<editor-fold desc="Maintenance API Tests">
+    //<editor-fold desc="SparePart API Tests">
     @Test
     @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceFindAllReturnForbidden() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findall")
+    void anonymousUserTrytoAccessSparePartFindAllReturnForbidden() throws Exception{
+        mockMvc.perform(get("/api/sparepart/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
     @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceFindAllClientByUsernameReturnForbidden() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
+    void anonymousUserTrytoAccessSparePartFindAllClientByUsernameReturnForbidden() throws Exception{
+        mockMvc.perform(get("/api/sparepart/findallsparepartssbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
     @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/id/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessMaintenanceClientIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findbyclient/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
-    }
-    @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoDeleteMaintenanceIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(delete("/api/maintenance/delete/id/1")
+    void anonymousUserTrytoAccessSparePartIdReturnUnauthorized() throws Exception{
+        mockMvc.perform(get("/api/sparepart/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
     @WithAnonymousUser
-    void anonymousUserTrytoCreateMaintenanceIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(post("/api/maintenance/create")
+    void anonymousUserTrytoAccessSparePartClientIdReturnUnauthorized() throws Exception{
+        mockMvc.perform(get("/api/sparepart/findbyclient/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"type\":\"Service\"," +
-                        "\"price\":2000," +
-                        "\"checkInDate\":2020-01-01," +
-                        "\"checkOutDate\":2020-01-02}")
+        ).andExpect(status().isUnauthorized());
+    }
+    @Test
+    @WithAnonymousUser
+    void anonymousUserTrytoDeleteSparePartIdReturnUnauthorized() throws Exception{
+        mockMvc.perform(delete("/api/sparepart/delete/id/1")
+                .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
     @WithAnonymousUser
-    void anonymousUserTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
+    void anonymousUserTrytoCreateSparePartIdReturnUnauthorized() throws Exception{
+        mockMvc.perform(post("/api/sparepart/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"part\":\"brake disc\"," +
+                        "\"price\":666," +
+                        "\"category\":\"Brake System\"," +
+                        "\"quantity\":22}")
+        ).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithAnonymousUser
+    void anonymousUserTryToGetSparePartEmployeeByIdReturnUnauthrized() throws Exception{
+        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployee/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
     @WithAnonymousUser
-    void anonymousUserTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnUnauthorized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
+    void anonymousUserTrytoFinadAallSparePartAllEmployeeByUsernameReturnUnauthorized() throws Exception{
+        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployeeusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }

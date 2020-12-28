@@ -12,6 +12,7 @@ import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 @RequestMapping(path={"/client","/api/client"})
 public class ClientController {
 
@@ -24,13 +25,10 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @PreAuthorize("permitAll()")
     @PostMapping("/create")
     public Client createClient(@RequestBody Client client) {
-//           logger.trace("Vi loggar på TRACE-nivå");
-//           logger.debug("Vi loggar på DEBUG-nivå");
         logger.info("createClient() was called with username: " + client.getUsername());
-//           logger.warn("Vi loggar på WARN-nivå");
-//           logger.error("Vi loggar på ERROR-nivå");
         return clientService.createClient(client);
     }
 
@@ -40,6 +38,8 @@ public class ClientController {
     public Iterable<Client> findAllClients() {
         return clientService.findAllClients();
     }
+
+
 
     @GetMapping("/id/{id}")
     public Optional<Client> findClientById(@PathVariable Long id) {

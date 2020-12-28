@@ -109,10 +109,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-            http.antMatcher("/api/**") //<= Security only available for /api/**
+            http.antMatcher("/api/**")
+                    //<= Security only available for /api/**
                     .csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/api/authenticate").permitAll()
+                    .antMatchers("/api/authenticate","/api/client/create").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .exceptionHandling()

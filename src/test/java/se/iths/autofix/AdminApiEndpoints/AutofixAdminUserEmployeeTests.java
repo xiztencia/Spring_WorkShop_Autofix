@@ -1,5 +1,6 @@
-package se.iths.autofix;
+package se.iths.autofix.AdminApiEndpoints;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +17,21 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@Disabled
 @RunWith(SpringJUnit4ClassRunner.class)
-@WithMockUser
+@WithMockUser(username = "admin", authorities = { "ADMIN"})
 @AutoConfigureMockMvc
 @TestPropertySource(
         locations = "classpath:application.properties")
-class AutofixAnonymousUserEmployeeTests {
+class AutofixAdminUserEmployeeTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     //<editor-fold desc="Employee API Tests">
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessEmployeeFindAllReturnForbidden() throws Exception{
+
+    void adminUserTrytoAccessEmployeeFindAllReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/employee/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
@@ -37,24 +39,24 @@ class AutofixAnonymousUserEmployeeTests {
 
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoAccessEmployeeIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoAccessEmployeeIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/employee/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoDeleteEmployeeIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoDeleteEmployeeIdReturnUnauthorized() throws Exception{
         mockMvc.perform(delete("/api/employee/delete/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoCreateEmployeeIdReturnUnauthorized() throws Exception{
+
+    void adminUserTrytoCreateEmployeeIdReturnUnauthorized() throws Exception{
         mockMvc.perform(post("/api/employee/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"username\":\"kalle\"," +
@@ -66,8 +68,8 @@ class AutofixAnonymousUserEmployeeTests {
     }
 
     @Test
-    @WithAnonymousUser
-    void anonymousUserTryToGetAuthenticatedEmployeeIdReturnUnauthrized() throws Exception{
+
+    void adminUserTryToGetAuthenticatedEmployeeIdReturnUnauthrized() throws Exception{
         mockMvc.perform(get("/api/employee/getauthenticatedemployee")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());

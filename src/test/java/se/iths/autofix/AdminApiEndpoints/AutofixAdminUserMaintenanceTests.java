@@ -62,7 +62,7 @@ class AutofixAdminUserMaintenanceTests {
     @Test
 
     void adminUserTrytoDeleteMaintenanceIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(delete("/api/maintenance/delete/id/1")
+        mockMvc.perform(delete("/api/maintenance/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }

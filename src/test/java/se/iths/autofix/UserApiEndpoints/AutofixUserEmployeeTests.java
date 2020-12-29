@@ -17,6 +17,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import se.iths.autofix.controller.ClientController;
+import se.iths.autofix.controller.EmployeeController;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.repository.ClientRepository;
@@ -28,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@Import({ClientController.class, AopAutoConfiguration.class})
+@Import({EmployeeController.class, AopAutoConfiguration.class})
 @WithMockUser(username = "user", authorities = { "USER"})
 @AutoConfigureMockMvc
 @TestPropertySource(

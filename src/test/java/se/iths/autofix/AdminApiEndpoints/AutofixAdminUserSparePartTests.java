@@ -62,7 +62,7 @@ class AutofixAdminUserSparePartTests {
     @Test
 
     void adminUserTrytoDeleteSparePartIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(delete("/api/sparepart/delete/id/1")
+        mockMvc.perform(delete("/api/sparepart/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }

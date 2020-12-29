@@ -1,24 +1,32 @@
 package se.iths.autofix.AdminApiEndpoints;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import se.iths.autofix.controller.ClientController;
+import se.iths.autofix.entity.Client;
+import se.iths.autofix.repository.ClientRepository;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@Disabled
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
+@Import({ClientController.class, AopAutoConfiguration.class})
 @WithMockUser(username = "admin", authorities = { "ADMIN"})
 @AutoConfigureMockMvc
 @TestPropertySource(
@@ -28,34 +36,35 @@ class AutofixAdminUserClientTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ClientRepository repository;
+
+    @BeforeAll
+    void init(){
+        repository.save(new Client("user1","user11","user11","user11","user11"));
+    }
+
     //<editor-fold desc="Client API Tests">
     @Test
-
-    void adminUserTrytoAccessClientFindAllReturnForbidden() throws Exception{
+    void adminUserTrytoAccessClientFindAllReturnOk() throws Exception{
         mockMvc.perform(get("/api/client/findall")
                 .contentType(MediaType.APPLICATION_JSON)
-                ).andExpect(status().isUnauthorized());
+                ).andExpect(status().isOk());
     }
-
-
     @Test
-
-    void adminUserTrytoAccessClientIdReturnUnauthorized() throws Exception{
+    void adminUserTrytoAccessClientIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/client/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
-
     @Test
-
-    void adminUserTrytoDeleteClientIdReturnUnauthorized() throws Exception{
+    void adminUserTrytoDeleteClientIdReturnOk() throws Exception{
         mockMvc.perform(delete("/api/client/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
 
     @Test
-
     void adminUserTrytoCreateClientIdReturnStatusOk() throws Exception{
         mockMvc.perform(post("/api/client/create")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -64,11 +73,10 @@ class AutofixAdminUserClientTests {
     }
 
     @Test
-
-    void adminUserTryToGetAuthenticatedClientIdReturnUnauthorized() throws Exception{
+    void adminUserTryToGetAuthenticatedClientIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/client/getauthenticatedclient")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
     //</editor-fold>
 

@@ -50,7 +50,7 @@ class AutofixAdminUserVehicleTests {
     @Test
 
     void adminUserTrytoDeleteVehicleIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(delete("/api/vehicle/delete/id/1")
+        mockMvc.perform(delete("/api/vehicle/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }

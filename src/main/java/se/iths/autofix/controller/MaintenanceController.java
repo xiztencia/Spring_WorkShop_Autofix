@@ -34,7 +34,7 @@ public class MaintenanceController {
         return maintenanceService.findAllMaintenances();
     }
 
-    @GetMapping("/id{id}")
+    @GetMapping("/id/{id}")
     public Optional<Maintenance> findMaintenanceById(@PathVariable Long id) {
         return maintenanceService.findMaintenanceById(id);
     }

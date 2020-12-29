@@ -1,24 +1,35 @@
 package se.iths.autofix.AdminApiEndpoints;
 
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import se.iths.autofix.controller.MaintenanceController;
+import se.iths.autofix.entity.Maintenance;
+import se.iths.autofix.repository.MaintenanceRepository;
 
+import java.util.Date;
+import java.util.Optional;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@Disabled
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
+@Import({MaintenanceController.class, AopAutoConfiguration.class})
 @WithMockUser(username = "admin", authorities = { "ADMIN"})
 @AutoConfigureMockMvc
 @TestPropertySource(
@@ -28,55 +39,63 @@ class AutofixAdminUserMaintenanceTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
+    private MaintenanceRepository repository;
+
+    @BeforeEach
+    void init(){
+        when(repository.existsById(1L)).thenReturn(true);
+        when(repository.findById(1L)).thenReturn( Optional.of(new Maintenance("Service", 2000, new Date(2020-01-01), new Date(2020-01-02))));
+    }
     //<editor-fold desc="Maintenance API Tests">
     @Test
 
-    void adminUserTrytoAccessMaintenanceFindAllReturnForbidden() throws Exception{
+    void adminUserTrytoAccessMaintenanceFindAllReturnOk() throws Exception{
         mockMvc.perform(get("/api/maintenance/findall")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
 
     @Test
 
-    void adminUserTrytoAccessMaintenanceFindAllClientByUsernameReturnForbidden() throws Exception{
+    void adminUserTrytoAccessMaintenanceFindAllClientByUsernameReturnOk() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
     @Test
 
-    void adminUserTrytoAccessMaintenanceIdReturnUnauthorized() throws Exception{
+    void adminUserTrytoAccessMaintenanceIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/maintenance/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
 
     @Test
 
-    void adminUserTrytoAccessMaintenanceClientIdReturnUnauthorized() throws Exception{
+    void adminUserTrytoAccessMaintenanceClientIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/maintenance/findbyclient/1")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
     @Test
 
-    void adminUserTrytoDeleteMaintenanceIdReturnUnauthorized() throws Exception{
+    void adminUserTrytoDeleteMaintenanceIdReturnOk() throws Exception{
         mockMvc.perform(delete("/api/maintenance/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
 
     @Test
 
-    void adminUserTrytoCreateMaintenanceIdReturnUnauthorized() throws Exception{
+    void adminUserTrytoCreateMaintenanceIdReturnOk() throws Exception{
         mockMvc.perform(post("/api/maintenance/create")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"type\":\"Service\"," +
+                .content("{\"type\":\"Service\","+
                         "\"price\":2000," +
-                        "\"checkInDate\":2020-01-01," +
-                        "\"checkOutDate\":2020-01-02}")
-        ).andExpect(status().isUnauthorized());
+                        "\"checkInDate\":\"2020-01-01\"," +
+                        "\"checkOutDate\":\"2020-01-02\"}")
+        ).andExpect(status().isOk());
     }
 
     @Test
@@ -84,14 +103,14 @@ class AutofixAdminUserMaintenanceTests {
     void adminUserTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
     @Test
 
-    void adminUserTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnUnauthorized() throws Exception{
+    void adminUserTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnOk() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
+        ).andExpect(status().isOk());
     }
     //</editor-fold>
 }

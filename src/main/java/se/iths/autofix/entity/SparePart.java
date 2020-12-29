@@ -30,6 +30,9 @@ public class SparePart {
         this.client = client;
     }
 
+    public Client getClient() {
+        return client;
+    }
     public SparePart(String category, @NotEmpty String part, double price, int quantity) {
         this.category = category;
         this.part = part;

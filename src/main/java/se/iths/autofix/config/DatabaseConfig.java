@@ -1,4 +1,4 @@
-package se.iths.autofix.service;
+package se.iths.autofix.config;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,4 +1,4 @@
-package se.iths.autofix.service;
+package se.iths.autofix.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import se.iths.autofix.controller.ClientController;
 import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;

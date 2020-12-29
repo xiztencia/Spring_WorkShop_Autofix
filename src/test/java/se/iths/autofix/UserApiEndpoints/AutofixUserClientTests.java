@@ -1,7 +1,10 @@
 package se.iths.autofix.UserApiEndpoints;
 
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
@@ -21,6 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @Import({ClientController.class,AopAutoConfiguration.class})
 @WithMockUser(username = "user", authorities = { "USER"})
@@ -34,6 +38,11 @@ class AutofixUserClientTests {
 
     @Autowired
     private ClientRepository repository;
+
+    @BeforeAll
+    void init(){
+        repository.save(new Client("user","user1","user1","user1","user1"));
+    }
 
 
     //<editor-fold desc="Client API Tests">
@@ -54,7 +63,7 @@ class AutofixUserClientTests {
 
     @Test
     void userTrytoDeleteClientIdReturnUnauthorized() throws Exception{
-        repository.save(new Client("user","user1","user1","user1","user1"));
+
         mockMvc.perform(delete("/api/client/delete/1/")
         ).andExpect(status().isOk());
     }

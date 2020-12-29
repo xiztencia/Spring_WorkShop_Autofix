@@ -49,7 +49,7 @@ class AutofixAnonymousUserClientTests {
     @Test
     @WithAnonymousUser
     void anonymousUserTrytoDeleteClientIdReturnUnauthorized() throws Exception{
-        mockMvc.perform(delete("/api/client/delete/id/1")
+        mockMvc.perform(delete("/api/client/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }

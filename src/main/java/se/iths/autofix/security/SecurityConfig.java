@@ -165,7 +165,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .permitAll()
                 .and()
-                .csrf();
+                .csrf().disable(); // ta bort disable om man vill ta bort åtkomst till /H2-console
         http.headers().frameOptions().disable();
     }
 }

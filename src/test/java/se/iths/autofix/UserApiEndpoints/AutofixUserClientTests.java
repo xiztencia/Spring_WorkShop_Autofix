@@ -1,8 +1,6 @@
 package se.iths.autofix.UserApiEndpoints;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
@@ -41,9 +39,8 @@ class AutofixUserClientTests {
 
     @BeforeAll
     void init(){
-        repository.save(new Client("user","user1","user1","user1","user1"));
+        repository.save(new Client("user0","user10","user10","user10","user10"));
     }
-
 
     //<editor-fold desc="Client API Tests">
     @Test
@@ -62,9 +59,9 @@ class AutofixUserClientTests {
     }
 
     @Test
-    void userTrytoDeleteClientIdReturnUnauthorized() throws Exception{
-
-        mockMvc.perform(delete("/api/client/delete/1/")
+    void userTrytoDeleteClientIdReturnOK() throws Exception{
+        mockMvc.perform(delete("/api/client/delete/1")
+                .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
 

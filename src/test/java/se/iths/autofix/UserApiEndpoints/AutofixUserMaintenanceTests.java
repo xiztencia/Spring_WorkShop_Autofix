@@ -30,45 +30,36 @@ class AutofixUserMaintenanceTests {
 
     //<editor-fold desc="Maintenance API Tests">
     @Test
-
     void userTrytoAccessMaintenanceFindAllReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/maintenance/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
-
     @Test
-
     void userTrytoAccessMaintenanceFindAllClientByUsernameReturnForbidden() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-
     void userTrytoAccessMaintenanceIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/maintenance/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
-
     @Test
-
     void userTrytoAccessMaintenanceClientIdReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/maintenance/findbyclient/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-
     void userTrytoDeleteMaintenanceIdReturnUnauthorized() throws Exception{
         mockMvc.perform(delete("/api/maintenance/delete/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
-
     @Test
-
     void userTrytoCreateMaintenanceIdReturnUnauthorized() throws Exception{
         mockMvc.perform(post("/api/maintenance/create")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -78,16 +69,13 @@ class AutofixUserMaintenanceTests {
                         "\"checkOutDate\":2020-01-02}")
         ).andExpect(status().isUnauthorized());
     }
-
     @Test
-
     void userTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     @Test
-
     void userTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnUnauthorized() throws Exception{
         mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
                 .contentType(MediaType.APPLICATION_JSON)

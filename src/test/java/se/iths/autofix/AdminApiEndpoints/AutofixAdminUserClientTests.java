@@ -51,12 +51,14 @@ class AutofixAdminUserClientTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isOk());
     }
+
     @Test
     void adminUserTrytoAccessClientIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/client/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
+
     @Test
     void adminUserTrytoDeleteClientIdReturnOk() throws Exception{
         mockMvc.perform(delete("/api/client/delete/1")
@@ -79,5 +81,4 @@ class AutofixAdminUserClientTests {
         ).andExpect(status().isOk());
     }
     //</editor-fold>
-
 }

@@ -49,16 +49,13 @@ class AutofixAdminUserEmployeeTests {
 
     //<editor-fold desc="Employee API Tests">
     @Test
-
     void adminUserTrytoAccessEmployeeFindAllReturnOK() throws Exception{
         mockMvc.perform(get("/api/employee/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
 
-
     @Test
-
     void adminUserTrytoAccessEmployeeIdReturnOK() throws Exception{
         mockMvc.perform(get("/api/employee/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -66,7 +63,6 @@ class AutofixAdminUserEmployeeTests {
     }
 
     @Test
-
     void adminUserTrytoDeleteEmployeeIdReturnOK() throws Exception{
         mockMvc.perform(delete("/api/employee/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -74,7 +70,6 @@ class AutofixAdminUserEmployeeTests {
     }
 
     @Test
-
     void adminUserTrytoCreateEmployeeIdReturnOK() throws Exception{
         mockMvc.perform(post("/api/employee/create")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -87,12 +82,10 @@ class AutofixAdminUserEmployeeTests {
     }
 
     @Test
-
     void adminUserTryToGetAuthenticatedEmployeeIdReturnOK() throws Exception{
         mockMvc.perform(get("/api/employee/getauthenticatedemployee")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
     //</editor-fold>
-
 }

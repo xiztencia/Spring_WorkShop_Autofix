@@ -16,7 +16,6 @@ import java.util.Optional;
 @RequestMapping(path={"/client","/api/client"})
 public class ClientController {
 
-
     Logger logger = LoggerFactory.getLogger(ClientController.class);
 
     private ClientService clientService;
@@ -32,14 +31,11 @@ public class ClientController {
         return clientService.createClient(client);
     }
 
-
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {
         return clientService.findAllClients();
     }
-
-
 
     @GetMapping("/id/{id}")
     public Optional<Client> findClientById(@PathVariable Long id) {

@@ -45,7 +45,7 @@ class AutofixAdminUserMaintenanceTests {
     @BeforeEach
     void init(){
         when(repository.existsById(1L)).thenReturn(true);
-        when(repository.findById(1L)).thenReturn( Optional.of(new Maintenance("Service", 2000, new Date(2020-01-01), new Date(2020-01-02))));
+        when(repository.findById(1L)).thenReturn(Optional.of(new Maintenance("Service", 2000, new Date(2020-01-01), new Date(2020-01-02))));
     }
     //<editor-fold desc="Maintenance API Tests">
     @Test

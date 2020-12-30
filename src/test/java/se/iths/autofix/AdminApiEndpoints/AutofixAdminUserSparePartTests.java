@@ -17,13 +17,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import se.iths.autofix.controller.SparePartController;
 import se.iths.autofix.entity.Client;
-import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.repository.SparePartRepository;
 
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;

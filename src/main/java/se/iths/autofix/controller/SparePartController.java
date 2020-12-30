@@ -44,9 +44,11 @@ public class SparePartController {
         return sparePartService.findSparePartsByClientId(id);
     }
 
-    @GetMapping("/findallsparepartsbyclientusername")
-    Iterable<SparePart> findAllSparePartsByClientUsername() {
-        return sparePartService.findAllSparePartsByClientUsername();
+    //TODO Lägga en Employee endpoint för att söka på clienter
+
+    @GetMapping("/findallsparepartsbyclientusername/{nameUser}")
+    Iterable<SparePart> findAllSparePartsByClientUsername(@PathVariable String nameUser) {
+        return sparePartService.findAllSparePartsByClientUsername(nameUser);
     }
 
     @GetMapping("/findallsparepartsbyemployee/{id}")

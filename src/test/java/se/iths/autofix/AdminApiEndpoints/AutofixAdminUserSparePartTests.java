@@ -49,12 +49,12 @@ class AutofixAdminUserSparePartTests {
 
     @BeforeEach
     void init(){
-        Client client = new Client("admin","Kalle","Anka","kalle@anka.com","kajsa");
+        Client client = new Client("Kalle","Kalle","Anka","kalle@anka.com","kajsa");
         SparePart sparepart = new SparePart("Brake System", "brake disc", 666, 22);
         SparePart sparepart1 = new SparePart("Brake System2", "brake disc2", 666, 22);
         sparepart.setClient(client);
         sparepart1.setClient(client);
-        when(repository.findAllSparePartsByClientUsername()).thenReturn(Arrays.asList(sparepart,sparepart1));
+        when(repository.findAllSparePartsByClientUsername("Kalle")).thenReturn(Arrays.asList(sparepart,sparepart1));
         when(repository.existsById(1L)).thenReturn(true);
         when(repository.findById(1L)).thenReturn( Optional.of(sparepart));
     }
@@ -69,7 +69,7 @@ class AutofixAdminUserSparePartTests {
     @Test
 
     void adminUserTrytoAccessSparePartFindAllClientByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartssbyclientusername")
+        mockMvc.perform(get("/api/sparepart/findallsparepartsbyclientusername/Kalle")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }

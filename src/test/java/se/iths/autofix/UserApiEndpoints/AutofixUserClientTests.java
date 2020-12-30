@@ -1,6 +1,6 @@
 package se.iths.autofix.UserApiEndpoints;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -18,6 +19,9 @@ import se.iths.autofix.controller.ClientController;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.repository.ClientRepository;
 
+import java.util.Optional;
+
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,12 +38,15 @@ class AutofixUserClientTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @MockBean
     private ClientRepository repository;
 
-    @BeforeAll
+    @BeforeEach
     void init(){
-        repository.save(new Client("user0","user10","user10","user10","user10"));
+        //repository.save(new Client("user0","user10","user10","user10","user10"));
+        // doNothing().when(repository).deleteById(1L);
+        when(repository.existsById(1L)).thenReturn(true);
+        when(repository.findById(1L)).thenReturn( Optional.of(new Client("user0","user10","user10","user10","user10")));
     }
 
     //<editor-fold desc="Client API Tests">
@@ -50,9 +57,8 @@ class AutofixUserClientTests {
                 ).andExpect(status().isForbidden());
     }
 
-
     @Test
-    void userTrytoAccessClientIdReturnUnauthorized() throws Exception{
+    void userTrytoAccessClientIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/client/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());

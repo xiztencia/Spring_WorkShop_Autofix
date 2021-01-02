@@ -94,7 +94,7 @@ class AutofixAdminUserMaintenanceTests {
                 .content("{\"type\":\"Service\","+
                         "\"price\":2000," +
                         "\"checkInDate\":\"2020-01-01\"," +
-                        "\"checkOutDate\":\"2020-01-02\"}")
+                        "\"checkOutDate\":\"2020-12-31\"}")
         ).andExpect(status().isOk());
     }
 

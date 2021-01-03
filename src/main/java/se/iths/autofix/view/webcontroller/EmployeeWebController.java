@@ -16,6 +16,6 @@ public class EmployeeWebController {
     @GetMapping("/Employee")
     public String clients(Model model) throws ClientNotFoundException {
         model.addAttribute("clients", clientService.findAllClients());
-        return "/Employee.html";
+        return "Employee.html";
     }
 }

@@ -23,13 +23,15 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 
 public class MvcConfig  implements WebMvcConfigurer{
-    @Autowired
-    private ThymeleafViewResolver thymeleafViewResolver;
+  @Autowired
+  private ThymeleafViewResolver thymeleafViewResolver;
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/application").setViewName("application");
+        registry.addViewController("/Employee").setViewName("Employee");
+        registry.addViewController("/Client").setViewName("Client");
         registry.addViewController("/admin").setViewName("admin");
         registry.addViewController("/login").setViewName("login");
     }

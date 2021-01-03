@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.service.ClientService;
@@ -30,6 +31,8 @@ public class ClientController {
         logger.info("createClient() was called with username: " + client.getUsername());
         return clientService.createClient(client);
     }
+   // @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
+
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")

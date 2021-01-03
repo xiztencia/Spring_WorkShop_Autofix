@@ -1,11 +1,10 @@
 package se.iths.autofix.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Employee {
@@ -22,6 +21,56 @@ public class Employee {
     private String email;
     private String password;
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Vehicle> vehicles = new HashSet<>();
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Maintenance> maintenances = new HashSet<>();
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<SparePart> spareParts = new HashSet<>();
+
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+        vehicle.setEmployee(this);
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        vehicles.remove(vehicle);
+        vehicle.setEmployee(null);
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void addMaintenance(Maintenance maintenance) {
+        maintenances.add(maintenance);
+        maintenance.setEmployee(this);
+    }
+
+    public void removeMaintenance(Maintenance maintenance) {
+        maintenances.remove(maintenance);
+        maintenance.setEmployee(null);
+    }
+
+    public Set<Maintenance> getMaintenances() {
+        return maintenances;
+    }
+
+    public void addSparePart(SparePart sparePart) {
+        spareParts.add(sparePart);
+        sparePart.setEmployee(this);
+    }
+
+    public void removeSparePart(SparePart sparePart) {
+        spareParts.remove(sparePart);
+        sparePart.setEmployee(null);
+    }
+
+    public Set<SparePart> getSpareParts() {
+        return spareParts;
+    }
 //    public enum range {
 //        ADMIN, USER
 //    }
@@ -35,7 +84,6 @@ public class Employee {
     }
 
     public Employee() {
-
     }
 
     public String getPassword() {

@@ -2,18 +2,18 @@ package se.iths.autofix.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
-public class Client {
+public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
     private String username;
-
     private String firstname;
     private String lastname;
     private String email;
@@ -21,6 +21,12 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles = new HashSet<>();
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Maintenance> maintenances = new HashSet<>();
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<SparePart> spareParts = new HashSet<>();
 
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
@@ -34,6 +40,34 @@ public class Client {
 
     public Set<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public void addMaintenance(Maintenance maintenance) {
+        maintenances.add(maintenance);
+        maintenance.setClient(this);
+    }
+
+    public void removeMaintenance(Maintenance maintenance) {
+        maintenances.remove(maintenance);
+        maintenance.setClient(null);
+    }
+
+    public Set<Maintenance> getMaintenances() {
+        return maintenances;
+    }
+
+    public void addSparePart(SparePart sparePart) {
+        spareParts.add(sparePart);
+        sparePart.setClient(this);
+    }
+
+    public void removeSparePart(SparePart sparePart) {
+        spareParts.remove(sparePart);
+        sparePart.setClient(null);
+    }
+
+    public Set<SparePart> getSpareParts() {
+        return spareParts;
     }
 
     public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {

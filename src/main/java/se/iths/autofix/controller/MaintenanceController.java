@@ -18,6 +18,7 @@ public class MaintenanceController {
         this.maintenanceService = maintenanceService;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @PostMapping("/create")
     public Maintenance createMaintenance(@RequestBody Maintenance maintenance) {
         return maintenanceService.createMaintenance(maintenance);
@@ -34,11 +35,12 @@ public class MaintenanceController {
         return maintenanceService.findAllMaintenances();
     }
 
-    @GetMapping("/id{id}")
+    @GetMapping("/id/{id}")
     public Optional<Maintenance> findMaintenanceById(@PathVariable Long id) {
         return maintenanceService.findMaintenanceById(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void deleteMaintenance(@PathVariable Long id) {
         maintenanceService.deleteMaintenance(id);

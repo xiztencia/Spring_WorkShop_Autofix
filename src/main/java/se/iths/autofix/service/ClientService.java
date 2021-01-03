@@ -7,8 +7,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.Client;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.ClientNotFoundException;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.ClientRepository;
+import se.iths.autofix.verifier.ClientVerifier;
 
 import java.util.Optional;
 
@@ -20,6 +23,7 @@ public class ClientService {
 
     private ClientRepository clientRepository;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private ClientVerifier verifier;
 
     // Constructor injection
     public ClientService(ClientRepository clientRepository, TestScopes testScopes) {
@@ -33,12 +37,18 @@ public class ClientService {
 //    }
 
 
-    public Client createClient(Client client) {
+    public Client createClient(Client client) throws BadInputFormatException{
+
+           //verifier.verifyClient(client);
 
         client.setPassword(passwordEncoder.encode(client.getPassword()));
         authGroupRepository.save(new AuthGroup(client.getUsername(), "USER"));
         return clientRepository.save(client);
     }
+
+//    public Client update(Client client){
+//
+//    }
 
     public void deleteClient(Long id) {
         Optional<Client> foundClient = clientRepository.findById(id);
@@ -49,7 +59,7 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
-    public Iterable<Client> findAllClients() {
+    public Iterable<Client> findAllClients() throws ClientNotFoundException{
         return clientRepository.findAll();
     }
 

@@ -32,6 +32,10 @@ public class Maintenance {
     @JoinColumn(name = "maintenance_employee")
     private Employee employee;
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public Maintenance(@NotEmpty String type, double price, Date checkInDate, Date checkOutDate) {
         this.type = type;
         this.price = price;
@@ -90,4 +94,7 @@ public class Maintenance {
         this.checkOutDate = checkOutDate;
     }
 
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 }

@@ -1,4 +1,4 @@
-package se.iths.autofix.service;
+package se.iths.autofix.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,13 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import se.iths.autofix.controller.ClientController;
 import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
+import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.ClientRepository;
 import se.iths.autofix.repository.EmployeeRepository;
+import se.iths.autofix.repository.SparePartRepository;
 
 @Configuration
 //@Slf4j
@@ -29,6 +30,7 @@ public class SetupH2DataBase {
             havingValue = "jdbc:h2:mem:test")
     CommandLineRunner initDatabase(EmployeeRepository emprepository,
                                    ClientRepository clientRepository,
+                                    SparePartRepository sparePartRepository,
                                    AuthGroupRepository authGroupRepository) {
             return args -> {
                 if(System.getProperty("SPRING_DRIVER_CLASS").equals("org.h2.Driver")) {
@@ -45,6 +47,21 @@ public class SetupH2DataBase {
                     clientRepository.save(client);
                     logger.info("Added to database " + client.getUsername());
                     authGroupRepository.save(new AuthGroup(client.getUsername(), "USER"));
+
+                    Client clientX = new Client("user2","Jhon","Doe","jhon_doe@google.com","human");
+                    clientX.setPassword(passwordEncoder.encode(clientX.getPassword()));
+                    clientRepository.save(clientX);
+                    logger.info("Added to database " + clientX.getUsername());
+                    authGroupRepository.save(new AuthGroup(clientX.getUsername(), "USER"));
+
+                    SparePart wheel = new SparePart("wheels","car wheel",800.00, 1);
+                    SparePart backMirror = new SparePart("mirrors","back wheel",549.00, 1);
+                    SparePart frontLight = new SparePart("lights","front light", 1200.00, 2 );
+
+                    sparePartRepository.save(wheel);
+                    sparePartRepository.save(backMirror);
+                    sparePartRepository.save(frontLight);
+                    logger.info("Added to database 3 spare parts");
                 }
             };
 

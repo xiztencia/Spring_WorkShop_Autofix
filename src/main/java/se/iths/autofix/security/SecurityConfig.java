@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import se.iths.autofix.security.jwt.config.JwtAuthenticationEntryPoint;
 import se.iths.autofix.security.jwt.config.JwtRequestFilter;
-import se.iths.autofix.security.jwt.config.JwtTokenUtil;
 
 
 @EnableWebSecurity
@@ -68,7 +67,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
     }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -125,6 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             http.headers().frameOptions().disable();
         }
     }
+
 @Configuration
 @Order(2)
 public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
@@ -153,10 +152,12 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/Client/**").hasAnyRole("ADMIN","USER")
                 .anyRequest()
                 .authenticated()
-             //   .antMatchers("/admin").hasRole("ADMIN")
-                //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
+
+             //   .antMatchers("/Client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
@@ -166,7 +167,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .permitAll()
                 .and()
-                .csrf();
+                .csrf().disable(); // ta bort disable om man vill ta bort åtkomst till /H2-console
         http.headers().frameOptions().disable();
     }
 }

@@ -2,12 +2,18 @@ package se.iths.autofix.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import se.iths.autofix.entity.Client;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.ClientNotFoundException;
+import se.iths.autofix.repository.ClientRepository;
 import se.iths.autofix.service.ClientService;
+import se.iths.autofix.verifier.ClientVerifier;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
@@ -27,9 +33,14 @@ public class ClientController {
 
     @PreAuthorize("permitAll()")
     @PostMapping("/create")
-    public Client createClient(@RequestBody Client client) {
+    public Client createClient(@RequestBody Client client){
+
         logger.info("createClient() was called with username: " + client.getUsername());
-        return clientService.createClient(client);
+        try {
+            return clientService.createClient(client);
+        } catch (BadInputFormatException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The input is incorrect", e);
+        }
     }
    // @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
 
@@ -37,7 +48,11 @@ public class ClientController {
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {
-        return clientService.findAllClients();
+        try {
+            return clientService.findAllClients();
+        } catch (ClientNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client Not Found", e);
+        }
     }
 
     @GetMapping("/id/{id}")

@@ -3,6 +3,8 @@ package se.iths.autofix.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.Vehicle;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.VehicleNotFoundException;
 import se.iths.autofix.repository.VehicleRepository;
 
 import java.util.Optional;
@@ -18,7 +20,7 @@ public class VehicleService {
         this.vehicleRepository = vehicleRepository;
     }
 
-    public Vehicle createVehicle(Vehicle vehicle) {
+    public Vehicle createVehicle(Vehicle vehicle) throws BadInputFormatException{
 
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));
 //        authGroupRepository.save(new AuthGroup(user.getUsername(), "ADMIN"));
@@ -34,7 +36,7 @@ public class VehicleService {
         return vehicleRepository.findById(id);
     }
 
-    public Iterable<Vehicle> findAllVehicles() {
+    public Iterable<Vehicle> findAllVehicles() throws VehicleNotFoundException {
         return vehicleRepository.findAll();
     }
 

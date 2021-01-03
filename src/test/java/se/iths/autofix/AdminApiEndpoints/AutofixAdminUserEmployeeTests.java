@@ -1,14 +1,12 @@
 package se.iths.autofix.AdminApiEndpoints;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
@@ -22,7 +20,11 @@ import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.repository.ClientRepository;
 import se.iths.autofix.repository.EmployeeRepository;
+import se.iths.autofix.service.EmployeeService;
 
+import java.util.Optional;
+
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,42 +41,43 @@ class AutofixAdminUserEmployeeTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @MockBean
     private EmployeeRepository repository;
 
-    @BeforeAll
+    @BeforeEach
     void init(){
-        repository.save(new Employee("user2","user12","user12","user12","user12"));
+        when(repository.findById(1L)).thenReturn(Optional.of(new Employee("user2","user12","user12","user12","user12")));
+        when(repository.findById(3L)).thenReturn(Optional.of(new Employee("user2","user12","user12","user12","user12")));
+        doNothing().when(repository).deleteById(3L);
     }
 
     //<editor-fold desc="Employee API Tests">
     @Test
-
     void adminUserTrytoAccessEmployeeFindAllReturnOK() throws Exception{
+
         mockMvc.perform(get("/api/employee/findall")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
+
     }
 
-
     @Test
-
     void adminUserTrytoAccessEmployeeIdReturnOK() throws Exception{
+     //   EmployeeService mockEmployeeService = mock(EmployeeService.class);
         mockMvc.perform(get("/api/employee/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
+    //    System.out.println( verify(mockEmployeeService,times(1)).findEmployeeById(1L));
     }
 
     @Test
-
     void adminUserTrytoDeleteEmployeeIdReturnOK() throws Exception{
-        mockMvc.perform(delete("/api/employee/delete/1")
+        mockMvc.perform(delete("/api/employee/delete/3")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
 
     @Test
-
     void adminUserTrytoCreateEmployeeIdReturnOK() throws Exception{
         mockMvc.perform(post("/api/employee/create")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -87,12 +90,10 @@ class AutofixAdminUserEmployeeTests {
     }
 
     @Test
-
     void adminUserTryToGetAuthenticatedEmployeeIdReturnOK() throws Exception{
         mockMvc.perform(get("/api/employee/getauthenticatedemployee")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
     //</editor-fold>
-
 }

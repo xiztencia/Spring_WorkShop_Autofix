@@ -43,8 +43,6 @@ class AutofixUserClientTests {
 
     @BeforeEach
     void init(){
-        //repository.save(new Client("user0","user10","user10","user10","user10"));
-        // doNothing().when(repository).deleteById(1L);
         when(repository.existsById(1L)).thenReturn(true);
         when(repository.findById(1L)).thenReturn( Optional.of(new Client("user0","user10","user10","user10","user10")));
     }

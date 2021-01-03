@@ -2,18 +2,18 @@ package se.iths.autofix.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
-public class Client {
+public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
     private String username;
-
     private String firstname;
     private String lastname;
     private String email;

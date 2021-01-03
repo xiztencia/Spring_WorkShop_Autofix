@@ -1,14 +1,12 @@
 package se.iths.autofix.AdminApiEndpoints;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
@@ -20,6 +18,9 @@ import se.iths.autofix.controller.ClientController;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.repository.ClientRepository;
 
+import java.util.Optional;
+
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,12 +37,12 @@ class AutofixAdminUserClientTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @MockBean
     private ClientRepository repository;
 
-    @BeforeAll
+    @BeforeEach
     void init(){
-        repository.save(new Client("user1","user11","user11","user11","user11"));
+        when(repository.findById(1L)).thenReturn(Optional.of(new Client("user1","user11","user11","user11","user11")));
     }
 
     //<editor-fold desc="Client API Tests">
@@ -51,12 +52,14 @@ class AutofixAdminUserClientTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isOk());
     }
+
     @Test
     void adminUserTrytoAccessClientIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/client/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
+
     @Test
     void adminUserTrytoDeleteClientIdReturnOk() throws Exception{
         mockMvc.perform(delete("/api/client/delete/1")
@@ -79,5 +82,4 @@ class AutofixAdminUserClientTests {
         ).andExpect(status().isOk());
     }
     //</editor-fold>
-
 }

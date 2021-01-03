@@ -22,7 +22,7 @@ import se.iths.autofix.repository.MaintenanceRepository;
 import java.util.Date;
 import java.util.Optional;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -45,7 +45,7 @@ class AutofixAdminUserMaintenanceTests {
     @BeforeEach
     void init(){
         when(repository.existsById(1L)).thenReturn(true);
-        when(repository.findById(1L)).thenReturn( Optional.of(new Maintenance("Service", 2000, new Date(2020-01-01), new Date(2020-01-02))));
+        when(repository.findById(1L)).thenReturn(Optional.of(new Maintenance("Service", 2000, new Date(2020-01-01), new Date(2020-01-02))));
     }
     //<editor-fold desc="Maintenance API Tests">
     @Test
@@ -94,7 +94,7 @@ class AutofixAdminUserMaintenanceTests {
                 .content("{\"type\":\"Service\","+
                         "\"price\":2000," +
                         "\"checkInDate\":\"2020-01-01\"," +
-                        "\"checkOutDate\":\"2020-01-02\"}")
+                        "\"checkOutDate\":\"2020-12-31\"}")
         ).andExpect(status().isOk());
     }
 

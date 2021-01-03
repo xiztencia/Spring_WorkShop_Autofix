@@ -152,10 +152,12 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/Client/**").hasAnyRole("ADMIN","USER")
                 .anyRequest()
                 .authenticated()
-             //   .antMatchers("/admin").hasRole("ADMIN")
-                //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
+
+             //   .antMatchers("/Client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()

@@ -152,7 +152,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/Employee/**").hasRole("ADMIN")
               //  .antMatchers("/Client/**").hasAnyRole("ADMIN","USER")
                 .anyRequest()
                 .authenticated()

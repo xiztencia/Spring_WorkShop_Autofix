@@ -153,7 +153,10 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/Employee/**").hasRole("ADMIN")
-              //  .antMatchers("/Client/**").hasAnyRole("ADMIN","USER")
+                .antMatchers("/createUser/**").hasRole("ADMIN")
+                .antMatchers("/saveUser/**").hasRole("ADMIN")
+
+                //  .antMatchers("/Client/**").hasAnyRole("ADMIN","USER")
                 .anyRequest()
                 .authenticated()
 

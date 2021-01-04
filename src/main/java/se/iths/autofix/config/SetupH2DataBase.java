@@ -48,7 +48,7 @@ public class SetupH2DataBase {
                     logger.info("Added to database " + client.getUsername());
                     authGroupRepository.save(new AuthGroup(client.getUsername(), "USER"));
 
-                    Client clientX = new Client("user2","John","Doe","jhon_doe@google.com","human");
+                    Client clientX = new Client("user2","Jn","Doe","jhon_doe@google.com","human");
                     clientX.setPassword(passwordEncoder.encode(clientX.getPassword()));
                     clientRepository.save(clientX);
                     logger.info("Added to database " + clientX.getUsername());

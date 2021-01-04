@@ -28,14 +28,9 @@ public class EmployeeWebController {
         model.addAttribute("clients", clientService.findAllClients());
         return "Employee.html";
     }
-
     @GetMapping("/saveUser")
     public String saveClient(Client client) throws BadInputFormatException {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        client.setPassword(passwordEncoder.encode(client.getPassword()));
         clientService.createClient(client);
-        authGroupRepository.save(new AuthGroup(client.getUsername(), "USER"));
-
         return "redirect:/createUser";
     }
     @GetMapping("/createUser")

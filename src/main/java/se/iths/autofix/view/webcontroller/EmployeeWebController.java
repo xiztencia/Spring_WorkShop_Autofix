@@ -13,9 +13,9 @@ public class EmployeeWebController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/admin")
+    @GetMapping("/Employee")
     public String clients(Model model) throws ClientNotFoundException {
         model.addAttribute("clients", clientService.findAllClients());
-        return "/admin.html";
+        return "Employee.html";
     }
 }

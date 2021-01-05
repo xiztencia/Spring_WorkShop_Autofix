@@ -9,7 +9,7 @@ import se.iths.autofix.service.MaintenanceService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path={"/maintenance","/api/maintenance"})
+@RequestMapping(path={"/api/maintenance"})
 public class MaintenanceController {
 
     private MaintenanceService maintenanceService;

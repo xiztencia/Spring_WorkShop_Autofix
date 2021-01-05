@@ -23,7 +23,12 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/login}">ADMIN/EMPLOYEE LOGIN CLICK HERE</a>
+            <a class="navbar-brand" href="#"  th:href="@{/application}">HOME</a>
+            <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/Employee}">Admin Console</a>
+            <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/createAdmin}">Create Employee</a>
+
+            <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" th:href="@{/Client}">Auto Fix Shop</a>
+
         </div>
     </div>
 

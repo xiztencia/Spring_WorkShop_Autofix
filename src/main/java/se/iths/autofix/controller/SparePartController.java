@@ -8,7 +8,7 @@ import se.iths.autofix.service.SparePartService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path={"/sparepart","/api/sparepart"})
+@RequestMapping(path={"/api/sparepart"})
 public class SparePartController {
 
     private SparePartService sparePartService;

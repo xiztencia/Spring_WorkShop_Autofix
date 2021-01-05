@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @PreAuthorize("isAuthenticated()")
-@RequestMapping(path={"/client","/api/client"})
+@RequestMapping(path={"/api/client"})
 public class ClientController {
 
     Logger logger = LoggerFactory.getLogger(ClientController.class);

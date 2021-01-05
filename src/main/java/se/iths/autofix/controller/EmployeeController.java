@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
-@RequestMapping(path={"/employee","/api/employee"})
+@RequestMapping(path={"/api/employee"})
 public class EmployeeController {
 
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);

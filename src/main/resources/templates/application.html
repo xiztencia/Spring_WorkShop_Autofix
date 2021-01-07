@@ -21,7 +21,7 @@
 <a  th:href="@{/Client}" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Welcome user ! Click here</a>-->
 <form th:action="@{/logout}" method="post">
    <input type="submit" value="Sign Out"/>
-    <!-- th:href="@{/Employee.html}"
+     <!-- th:href="@{/Employee.html}"
     <a  style="background-color: green" th:href="@{/Employee.html}"  th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Welcome admin</a>
 <a style="background-color: blue" th:href="@{/Client.html}" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Welcome user</a>
     -->

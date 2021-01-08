@@ -1,22 +1,34 @@
 package se.iths.autofix.jms.sender;
 
-//@Component
-//public class Sender {
-//
-//    JmsTemplate jmsTemplate;
-//
-//    public Sender(JmsTemplate jmsTemplate) {
-//        this.jmsTemplate = jmsTemplate;
-//    }
-//
-//    @Scheduled(fixedRate = 2000)
-//    public void sendMessage() {
-//
-//        System.out.println("Sending message...");
-//        MessageObject messageObject = new MessageObject(UUID.randomUUID(), "Hello from JU19_QUEUE!", LocalDateTime.now());
-//        jmsTemplate.convertAndSend(JmsConfig.JU19_QUEUE, messageObject);
-//        System.out.println("Message sent!");
-//
-//    }
-//
-//}
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.LocalDateTime;
+
+
+@Component
+public class Sender {
+
+    Logger logger = LoggerFactory.getLogger(Sender.class);
+    RabbitTemplate rabbitTemplate;
+
+
+    public Sender(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
+
+
+   // @Scheduled(fixedRate = 2000)
+    public void sendMessage(String message,String info) {
+        logger.info("Message sent: "+info);
+        rabbitTemplate.convertAndSend("TestQueue", message);
+
+    }
+
+}

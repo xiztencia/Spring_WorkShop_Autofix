@@ -8,10 +8,7 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
 </head>
-<header>
-    <div th:replace="navbar :: header">
-    </div>
-</header>
+<header><div th:replace="Navbar::header"></div></header>
 <body>
 <br>
 <br>
@@ -21,7 +18,7 @@
 <a  th:href="@{/Client}" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Welcome user ! Click here</a>-->
 <form th:action="@{/logout}" method="post">
    <input type="submit" value="Sign Out"/>
-    <!-- th:href="@{/Employee.html}"
+     <!-- th:href="@{/Employee.html}"
     <a  style="background-color: green" th:href="@{/Employee.html}"  th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Welcome admin</a>
 <a style="background-color: blue" th:href="@{/Client.html}" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Welcome user</a>
     -->

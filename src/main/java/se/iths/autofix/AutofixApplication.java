@@ -3,6 +3,9 @@ package se.iths.autofix;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @SpringBootApplication
 public class AutofixApplication {
 
@@ -16,6 +19,7 @@ public class AutofixApplication {
             System.setProperty("SPRING_DRIVER_CLASS","org.h2.Driver");
             System.setProperty("SPRING_H2_CONSOLE","true");
         }
+
         SpringApplication.run(AutofixApplication.class, args);
     }
 

@@ -15,10 +15,10 @@ public class JmsConfig {
 
     @Bean
     public CachingConnectionFactory connectionFactory() {
-        CachingConnectionFactory factory = new CachingConnectionFactory(System.getProperty("RABBIT_BROKER_URL"));
-        factory.setPassword(System.getProperty("RABBIT_BROKER_PASSWORD"));
-        factory.setUsername(System.getProperty("RABBIT_BROKER_USERNAME"));
-        factory.setVirtualHost(System.getProperty("RABBIT_BROKER_VHOST"));
+        CachingConnectionFactory factory = new CachingConnectionFactory(System.getenv("RABBIT_BROKER_URL"));
+        factory.setPassword(System.getenv("RABBIT_BROKER_PASSWORD"));
+        factory.setUsername(System.getenv("RABBIT_BROKER_USERNAME"));
+        factory.setVirtualHost(System.getenv("RABBIT_BROKER_VHOST"));
         return factory;
     }
 

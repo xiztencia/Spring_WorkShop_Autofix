@@ -20,7 +20,6 @@ public class JmsConfig {
             factory.setPassword(System.getenv("RABBIT_BROKER_PASSWORD"));
             factory.setUsername(System.getenv("RABBIT_BROKER_USERNAME"));
             factory.setVirtualHost(System.getenv("RABBIT_BROKER_VHOST"));
-            System.out.println(System.getProperty("os.name"));
             return factory;
         }
         else {

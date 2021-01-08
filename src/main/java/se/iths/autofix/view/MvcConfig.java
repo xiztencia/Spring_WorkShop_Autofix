@@ -1,24 +1,10 @@
 package se.iths.autofix.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Description;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.format.datetime.DateFormatter;
-import org.springframework.format.datetime.DateFormatterRegistrar;
-import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-
-import java.time.format.DateTimeFormatter;
 
 @Configuration
 
@@ -27,15 +13,15 @@ public class MvcConfig  implements WebMvcConfigurer{
   private ThymeleafViewResolver thymeleafViewResolver;
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/").setViewName("home");
-        registry.addViewController("/application").setViewName("application");
+        registry.addViewController("/home").setViewName("Home");
+        registry.addViewController("/").setViewName("Home");
+        registry.addViewController("/application").setViewName("Application");
         registry.addViewController("/Employee").setViewName("Employee");
         registry.addViewController("/Client").setViewName("Client");
-        registry.addViewController("/admin").setViewName("admin");
-        registry.addViewController("/signUp").setViewName("signUp");
-        registry.addViewController("/createAdmin").setViewName("createAdmin");
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/admin").setViewName("Admin");
+        registry.addViewController("/signUp").setViewName("SignUp");
+        registry.addViewController("/createAdmin").setViewName("CreateAdmin");
+        registry.addViewController("/login").setViewName("Login");
         //registry.addViewController("/Navbar").setViewName("Navbar");
 
     }

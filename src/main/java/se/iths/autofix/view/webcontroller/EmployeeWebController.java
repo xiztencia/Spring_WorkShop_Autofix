@@ -42,7 +42,7 @@ public class EmployeeWebController {
     @GetMapping("/createAdmin")
     public String readAdmin(Model model){
         model.addAttribute("adminObj",new Employee());
-        return "createAdmin.html";
+        return "CreateAdmin.html";
     }
 //    @GetMapping("/Employee")
 //    public String employees(Model model) throws EmployeeNotFoundException {

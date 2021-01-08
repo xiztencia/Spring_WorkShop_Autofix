@@ -14,11 +14,14 @@ public class ClientWebController {
 
     @Autowired
     private SparePartService sparePartService;
+    private Sender jmsSender;
 
     @GetMapping("/Client")
     public String spareParts(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        jmsSender.sendMessage(currentPrincipalName+" Logged","Loggin Event!!: ");
         model.addAttribute("spareParts", sparePartService.findAllSpareParts());
         return "Client.html";
     }
-
 }

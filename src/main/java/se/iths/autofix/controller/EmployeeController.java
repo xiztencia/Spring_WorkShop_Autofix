@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Employee;
+import se.iths.autofix.jms.sender.Sender;
 import se.iths.autofix.service.EmployeeService;
 
 import javax.annotation.security.RolesAllowed;
@@ -18,9 +19,11 @@ public class EmployeeController {
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     private EmployeeService employeeService;
+    private Sender sender;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService,Sender sender) {
         this.employeeService = employeeService;
+        this.sender=sender;
     }
 
     @PostMapping("/create")
@@ -52,4 +55,9 @@ public class EmployeeController {
     public Employee getAuthenticatedEmployee() {
         return employeeService.getAuthenticatedEmployee();
     }
+
+//    @GetMapping("/sendJEMS")
+//    public void SendJMS() {
+//        sender.sendMessage();
+//    }
 }

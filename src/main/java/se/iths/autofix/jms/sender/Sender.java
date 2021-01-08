@@ -18,7 +18,7 @@ public class Sender {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    @Scheduled(fixedRate = 2000)
+   // @Scheduled(fixedRate = 2000)
     public void sendMessage() {
         logger.info("Message sent: Hello world");
         rabbitTemplate.convertAndSend("TestQueue", "Hello, world!");

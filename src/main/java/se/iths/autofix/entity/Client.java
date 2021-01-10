@@ -28,6 +28,26 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<SparePart> spareParts = new HashSet<>();
 
+    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password, Vehicle vehicles) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.vehicles.add(vehicles);
+    }
+
+    public Client() {
+    }
+
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
         vehicle.setClient(this);
@@ -70,16 +90,7 @@ public class Client implements Serializable {
         return spareParts;
     }
 
-    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {
-        this.username = username;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-    }
 
-    public Client() {
-    }
 
     public String getPassword() {
         return password;

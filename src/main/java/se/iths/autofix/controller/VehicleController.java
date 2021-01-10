@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path={"/api/vehicle"})
-public class VehicleController {
+public class  VehicleController {
     Logger logger = LoggerFactory.getLogger(VehicleController.class);
 
     private VehicleService vehicleService;

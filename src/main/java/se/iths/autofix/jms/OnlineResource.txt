@@ -1,0 +1,8 @@
+https://www.rabbitmq.com/jms-client.html
+https://www.baeldung.com/rabbitmq-spring-amqp
+https://www.baeldung.com/spring-amqp
+https://www.baeldung.com/spring-amqp-error-handling
+https://www.baeldung.com/spring-amqp-exponential-backoff
+
+
+https://github.com/eugenp/tutorials/tree/master/spring-amqp

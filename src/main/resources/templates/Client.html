@@ -15,16 +15,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
 >
 <head>
-    <title>Costumer - Welcome</title>
+    <title>Customer - Welcome</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
 </head>
-<header>
-    <div th:replace="navbar :: header">
-    </div>
-</header>
+<header><div th:replace="Navbar::header"></div></header>
 <body>
 <br>
 <br>
@@ -57,8 +54,8 @@
     </table>
 </div>
 
-<form th:action="@{/logout}" method="post">
+<!--<form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
-</form>
+</form>-->
 </body>
 </html>

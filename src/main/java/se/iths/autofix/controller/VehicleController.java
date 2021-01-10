@@ -16,8 +16,8 @@ import java.sql.BatchUpdateException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path={"/vehicle","/api/vehicle"})
-public class VehicleController {
+@RequestMapping(path={"/api/vehicle"})
+public class  VehicleController {
     Logger logger = LoggerFactory.getLogger(VehicleController.class);
 
     private VehicleService vehicleService;

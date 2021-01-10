@@ -11,8 +11,9 @@
           crossorigin="anonymous">
 
 </head>
+<header><div th:replace="Navbar::header"></div></header>
 <body>
-<div th:replace="navbar :: header">
+
 <!-- create navigation bar ( header) -->
 <!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
 <!--    <div class="container">-->
@@ -25,17 +26,18 @@
 <!--                    class="icon-bar"></span>-->
 <!--            </button>-->
 <!--            <a class="navbar-brand" href="#" th:href="@{/login}">ADMIN/EMPLOYEE LOGIN CLICK HERE</a>-->
+<!--            <a class="navbar-brand" href="#" th:href="@{/signUp}">SIGN UP</a>-->
 <!--        </div>-->
 <!--    </div>-->
 <!--</nav>-->
-</div>
+<!--</div>-->
 <br>
 <br>
 <div class = "container">
     <div class = "row">
         <div class = "col-md-6 col-md-offset-3">
 
-            <h1> Welcome to Autofix "your local car and repair dealership" </h1>
+            <h1> Welcome to AutoFix "your local car and repair dealership" </h1>
 
                 <div class="form-group">
                     <div class="row">
@@ -43,7 +45,7 @@
                             <input type="submit" name="login-submit" id="login-submit"
                                    class="form-control btn btn-primary" value="Enter the world of Autofix" />
                         </div>
-                        <a th:href="@{/application}">Enter the world of Autofix</a>
+                        <a th:href="@{/application}">Enter the world of AutoFix</a>
                     </div>
                     <div sec:authentication="name">
                         The value of the "name" property of the authentication object should appear here.

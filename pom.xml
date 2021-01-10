@@ -148,6 +148,16 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--&lt;!&ndash;            <version>2.2.3.RELEASE</version>&ndash;&gt;-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+<!--            <version>1.4.5.RELEASE</version>-->
+        </dependency>
     </dependencies>
     <distributionManagement>
         <repository>

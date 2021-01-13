@@ -11,7 +11,6 @@ import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.exception.ClientNotFoundException;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.ClientRepository;
-import se.iths.autofix.verifier.ClientVerifier;
 
 import java.util.Optional;
 
@@ -23,7 +22,7 @@ public class ClientService {
 
     private ClientRepository clientRepository;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    private ClientVerifier verifier;
+    //private ClientVerifier verifier;
 
     // Constructor injection
     public ClientService(ClientRepository clientRepository, TestScopes testScopes) {

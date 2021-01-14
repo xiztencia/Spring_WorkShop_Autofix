@@ -28,12 +28,12 @@ public class ClientController {
     @PreAuthorize("permitAll()")
     @PostMapping("/create")
     public Client createClient(@RequestBody Client client){
-
         logger.info("createClient() was called with username: " + client.getUsername());
-        try {
+
+        if(client.getUsername()!=null) {
             return clientService.createClient(client);
-        } catch (BadInputFormatException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The input is incorrect", e);
+        }else{
+            throw new BadInputFormatException("Fill in your User name.");
         }
     }
    // @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")

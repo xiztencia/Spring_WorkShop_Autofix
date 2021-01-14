@@ -42,12 +42,7 @@ public class ClientController {
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {
-        try {
             return clientService.findAllClients();
-        } catch (ClientNotFoundException e){
-            throw new ClientNotFoundException();
-            //throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client Not Found", e);
-        }
     }
 
     @GetMapping("/id/{id}")

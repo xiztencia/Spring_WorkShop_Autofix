@@ -53,7 +53,7 @@ public class ClientController {
     @GetMapping("/id/{id}")
     //public Optional<Client> findClientById(@PathVariable Long id) {
     public ResponseEntity<?> findClientById(@PathVariable Long id){
-        if(id<0){
+        if(id<=0){
             throw new BadInputFormatException("Incorrect input");
         }
         return ResponseEntity.ok(clientService.findClientById(id));

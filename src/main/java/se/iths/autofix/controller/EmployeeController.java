@@ -2,9 +2,11 @@ package se.iths.autofix.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Employee;
+import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.jms.sender.Sender;
 import se.iths.autofix.service.EmployeeService;
 
@@ -42,8 +44,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Employee> findEmployeeById(@PathVariable Long id) {
-        return employeeService.findEmployeeById(id);
+    //public Optional<Employee> findEmployeeById(@PathVariable Long id) {
+    public ResponseEntity<?> findEmployeeById(@PathVariable Long id) {
+        if(id<=0){
+            throw new BadInputFormatException("Incorrect input");
+        }
+        return ResponseEntity.ok(employeeService.findEmployeeById(id));
     }
 
     @DeleteMapping("/delete/{id}")

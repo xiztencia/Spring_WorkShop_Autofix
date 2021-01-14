@@ -1,12 +1,23 @@
 package se.iths.autofix.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Spare part Not Found")
-public class SparepartNotFoundException extends Exception{
+//@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Spare part Not Found")
+public class SparepartNotFoundException extends RuntimeException{
     private static final long serialVersionUID = 1L;
-    public SparepartNotFoundException(String message) {
-        super(message);
+
+    private String msg;
+
+    public SparepartNotFoundException(String msg){
+        this.msg = msg;
+
+        //public BadInputFormatException(String errorMessage) {
+        //    super(errorMessage);
     }
+
+    public String getMsg(){
+        return msg;
+    }
+
+//    public SparepartNotFoundException(String message) {
+//        super(message);
+//    }
 }

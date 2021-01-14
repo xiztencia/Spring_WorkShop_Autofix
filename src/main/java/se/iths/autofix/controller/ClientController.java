@@ -3,20 +3,14 @@ package se.iths.autofix.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.exception.ClientNotFoundException;
-import se.iths.autofix.repository.ClientRepository;
 import se.iths.autofix.service.ClientService;
-import se.iths.autofix.verifier.ClientVerifier;
-
-import javax.annotation.security.RolesAllowed;
-import java.util.Optional;
 
 @RestController
 @PreAuthorize("isAuthenticated()")
@@ -48,16 +42,16 @@ public class ClientController {
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Client> findAllClients() {
-        try {
             return clientService.findAllClients();
-        } catch (ClientNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client Not Found", e);
-        }
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Client> findClientById(@PathVariable Long id) {
-        return clientService.findClientById(id);
+    //public Optional<Client> findClientById(@PathVariable Long id) {
+    public ResponseEntity<?> findClientById(@PathVariable Long id){
+        if(id<=0){
+            throw new BadInputFormatException("Incorrect input");
+        }
+        return ResponseEntity.ok(clientService.findClientById(id));
     }
 
     @DeleteMapping("/delete/{id}")

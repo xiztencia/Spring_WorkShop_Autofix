@@ -11,8 +11,6 @@ import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.exception.VehicleNotFoundException;
 import se.iths.autofix.service.VehicleService;
 
-import javax.annotation.security.RolesAllowed;
-import java.sql.BatchUpdateException;
 import java.util.Optional;
 
 @RestController

@@ -10,9 +10,6 @@ import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.jms.sender.Sender;
 import se.iths.autofix.service.EmployeeService;
 
-import javax.annotation.security.RolesAllowed;
-import java.util.Optional;
-
 @RestController
 @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
 @RequestMapping(path={"/api/employee"})
@@ -44,7 +41,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/id/{id}")
-    //public Optional<Employee> findEmployeeById(@PathVariable Long id) {
+
     public ResponseEntity<?> findEmployeeById(@PathVariable Long id) {
         if(id<=0){
             throw new BadInputFormatException("Incorrect input");
@@ -61,9 +58,4 @@ public class EmployeeController {
     public Employee getAuthenticatedEmployee() {
         return employeeService.getAuthenticatedEmployee();
     }
-
-//    @GetMapping("/sendJEMS")
-//    public void SendJMS() {
-//        sender.sendMessage();
-//    }
 }

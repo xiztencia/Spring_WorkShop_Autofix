@@ -44,8 +44,7 @@ public class SparePartController {
         return sparePartService.findSparePartsByClientId(id);
     }
 
-    //TODO Lägga en Employee endpoint för att söka på clienter
-
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findallsparepartsbyclientusername/{nameUser}")
     Iterable<SparePart> findAllSparePartsByClientUsername(@PathVariable String nameUser) {
         return sparePartService.findAllSparePartsByClientUsername(nameUser);

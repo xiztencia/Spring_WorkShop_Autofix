@@ -37,7 +37,8 @@ public class SparePartService {
     }
 
     public Iterable<SparePart> findAllSparePartsByClientUsername(String nameUser) {
-        Iterable<SparePart> allSparePartsByClientUsername = sparePartRepository.findAllSparePartsByClientUsername(nameUser);
+        Iterable<SparePart> allSparePartsByClientUsername;
+        allSparePartsByClientUsername = sparePartRepository.findAllSparePartsByClientUsername(nameUser);
         return allSparePartsByClientUsername;
     }
 

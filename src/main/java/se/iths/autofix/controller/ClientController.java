@@ -1,22 +1,16 @@
 package se.iths.autofix.controller;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.exception.BadInputFormatException;
-import se.iths.autofix.exception.ClientNotFoundException;
 import se.iths.autofix.service.ClientService;
-
 @RestController
 @PreAuthorize("isAuthenticated()")
 @RequestMapping(path={"/api/client"})
 public class ClientController {
-
     Logger logger = LoggerFactory.getLogger(ClientController.class);
 
     private ClientService clientService;
@@ -36,8 +30,6 @@ public class ClientController {
             throw new BadInputFormatException("Fill in your User name.");
         }
     }
-   // @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
-
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
@@ -46,7 +38,6 @@ public class ClientController {
     }
 
     @GetMapping("/id/{id}")
-    //public Optional<Client> findClientById(@PathVariable Long id) {
     public ResponseEntity<?> findClientById(@PathVariable Long id){
         if(id<=0){
             throw new BadInputFormatException("Incorrect input");

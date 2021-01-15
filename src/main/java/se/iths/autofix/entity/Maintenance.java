@@ -25,12 +25,12 @@ public class Maintenance {
     private String jobHistory;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "maintenance_client")
+    //@JoinColumn(name = "maintenance_client")
     private Client client;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "maintenance_employee")
-    private Employee employee;
+  //  @ManyToOne(cascade = CascadeType.PERSIST)
+   // @JoinColumn(name = "maintenance_employee")
+   // private Employee employee;
 
     public void setClient(Client client) {
         this.client = client;
@@ -94,7 +94,5 @@ public class Maintenance {
         this.checkOutDate = checkOutDate;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+
 }

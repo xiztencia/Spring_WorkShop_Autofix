@@ -17,7 +17,6 @@ import java.util.Optional;
 public class SparePartController {
 
     private SparePartService sparePartService;
-    //TODO PUT för uppdatering av priser?
 
     public SparePartController(SparePartService sparePartService) {
         this.sparePartService = sparePartService;

@@ -2,6 +2,7 @@ package se.iths.autofix.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,9 +15,9 @@ public class Employee {
 
     @NotEmpty
     private String username;
-
     private String firstname;
     private String lastname;
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com")
     private String email;
     private String password;
 

@@ -15,13 +15,12 @@ public class SparePart {
 
     @NotEmpty
     private String part;
-
     private String category;
     @DecimalMin(value = "0.0")
     private double price;
     @Positive
     private int quantity;
-    //    private String model;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "sparepart_client")
     private Client client;

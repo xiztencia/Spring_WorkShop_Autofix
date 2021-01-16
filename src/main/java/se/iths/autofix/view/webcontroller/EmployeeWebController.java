@@ -3,24 +3,17 @@ package se.iths.autofix.view.webcontroller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import se.iths.autofix.entity.AuthGroup;
-import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
+import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.exception.ClientNotFoundException;
-import se.iths.autofix.exception.EmployeeNotFoundException;
 import se.iths.autofix.jms.sender.Sender;
-import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.service.ClientService;
 import se.iths.autofix.service.EmployeeService;
 import se.iths.autofix.service.SparePartService;
-import se.iths.autofix.entity.SparePart;
 
 @Controller
 public class EmployeeWebController {

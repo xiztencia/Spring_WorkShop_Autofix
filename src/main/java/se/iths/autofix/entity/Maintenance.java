@@ -1,6 +1,7 @@
 package se.iths.autofix.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
@@ -10,11 +11,11 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotEmpty
     private String type;  //låt oss utgå ifrån ex. tre enkla alternativ: carWash, tireShift och annualService.
     //så blir dessa obligatoriska att välja bland.
     // private Vehicle vehicle;
+    @DecimalMin(value = "0.0")
     private double price;
     private Date checkInDate;
     private Date checkOutDate;

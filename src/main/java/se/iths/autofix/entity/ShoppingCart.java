@@ -1,6 +1,8 @@
 package se.iths.autofix.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class ShoppingCart {
@@ -8,9 +10,9 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    // private String type;
+    @Positive
     private int quantity;
+    @DecimalMin(value = "0.0")
     private double totalPrice;
 
     //    @OneToMany(mappedBy = "shoppingcart_sales")

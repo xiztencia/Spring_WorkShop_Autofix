@@ -1,11 +1,6 @@
 package se.iths.autofix.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Entity
 public class ShoppingCart {
@@ -26,7 +21,6 @@ public class ShoppingCart {
     private SparePart sparePart;
 
     public ShoppingCart() {
-
     }
 
     public ShoppingCart(int quantity, double totalPrice) {
@@ -66,5 +60,4 @@ public class ShoppingCart {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
 }

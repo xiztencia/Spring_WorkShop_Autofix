@@ -64,7 +64,7 @@ public class EmployeeWebController {
         return "CreateSparePart.html";
     }
     @GetMapping("/saveSparePart")
-    public String saveSparePart(SparePart sparePart) throws  BadInputFormatException{
+    public String saveSparePart(SparePart sparePart) throws BadInputFormatException{
         sparePartService.createSparePart(sparePart);
         return "redirect:/createSparePart";
     }

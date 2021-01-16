@@ -1,6 +1,5 @@
 package se.iths.autofix.entity;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +18,6 @@ public class Cashier {
     private String employeeId;
     private Date DateTime;
 
-
     public Cashier(int quantity, double totalPrice, String employeeId, Date dateTime) {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
@@ -27,9 +25,7 @@ public class Cashier {
         DateTime = dateTime;
     }
 
-
     public Cashier() {
-
     }
 
     public Long getId() {
@@ -71,6 +67,4 @@ public class Cashier {
     public void setDateTime(Date dateTime) {
         DateTime = dateTime;
     }
-
-
 }

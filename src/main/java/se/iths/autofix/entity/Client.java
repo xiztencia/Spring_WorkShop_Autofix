@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 public class Client implements Serializable {
     @Id
@@ -91,7 +90,6 @@ public class Client implements Serializable {
     }
 
 
-
     public String getPassword() {
         return password;
     }
@@ -139,5 +137,4 @@ public class Client implements Serializable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-
 }

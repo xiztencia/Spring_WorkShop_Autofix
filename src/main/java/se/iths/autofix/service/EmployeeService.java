@@ -6,7 +6,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.AuthGroup;
+import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
+import se.iths.autofix.exception.ClientNotFoundException;
+import se.iths.autofix.exception.EmployeeNotFoundException;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.EmployeeRepository;
 
@@ -38,6 +41,18 @@ public class EmployeeService {
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         authGroupRepository.save(new AuthGroup(employee.getUsername(), "ADMIN"));
         return employeeRepository.save(employee);
+    }
+
+    public Employee updateEmployee(Employee newEmployee, Long id){
+        return employeeRepository.findById(id)
+                .map(employee -> {
+                    employee.setFirstname(newEmployee.getFirstname());
+                    employee.setLastname(newEmployee.getLastname());
+                    employee.setEmail(newEmployee.getEmail());
+                    return employeeRepository.save(employee);
+                })
+                .orElseThrow(()-> new EmployeeNotFoundException("Employee has not been found.")
+                );
     }
 
     public void deleteEmployee(Long id) {

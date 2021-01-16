@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.jms.sender.Sender;
@@ -28,12 +29,17 @@ public class EmployeeController {
     @PostMapping("/create")
     public Employee createEmployee(@RequestBody Employee employee) {
         logger.info("createEmployee() was called with name: " + employee.getUsername());
-        if(employee.getUsername()!=null) {
-            return employeeService.createEmployee(employee);
-        }else{
+        if(employee.getUsername().isEmpty()) {
             throw new BadInputFormatException("Fill in User name.");
+        }else{
+            return employeeService.createEmployee(employee);
         }
-        }
+    }
+
+    @PutMapping("/update/{id}")
+    public Employee updateEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
+        return employeeService.updateEmployee(newEmployee, id);
+    }
 
     @GetMapping("/findall")
     public Iterable<Employee> findAllEmployees() {
@@ -41,7 +47,6 @@ public class EmployeeController {
     }
 
     @GetMapping("/id/{id}")
-
     public ResponseEntity<?> findEmployeeById(@PathVariable Long id) {
         if(id<=0){
             throw new BadInputFormatException("Incorrect input");

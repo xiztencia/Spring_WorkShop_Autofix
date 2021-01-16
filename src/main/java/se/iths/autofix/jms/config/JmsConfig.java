@@ -41,11 +41,8 @@ public class JmsConfig {
         return new RabbitTemplate(connectionFactory());
     }
 
-
     @Bean
     public Queue myQueue() {
         return new Queue("TestQueue",false);
     }
-
-
 }

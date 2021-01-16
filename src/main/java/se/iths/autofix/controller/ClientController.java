@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.ClientNotFoundException;
 import se.iths.autofix.service.ClientService;
 @RestController
 @PreAuthorize("isAuthenticated()")
@@ -24,11 +25,16 @@ public class ClientController {
     public Client createClient(@RequestBody Client client){
         logger.info("createClient() was called with username: " + client.getUsername());
 
-        if(client.getUsername()!=null) {
-            return clientService.createClient(client);
+        if(client.getUsername().isEmpty()) {
+            throw new BadInputFormatException("Fill in User name.");
         }else{
-            throw new BadInputFormatException("Fill in your User name.");
+            return clientService.createClient(client);
         }
+    }
+
+    @PutMapping("/update/{id}")
+    public Client updateClient(@RequestBody Client newClient, @PathVariable Long id){
+        return clientService.updateClient(newClient, id);
     }
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
@@ -40,7 +46,7 @@ public class ClientController {
     @GetMapping("/id/{id}")
     public ResponseEntity<?> findClientById(@PathVariable Long id){
         if(id<=0){
-            throw new BadInputFormatException("Incorrect input");
+            throw new ClientNotFoundException("Incorrect input");
         }
         return ResponseEntity.ok(clientService.findClientById(id));
     }

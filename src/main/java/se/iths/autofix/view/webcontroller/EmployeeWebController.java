@@ -19,6 +19,8 @@ import se.iths.autofix.jms.sender.Sender;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.service.ClientService;
 import se.iths.autofix.service.EmployeeService;
+import se.iths.autofix.service.SparePartService;
+import se.iths.autofix.entity.SparePart;
 
 @Controller
 public class EmployeeWebController {
@@ -28,6 +30,9 @@ public class EmployeeWebController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private SparePartService sparePartService;
 
     @Autowired
     private Sender jmsSender;
@@ -53,6 +58,18 @@ public class EmployeeWebController {
         model.addAttribute("adminObj",new Employee());
         return "CreateAdmin.html";
     }
+    @GetMapping("/createSparePart")
+    public String readSparePart(Model model){
+        model.addAttribute("sparePartObj", new SparePart());
+        model.addAttribute("spareParts",sparePartService.findAllSpareParts());
+        return "CreateSparePart.html";
+    }
+    @GetMapping("/saveSparePart")
+    public String saveSparePart(SparePart sparePart) throws BadInputFormatException{
+        sparePartService.createSparePart(sparePart);
+        return "redirect:/createSparePart";
+    }
+
 //    @GetMapping("/Employee")
 //    public String employees(Model model) throws EmployeeNotFoundException {
 //

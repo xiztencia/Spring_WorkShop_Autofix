@@ -1,6 +1,5 @@
 package se.iths.autofix.entity;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
@@ -133,5 +132,4 @@ public class Employee {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-
 }

@@ -22,6 +22,6 @@ public class SignUpWebController {
     @GetMapping("/signUp")
     public String readClient(Model model){
         model.addAttribute("readClient",new Client());
-        return "SignUp.html";
+        return "signUp.html";
     }
 }

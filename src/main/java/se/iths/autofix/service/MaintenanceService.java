@@ -3,6 +3,8 @@ package se.iths.autofix.service;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.Maintenance;
+import se.iths.autofix.exception.EmployeeNotFoundException;
+import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.repository.MaintenanceRepository;
 
 import java.time.LocalDate;
@@ -21,6 +23,19 @@ public class MaintenanceService {
     public Maintenance createMaintenance(Maintenance maintenance) {
         //item.setUser(userService.getAuthenticatedClient());
         return maintenanceRepository.save(maintenance);
+    }
+
+    public Maintenance updateMaintenance(Maintenance newMaintenance, Long id){
+        return maintenanceRepository.findById(id)
+                .map(maintenance -> {
+                    maintenance.setType(newMaintenance.getType());
+                    maintenance.setPrice(newMaintenance.getPrice());
+                    maintenance.setCheckInDate(newMaintenance.getCheckInDate());
+                    maintenance.setCheckOutDate(newMaintenance.getCheckOutDate());
+                    return maintenanceRepository.save(maintenance);
+                })
+                .orElseThrow(()-> new MaintenanceNotFoundException("Maintenance has not been found.")
+                );
     }
 
     public void deleteMaintenance(Long id) {

@@ -1,11 +1,7 @@
 package se.iths.autofix.entity;
 
-
-import org.apache.logging.log4j.util.StringBuilders;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity

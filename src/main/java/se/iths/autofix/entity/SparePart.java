@@ -1,6 +1,5 @@
 package se.iths.autofix.entity;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 

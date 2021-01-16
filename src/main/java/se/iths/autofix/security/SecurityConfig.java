@@ -153,6 +153,8 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/home","/signUp").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/createClient").permitAll()
+                .antMatchers("/MaintenanceRequest").permitAll()
+                .antMatchers("/createMaintenanceAsClient").permitAll()
                 .antMatchers("/Employee/**").hasRole("ADMIN")
                 .antMatchers("/createAdmin/**").hasRole("ADMIN")
                 .antMatchers("/CreateSparePart/**").hasRole("ADMIN")

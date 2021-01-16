@@ -28,6 +28,11 @@ public class MaintenanceController {
         return maintenanceService.createMaintenance(maintenance);
     }
 
+    @PutMapping("/update/{id}")
+    public Maintenance updateMaintenance(@RequestBody Maintenance newMaintenance, @PathVariable Long id) {
+        return maintenanceService.updateMaintenance(newMaintenance, id);
+    }
+
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @PostMapping("/addhistoryevent")
     public void addJobHistoryEvent(@RequestBody Employee employee, String message, Long id) throws Exception {

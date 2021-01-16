@@ -3,6 +3,7 @@ package se.iths.autofix.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.exception.MaintenanceNotFoundException;
@@ -28,6 +29,11 @@ public class SparePartController {
             throw new BadInputFormatException("Fill in spare part name.");
         }
         return sparePartService.createSparePart(sparePart);
+    }
+
+    @PutMapping("/update/{id}")
+    public SparePart updateSparePart(@RequestBody SparePart newSparePart, @PathVariable Long id) {
+        return sparePartService.updateSparePart(newSparePart, id);
     }
 
     @GetMapping("/findall")

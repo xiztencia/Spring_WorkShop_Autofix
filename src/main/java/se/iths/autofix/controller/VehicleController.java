@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.Vehicle;
 import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.exception.MaintenanceNotFoundException;
@@ -34,6 +35,11 @@ public class  VehicleController {
         }catch (BadInputFormatException e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The input is incorrect", e);
         }
+    }
+
+    @PutMapping("/update/{id}")
+    public Vehicle updateVehicle(@RequestBody Vehicle newVehicle, @PathVariable Long id) {
+        return vehicleService.updateVehicle(newVehicle, id);
     }
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")

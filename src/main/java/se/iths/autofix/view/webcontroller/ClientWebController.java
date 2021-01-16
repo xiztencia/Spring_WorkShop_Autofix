@@ -44,7 +44,7 @@ public class ClientWebController {
     }
     @GetMapping("/createMaintenanceAsClient")
     public String saveMaintenance (Maintenance maintenance){
-        maintenance.setPrice(0);
+        maintenance.setPrice(1);
         maintenance.setCheckInDate(new Date());
         maintenance.setCheckOutDate(new Date());
         maintenance.setJobHistory("Order Placed");

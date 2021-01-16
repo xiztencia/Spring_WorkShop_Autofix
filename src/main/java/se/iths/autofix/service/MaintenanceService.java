@@ -21,7 +21,7 @@ public class MaintenanceService {
      }
 
     public Maintenance createMaintenance(Maintenance maintenance) {
-        if(maintenance.getPrice()>0){
+        if(maintenance.getPrice()>=0){
         return maintenanceRepository.save(maintenance);
         }else{
             throw new BadInputFormatException("Price can not be of negative value.");
@@ -29,7 +29,7 @@ public class MaintenanceService {
     }
 
     public Maintenance updateMaintenance(Maintenance newMaintenance, Long id){
-        if(newMaintenance.getPrice()>0) {
+        if(newMaintenance.getPrice()>=0) {
             return maintenanceRepository.findById(id)
                     .map(maintenance -> {
                         maintenance.setType(newMaintenance.getType());

@@ -73,35 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        // Kolla upp CSRF
-//        http.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//        http.cors().and()
-//                .csrf().disable()
-//                .exceptionHandling()
-//                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
-//                .antMatchers("/h2-console/**").permitAll()
-//                .anyRequest()
-//                .authenticated()
-//             //   .antMatchers("/admin").hasRole("ADMIN")
-//                //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
-//                .and()
-//                .formLogin()
-//                .loginPage("/login").permitAll()
-//                .and()
-//                .logout()
-//                .invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .permitAll();
-//        http.headers().frameOptions().disable();
-//    }
     @Configuration
     @Order(1)
     public class ApiSecurityAdapter extends WebSecurityConfigurerAdapter {
@@ -160,12 +131,8 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/CreateSparePart/**").hasRole("ADMIN")
                 .antMatchers("/saveSparePart").hasRole("ADMIN")
                 .antMatchers("/saveUser").hasRole("ADMIN")
-
-                //  .antMatchers("/Client/**").hasAnyRole("ADMIN","USER")
                 .anyRequest()
                 .authenticated()
-
-             //   .antMatchers("/Client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
@@ -175,7 +142,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .permitAll()
                 .and()
-                .csrf().disable(); // ta bort disable om man vill ta bort åtkomst till /H2-console
+                .csrf().disable(); //TODO ta bort disable om man vill ta bort åtkomst till /H2-console
         http.headers().frameOptions().disable();
     }
 }

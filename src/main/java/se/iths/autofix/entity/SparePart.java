@@ -23,9 +23,7 @@ public class SparePart {
     @JoinColumn(name = "sparepart_client")
     private Client client;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sparepart_employee")
-    private Employee employee;
+
 
     public void setClient(Client client) {
         this.client = client;
@@ -84,7 +82,5 @@ public class SparePart {
         this.quantity = quantity;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+
 }

@@ -16,9 +16,5 @@ public interface SparePartRepository extends CrudRepository<SparePart, Long> {
     @Query("SELECT s FROM SparePart s WHERE s.client.username = :nameUser")
     List<SparePart> findAllSparePartsByClientUsername(String nameUser);
 
-    @Query("SELECT s FROM SparePart s WHERE s.employee.id = :id")
-    Iterable<SparePart> findSparePartsByEmployeeId(Long id);
 
-    @Query("SELECT s FROM SparePart s WHERE s.employee.username = :#{ principal?.username }")
-    Iterable<SparePart> findAllSparePartsByEmployeeUsername();
 }

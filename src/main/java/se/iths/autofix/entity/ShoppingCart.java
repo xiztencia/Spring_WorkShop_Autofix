@@ -15,8 +15,7 @@ public class ShoppingCart {
     @DecimalMin(value = "0.0")
     private double totalPrice;
 
-    //    @OneToMany(mappedBy = "shoppingcart_sales")
-//    private List<Sale> addedItemsOnCart;
+
     @OneToOne
     private Maintenance maintenance;
     @OneToOne
@@ -39,13 +38,7 @@ public class ShoppingCart {
         this.id = id;
     }
 
-//    public String getType() {
-//        return type;
-//    }
-//
-//    public void setType(String type) {
-//        this.type = type;
-//    }
+
 
     public int getQuantity() {
         return quantity;

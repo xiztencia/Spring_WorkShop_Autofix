@@ -48,11 +48,13 @@ public class ClientService {
     }
 
     public Client updateClient(Client newClient, Long id){
+        newClient.setPassword(passwordEncoder.encode(newClient.getPassword()));
         return clientRepository.findById(id)
                 .map(client -> {
                     client.setFirstname(newClient.getFirstname());
                     client.setLastname(newClient.getLastname());
                     client.setEmail(newClient.getEmail());
+                    client.setPassword(newClient.getPassword());
                     return clientRepository.save(client);
                 })
                 .orElseThrow(()-> new ClientNotFoundException("Client has not been found.")

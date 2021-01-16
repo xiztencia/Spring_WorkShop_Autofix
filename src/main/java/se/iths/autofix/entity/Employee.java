@@ -20,60 +20,6 @@ public class Employee {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Vehicle> vehicles = new HashSet<>();
-
-//    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Maintenance> maintenances = new HashSet<>();
-
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<SparePart> spareParts = new HashSet<>();
-
-    public void addVehicle(Vehicle vehicle) {
-        vehicles.add(vehicle);
-        vehicle.setEmployee(this);
-    }
-
-    public void removeVehicle(Vehicle vehicle) {
-        vehicles.remove(vehicle);
-        vehicle.setEmployee(null);
-    }
-
-    public Set<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-//    public void addMaintenance(Maintenance maintenance) {
-//        maintenances.add(maintenance);
-//
-//    }
-
-//    public void removeMaintenance(Maintenance maintenance) {
-//        maintenances.remove(maintenance);
-//
-//    }
-//
-//    public Set<Maintenance> getMaintenances() {
-//        return maintenances;
-//    }
-
-    public void addSparePart(SparePart sparePart) {
-        spareParts.add(sparePart);
-        sparePart.setEmployee(this);
-    }
-
-    public void removeSparePart(SparePart sparePart) {
-        spareParts.remove(sparePart);
-        sparePart.setEmployee(null);
-    }
-
-    public Set<SparePart> getSpareParts() {
-        return spareParts;
-    }
-//    public enum range {
-//        ADMIN, USER
-//    }
-
     public Employee(@NotEmpty String username, String lastname, String firstname, String email, String password) {
         this.username = username;
         this.email = email;

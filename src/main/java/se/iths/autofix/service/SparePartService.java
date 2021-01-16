@@ -67,12 +67,5 @@ public class SparePartService {
         return allSparePartsByClientUsername;
     }
 
-    public Iterable<SparePart> findSparePartsByEmployeeId(Long id) {
-        return sparePartRepository.findSparePartsByEmployeeId(id);
-    }
 
-    public Iterable<SparePart> findAllSparePartsByEmployeeUsername() {
-        Iterable<SparePart> allSparePartsByEmployeeUsername = sparePartRepository.findAllSparePartsByEmployeeUsername();
-        return allSparePartsByEmployeeUsername;
-    }
 }

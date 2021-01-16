@@ -54,7 +54,5 @@ public class VehicleService {
         return vehicleRepository.findAll();
     }
 
-//    public Vehicle getVehicleByPlateNumber(String plateNumber) {
-//        return vehicleRepository.findVehicleByNumberPlate(plateNumber);
-//    }
+
 }

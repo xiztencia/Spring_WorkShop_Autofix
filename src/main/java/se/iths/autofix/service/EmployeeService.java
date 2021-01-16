@@ -50,11 +50,13 @@ public class EmployeeService {
     }
 
     public Employee updateEmployee(Employee newEmployee, Long id){
+        newEmployee.setPassword(passwordEncoder.encode(newEmployee.getPassword()));
         return employeeRepository.findById(id)
                 .map(employee -> {
                     employee.setFirstname(newEmployee.getFirstname());
                     employee.setLastname(newEmployee.getLastname());
                     employee.setEmail(newEmployee.getEmail());
+                    employee.setPassword(newEmployee.getPassword());
                     return employeeRepository.save(employee);
                 })
                 .orElseThrow(()-> new EmployeeNotFoundException("Employee has not been found.")

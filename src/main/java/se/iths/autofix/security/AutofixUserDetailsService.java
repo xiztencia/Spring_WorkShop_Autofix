@@ -15,7 +15,6 @@ import java.util.List;
 
 @Service
 public class AutofixUserDetailsService implements UserDetailsService {
-//AutofixUserDetailsService
     private ClientRepository clientRepository;
     private EmployeeRepository employeeRepository;
     private AuthGroupRepository authGroupRepository;

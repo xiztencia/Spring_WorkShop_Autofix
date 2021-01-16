@@ -12,21 +12,16 @@ public class Maintenance {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
-    private String type;  //låt oss utgå ifrån ex. tre enkla alternativ: carWash, tireShift och annualService.
-    //så blir dessa obligatoriska att välja bland.
-    // private Vehicle vehicle;
+    private String type;
     private double price;
     private Date checkInDate;
     private Date checkOutDate;
     private String jobHistory;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    //@JoinColumn(name = "maintenance_client")
     private Client client;
 
-  //  @ManyToOne(cascade = CascadeType.PERSIST)
-   // @JoinColumn(name = "maintenance_employee")
-   // private Employee employee;
+
 
     public void setClient(Client client) {
         this.client = client;

@@ -25,10 +25,10 @@ public class ClientController {
     public Client createClient(@RequestBody Client client){
         logger.info("createClient() was called with username: " + client.getUsername());
 
-        if(client.getUsername()!=null) {
-            return clientService.createClient(client);
-        }else{
+        if(client.getUsername().isEmpty()) {
             throw new BadInputFormatException("Fill in User name.");
+        }else{
+            return clientService.createClient(client);
         }
     }
 

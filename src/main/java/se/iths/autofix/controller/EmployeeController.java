@@ -29,10 +29,10 @@ public class EmployeeController {
     @PostMapping("/create")
     public Employee createEmployee(@RequestBody Employee employee) {
         logger.info("createEmployee() was called with name: " + employee.getUsername());
-        if(employee.getUsername()!=null) {
-            return employeeService.createEmployee(employee);
-        }else{
+        if(employee.getUsername().isEmpty()) {
             throw new BadInputFormatException("Fill in User name.");
+        }else{
+            return employeeService.createEmployee(employee);
         }
     }
 

@@ -30,10 +30,10 @@ public class  VehicleController {
     @PostMapping("/create")
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
         logger.info("createVehicle() was called with number plate: " + vehicle.getNumberPlate());
-        try {
+        if(vehicle.getNumberPlate().isEmpty()){
+            throw new BadInputFormatException("Fill in vehicle's number plate.");
+        }else{
             return vehicleService.createVehicle(vehicle);
-        }catch (BadInputFormatException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The input is incorrect", e);
         }
     }
 
@@ -45,11 +45,7 @@ public class  VehicleController {
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Vehicle> findAllVehicles() {
-        try {
-            return vehicleService.findAllVehicles();
-        }catch (VehicleNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Vehicle Not Found", e);
-        }
+        return vehicleService.findAllVehicles();
     }
 
     @GetMapping("/id/{id}")

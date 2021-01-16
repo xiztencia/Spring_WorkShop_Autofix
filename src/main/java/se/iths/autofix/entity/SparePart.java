@@ -1,7 +1,10 @@
 package se.iths.autofix.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class SparePart {
@@ -14,7 +17,9 @@ public class SparePart {
     private String part;
 
     private String category;
+    @DecimalMin(value = "0.0")
     private double price;
+    @Positive
     private int quantity;
     //    private String model;
     @ManyToOne(cascade = CascadeType.PERSIST)

@@ -29,6 +29,7 @@
             <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/Employee}">Admin Console</a>
             <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/createAdmin}">Create Employee</a>
             <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/createSparePart}">Create Spare Part</a>
+            <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/Maintenance}">Maintenance</a>
             <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" th:href="@{/Client}">AutoFix Shop</a>
             <a class="navbar-brand" href="#" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" th:href="@{/MaintenanceRequest}">Maintenance Request</a>
             <a class="navbar-brand" href="#"  sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>

@@ -84,5 +84,4 @@ class AutofixUserClientTests {
         ).andExpect(status().isOk());
     }
     //</editor-fold>
-
 }

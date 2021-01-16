@@ -37,7 +37,6 @@ class AutofixAnonymousUserClientTests {
                 ).andExpect(status().isUnauthorized());
     }
 
-
     @Test
     @WithAnonymousUser
     void anonymousUserTrytoAccessClientIdReturnUnauthorized() throws Exception{

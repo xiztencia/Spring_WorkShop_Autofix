@@ -96,19 +96,5 @@ class AutofixUserMaintenanceTests {
                         "\"checkOutDate\":\"2020-01-02\"}")
         ).andExpect(status().isForbidden());
     }
-
-    @Test
-    void userTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isForbidden());
-    }
-
-    @Test
-    void userTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnForbidden() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isForbidden());
-    }
     //</editor-fold>
 }

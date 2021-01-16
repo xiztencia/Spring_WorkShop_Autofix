@@ -72,13 +72,13 @@ public class MaintenanceService {
         return allMaintenancesByClientUsername;
     }
 
-    public Iterable<Maintenance> findAllMaintenancesByEmployeeId(Long id) {
+/*    public Iterable<Maintenance> findAllMaintenancesByEmployeeId(Long id) {
         return maintenanceRepository.findAllMaintenancesByEmployeeId(id);
     }
 
     public Iterable<Maintenance> findAllMaintenancesByEmployeeUsername() {
         Iterable<Maintenance> allMaintenancesByEmployeeUsername = maintenanceRepository.findAllMaintenancesByEmployeeUsername();
         return allMaintenancesByEmployeeUsername;
-    }
+    }*/
 }
 

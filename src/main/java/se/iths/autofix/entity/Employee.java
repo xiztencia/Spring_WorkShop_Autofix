@@ -23,8 +23,8 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles = new HashSet<>();
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Maintenance> maintenances = new HashSet<>();
+//    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Maintenance> maintenances = new HashSet<>();
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<SparePart> spareParts = new HashSet<>();
@@ -43,19 +43,19 @@ public class Employee {
         return vehicles;
     }
 
-    public void addMaintenance(Maintenance maintenance) {
-        maintenances.add(maintenance);
-        maintenance.setEmployee(this);
-    }
+//    public void addMaintenance(Maintenance maintenance) {
+//        maintenances.add(maintenance);
+//
+//    }
 
-    public void removeMaintenance(Maintenance maintenance) {
-        maintenances.remove(maintenance);
-        maintenance.setEmployee(null);
-    }
-
-    public Set<Maintenance> getMaintenances() {
-        return maintenances;
-    }
+//    public void removeMaintenance(Maintenance maintenance) {
+//        maintenances.remove(maintenance);
+//
+//    }
+//
+//    public Set<Maintenance> getMaintenances() {
+//        return maintenances;
+//    }
 
     public void addSparePart(SparePart sparePart) {
         spareParts.add(sparePart);

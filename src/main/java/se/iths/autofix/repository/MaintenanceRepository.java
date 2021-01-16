@@ -16,10 +16,10 @@ public interface MaintenanceRepository extends CrudRepository<Maintenance, Long>
     @Query("SELECT m FROM Maintenance m WHERE m.client.username = :#{ principal?.username }")
     List<Maintenance> findAllMaintenancesByClientUsername();
 
-    @Query("SELECT m FROM Maintenance m WHERE m.employee.id = :id")
-    Iterable<Maintenance> findAllMaintenancesByEmployeeId(Long id);
-
-    @Query("SELECT m FROM Maintenance m WHERE m.employee.username = :#{ principal?.username }")
-    Iterable<Maintenance> findAllMaintenancesByEmployeeUsername();
+//    @Query("SELECT m FROM Maintenance m WHERE m.employee.id = :id")
+//    Iterable<Maintenance> findAllMaintenancesByEmployeeId(Long id);
+//
+//    @Query("SELECT m FROM Maintenance m WHERE m.employee.username = :#{ principal?.username }")
+//    Iterable<Maintenance> findAllMaintenancesByEmployeeUsername();
 
 }

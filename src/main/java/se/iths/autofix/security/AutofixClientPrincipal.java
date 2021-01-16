@@ -1,5 +1,6 @@
 package se.iths.autofix.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,7 +9,6 @@ import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
 
 import java.util.*;
-
 public class AutofixClientPrincipal implements UserDetails {
     //AutofixUserPrincipal
 

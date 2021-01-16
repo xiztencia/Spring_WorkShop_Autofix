@@ -156,6 +156,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/MaintenanceRequest").permitAll()
                 .antMatchers("/createMaintenanceAsClient").permitAll()
                 .antMatchers("/Employee/**").hasRole("ADMIN")
+                .antMatchers("/Maintenance/**").hasRole("ADMIN")
                 .antMatchers("/createAdmin/**").hasRole("ADMIN")
                 .antMatchers("/CreateSparePart/**").hasRole("ADMIN")
                 .antMatchers("/saveSparePart").hasRole("ADMIN")

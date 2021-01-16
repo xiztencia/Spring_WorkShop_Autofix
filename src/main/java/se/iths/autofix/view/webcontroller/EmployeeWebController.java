@@ -13,6 +13,7 @@ import se.iths.autofix.exception.ClientNotFoundException;
 import se.iths.autofix.jms.sender.Sender;
 import se.iths.autofix.service.ClientService;
 import se.iths.autofix.service.EmployeeService;
+import se.iths.autofix.service.MaintenanceService;
 import se.iths.autofix.service.SparePartService;
 
 @Controller
@@ -23,6 +24,9 @@ public class EmployeeWebController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private MaintenanceService maintenanceService;
 
     @Autowired
     private SparePartService sparePartService;
@@ -61,6 +65,11 @@ public class EmployeeWebController {
     public String saveSparePart(SparePart sparePart) throws BadInputFormatException{
         sparePartService.createSparePart(sparePart);
         return "redirect:/createSparePart";
+    }
+    @GetMapping("/Maintenance")
+    public String allMaintenance(Model model){
+        model.addAttribute("allMaintenances", maintenanceService.findAllMaintenances());
+        return "Maintenance.html";
     }
 
 //    @GetMapping("/Employee")

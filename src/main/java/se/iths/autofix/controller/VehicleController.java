@@ -3,11 +3,13 @@ package se.iths.autofix.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se.iths.autofix.entity.Vehicle;
 import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.exception.VehicleNotFoundException;
 import se.iths.autofix.service.VehicleService;
 
@@ -26,11 +28,7 @@ public class  VehicleController {
 
     @PostMapping("/create")
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
-//           logger.trace("Vi loggar på TRACE-nivå");
-//           logger.debug("Vi loggar på DEBUG-nivå");
         logger.info("createVehicle() was called with number plate: " + vehicle.getNumberPlate());
-//           logger.warn("Vi loggar på WARN-nivå");
-//           logger.error("Vi loggar på ERROR-nivå");
         try {
             return vehicleService.createVehicle(vehicle);
         }catch (BadInputFormatException e){
@@ -49,8 +47,11 @@ public class  VehicleController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Vehicle> findVehicleById(@PathVariable Long id) {
-        return vehicleService.findVehicleById(id);
+    public ResponseEntity<?> findVehicleById(@PathVariable Long id) {
+        if(id<=0){
+            throw new VehicleNotFoundException("The vehicle id was not found.");
+        }
+        return ResponseEntity.ok(vehicleService.findVehicleById(id));
     }
 
     @DeleteMapping("/delete/{id}")

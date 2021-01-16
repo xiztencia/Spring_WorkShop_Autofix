@@ -12,8 +12,6 @@ public class AppExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = BadInputFormatException.class)
     public ResponseEntity<Object> handleException(BadInputFormatException e){
-
-     //   return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         return new ResponseEntity(e.getMsg(),HttpStatus.BAD_REQUEST);
     }
 

@@ -1,8 +1,13 @@
 package se.iths.autofix.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.SparePart;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.MaintenanceNotFoundException;
+import se.iths.autofix.exception.SparepartNotFoundException;
 import se.iths.autofix.service.SparePartService;
 
 import java.util.Optional;
@@ -20,7 +25,15 @@ public class SparePartController {
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @PostMapping("/create")
     public SparePart createSparePart(@RequestBody SparePart sparePart) {
+        if(sparePart.getPart().isEmpty()){
+            throw new BadInputFormatException("Fill in spare part name.");
+        }
         return sparePartService.createSparePart(sparePart);
+    }
+
+    @PutMapping("/update/{id}")
+    public SparePart updateSparePart(@RequestBody SparePart newSparePart, @PathVariable Long id) {
+        return sparePartService.updateSparePart(newSparePart, id);
     }
 
     @GetMapping("/findall")
@@ -29,8 +42,11 @@ public class SparePartController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<SparePart> findSparePartById(@PathVariable Long id) {
-        return sparePartService.findSparePartById(id);
+    public ResponseEntity<?> findSparePartById(@PathVariable Long id) {
+        if(id<=0){
+            throw new SparepartNotFoundException("The spare part id was not found.");
+        }
+        return ResponseEntity.ok(sparePartService.findSparePartById(id));
     }
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
@@ -44,21 +60,9 @@ public class SparePartController {
         return sparePartService.findSparePartsByClientId(id);
     }
 
-    //TODO Lägga en Employee endpoint för att söka på clienter
-
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findallsparepartsbyclientusername/{nameUser}")
     Iterable<SparePart> findAllSparePartsByClientUsername(@PathVariable String nameUser) {
         return sparePartService.findAllSparePartsByClientUsername(nameUser);
     }
-
-    @GetMapping("/findallsparepartsbyemployee/{id}")
-    public Iterable<SparePart> getAllSparePartsByEmployee(@PathVariable Long id) {
-        return sparePartService.findSparePartsByEmployeeId(id);
-    }
-
-    @GetMapping("/findallsparepartsbyemployeeusername")
-    Iterable<SparePart> findAllSparePartsByEmployeeUsername() {
-        return sparePartService.findAllSparePartsByEmployeeUsername();
-    }
-
 }

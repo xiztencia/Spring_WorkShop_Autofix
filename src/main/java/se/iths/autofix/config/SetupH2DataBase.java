@@ -1,5 +1,4 @@
 package se.iths.autofix.config;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -16,15 +15,10 @@ import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.ClientRepository;
 import se.iths.autofix.repository.EmployeeRepository;
 import se.iths.autofix.repository.SparePartRepository;
-
 @Configuration
-//@Slf4j
 @Component
-
 public class SetupH2DataBase {
     Logger logger = LoggerFactory.getLogger(SetupH2DataBase.class);
-
-
     @Bean
     @ConditionalOnProperty(value="SPRING_DATASOURCE_URL",
             havingValue = "jdbc:h2:mem:test")

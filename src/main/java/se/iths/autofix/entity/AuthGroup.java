@@ -20,7 +20,6 @@ public class AuthGroup {
     }
 
     public AuthGroup() {
-
     }
 
     public long getId() {

@@ -1,8 +1,10 @@
 package se.iths.autofix.entity;
 
-
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class SparePart {
@@ -13,18 +15,15 @@ public class SparePart {
 
     @NotEmpty
     private String part;
-
     private String category;
     private double price;
     private int quantity;
-    //    private String model;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "sparepart_client")
     private Client client;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sparepart_employee")
-    private Employee employee;
+
 
     public void setClient(Client client) {
         this.client = client;
@@ -83,7 +82,5 @@ public class SparePart {
         this.quantity = quantity;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+
 }

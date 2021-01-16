@@ -2,10 +2,10 @@ package se.iths.autofix.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
 
 @Entity
 public class Client implements Serializable {
@@ -19,7 +19,7 @@ public class Client implements Serializable {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle_client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles = new HashSet<>();
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -91,7 +91,6 @@ public class Client implements Serializable {
     }
 
 
-
     public String getPassword() {
         return password;
     }
@@ -139,5 +138,4 @@ public class Client implements Serializable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-
 }

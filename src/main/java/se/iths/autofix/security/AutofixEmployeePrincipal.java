@@ -10,18 +10,11 @@ import se.iths.autofix.entity.Employee;
 import java.util.*;
 
 public class AutofixEmployeePrincipal implements UserDetails {
-    //AutofixUserPrincipal
 
-    //private Client client;
    private Employee employee;
     private List<AuthGroup> authGroups;
 
-  /*  public AutofixEmployeePrincipal(Client client, List<AuthGroup> authGroups) {
-        super();
-        this.client = client;
-        this.authGroups = authGroups;
-    }
-*/
+
     public AutofixEmployeePrincipal(Employee employee, List<AuthGroup> authGroups) {
         super();
         this.employee = employee;

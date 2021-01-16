@@ -6,7 +6,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.AuthGroup;
+import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.ClientNotFoundException;
+import se.iths.autofix.exception.EmployeeNotFoundException;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.EmployeeRepository;
 
@@ -17,6 +21,8 @@ public class EmployeeService {
 
     @Autowired
     AuthGroupRepository authGroupRepository;
+    @Autowired
+    AuthService authService;
 
     private EmployeeRepository employeeRepository;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -34,10 +40,27 @@ public class EmployeeService {
 
 
     public Employee createEmployee(Employee employee) {
+        if(authService.doesUsernameExist(employee.getUsername())) {
+            employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+            authGroupRepository.save(new AuthGroup(employee.getUsername(), "ADMIN"));
+            return employeeRepository.save(employee);
+        }else {
+            throw new BadInputFormatException("Username is already taken!!");
+        }
+    }
 
-        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-        authGroupRepository.save(new AuthGroup(employee.getUsername(), "ADMIN"));
-        return employeeRepository.save(employee);
+    public Employee updateEmployee(Employee newEmployee, Long id){
+        newEmployee.setPassword(passwordEncoder.encode(newEmployee.getPassword()));
+        return employeeRepository.findById(id)
+                .map(employee -> {
+                    employee.setFirstname(newEmployee.getFirstname());
+                    employee.setLastname(newEmployee.getLastname());
+                    employee.setEmail(newEmployee.getEmail());
+                    employee.setPassword(newEmployee.getPassword());
+                    return employeeRepository.save(employee);
+                })
+                .orElseThrow(()-> new EmployeeNotFoundException("Employee has not been found.")
+                );
     }
 
     public void deleteEmployee(Long id) {

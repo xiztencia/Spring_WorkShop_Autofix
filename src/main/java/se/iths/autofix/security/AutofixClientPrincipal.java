@@ -1,19 +1,19 @@
 package se.iths.autofix.security;
 
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import se.iths.autofix.entity.AuthGroup;
 import se.iths.autofix.entity.Client;
-import se.iths.autofix.entity.Employee;
+
 
 import java.util.*;
-
 public class AutofixClientPrincipal implements UserDetails {
-    //AutofixUserPrincipal
+
 
     private Client client;
-   private Employee employee;
+
     private List<AuthGroup> authGroups;
 
     public AutofixClientPrincipal(Client client, List<AuthGroup> authGroups) {
@@ -22,11 +22,7 @@ public class AutofixClientPrincipal implements UserDetails {
         this.authGroups = authGroups;
     }
 
-    public AutofixClientPrincipal(Employee employee, List<AuthGroup> authGroups) {
-        super();
-        this.employee = employee;
-        this.authGroups = authGroups;
-    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

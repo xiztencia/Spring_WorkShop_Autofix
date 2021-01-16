@@ -18,6 +18,6 @@ public class GlobalResponseEntityExceptionHandler extends ResponseEntityExceptio
     }
 
     private ResponseEntity<Object> errorResponse(HttpStatus status, String message) {
-        return ResponseEntity.status(status).body(message);
+        return new ResponseEntity(message,status);
     }
 }

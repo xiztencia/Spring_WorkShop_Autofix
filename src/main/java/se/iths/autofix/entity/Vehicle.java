@@ -16,15 +16,15 @@ public class Vehicle {
     private String model;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "vehicle_client")
-    private Client client;
+    private Client vehicle_client;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "vehicle_employee")
-    private Employee employee;
+
+    public Client getClient() {
+        return vehicle_client;
+    }
 
     public void setClient(Client client) {
-        this.client = client;
+        this.vehicle_client = client;
     }
 
     public Vehicle(@NotEmpty String numberPlate, String maker, String model) {
@@ -68,7 +68,5 @@ public class Vehicle {
         this.model = model;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+
 }

@@ -15,13 +15,13 @@
 <br>
 <br>
 Create A New Customer Account
-<form action="#" th:action="@{/createClient}" th:object="${readClient}" method="GET">
+<form  th:action="@{/createClient}" th:object="${readClient}" method="GET">
     Username : <input type="text" name="username" th:field="*{username}"/><br>
     Firstname: <input type="text" name="firstname" th:field="*{firstname}"/><br>
     Lastname : <input type="text" name="lastname" th:field="*{lastname}"/><br>
     Email : <input type="text" name="email" th:field="*{email}"/><br>
     Password: <input type="text" name="password" th:field="*{password}"/><br>
-    <button name="submit" type="submit" value="0">Submit</button>
+    <button name="submit" type="submit" >Submit</button>
 </form>
 </body>
 </html>

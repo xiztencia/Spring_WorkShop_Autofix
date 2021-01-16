@@ -1,7 +1,11 @@
 package se.iths.autofix.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.SparePart;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.MaintenanceNotFoundException;
+import se.iths.autofix.exception.SparepartNotFoundException;
 import se.iths.autofix.repository.SparePartRepository;
 
 import java.util.Optional;
@@ -16,7 +20,28 @@ public class SparePartService {
     }
 
     public SparePart createSparePart(SparePart sparePart){
+        if(sparePart.getPrice()>=0 && sparePart.getQuantity()>0){
         return sparePartRepository.save(sparePart);
+        }else{
+            throw new BadInputFormatException("Price/quantity can not be of negative value.");
+        }
+    }
+
+    public SparePart updateSparePart(SparePart newSparePart, Long id){
+        if(newSparePart.getPrice()>=0 && newSparePart.getQuantity()>0){
+            return sparePartRepository.findById(id)
+                    .map(sparePart -> {
+                        sparePart.setPart(newSparePart.getPart());
+                        sparePart.setCategory(newSparePart.getCategory());
+                        sparePart.setPrice(newSparePart.getPrice());
+                        sparePart.setQuantity(newSparePart.getQuantity());
+                        return sparePartRepository.save(sparePart);
+                    })
+                    .orElseThrow(()-> new SparepartNotFoundException("SparePart has not been found.")
+                    );
+        }else{
+            throw new BadInputFormatException("Price/quantity can not be of negative value.");
+        }
     }
 
     public void deleteSparePart(Long id){
@@ -37,16 +62,10 @@ public class SparePartService {
     }
 
     public Iterable<SparePart> findAllSparePartsByClientUsername(String nameUser) {
-        Iterable<SparePart> allSparePartsByClientUsername = sparePartRepository.findAllSparePartsByClientUsername(nameUser);
+        Iterable<SparePart> allSparePartsByClientUsername;
+        allSparePartsByClientUsername = sparePartRepository.findAllSparePartsByClientUsername(nameUser);
         return allSparePartsByClientUsername;
     }
 
-    public Iterable<SparePart> findSparePartsByEmployeeId(Long id) {
-        return sparePartRepository.findSparePartsByEmployeeId(id);
-    }
 
-    public Iterable<SparePart> findAllSparePartsByEmployeeUsername() {
-        Iterable<SparePart> allSparePartsByEmployeeUsername = sparePartRepository.findAllSparePartsByEmployeeUsername();
-        return allSparePartsByEmployeeUsername;
-    }
 }

@@ -61,6 +61,7 @@ public class EmployeeWebController {
     @GetMapping("/createSparePart")
     public String readSparePart(Model model){
         model.addAttribute("sparePartObj", new SparePart());
+        model.addAttribute("spareParts",sparePartService.findAllSpareParts());
         return "CreateSparePart.html";
     }
     @GetMapping("/saveSparePart")

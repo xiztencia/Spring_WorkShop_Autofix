@@ -16,7 +16,6 @@ public class Client implements Serializable {
     private String username;
     private String firstname;
     private String lastname;
-    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com")
     private String email;
     private String password;
 

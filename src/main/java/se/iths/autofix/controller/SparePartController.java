@@ -65,15 +65,4 @@ public class SparePartController {
     Iterable<SparePart> findAllSparePartsByClientUsername(@PathVariable String nameUser) {
         return sparePartService.findAllSparePartsByClientUsername(nameUser);
     }
-
-//    @GetMapping("/findallsparepartsbyemployee/{id}")
-//    public Iterable<SparePart> getAllSparePartsByEmployee(@PathVariable Long id) {
-//        return sparePartService.findSparePartsByEmployeeId(id);
-//    }
-//
-//    @GetMapping("/findallsparepartsbyemployeeusername")
-//    Iterable<SparePart> findAllSparePartsByEmployeeUsername() {
-//        return sparePartService.findAllSparePartsByEmployeeUsername();
-//    }
-
 }

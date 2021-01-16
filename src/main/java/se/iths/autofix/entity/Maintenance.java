@@ -15,7 +15,6 @@ public class Maintenance {
     private String type;  //låt oss utgå ifrån ex. tre enkla alternativ: carWash, tireShift och annualService.
     //så blir dessa obligatoriska att välja bland.
     // private Vehicle vehicle;
-    @DecimalMin(value = "0.0")
     private double price;
     private Date checkInDate;
     private Date checkOutDate;

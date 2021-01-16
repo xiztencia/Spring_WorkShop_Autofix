@@ -16,9 +16,7 @@ public class SparePart {
     @NotEmpty
     private String part;
     private String category;
-    @DecimalMin(value = "0.0")
     private double price;
-    @Positive
     private int quantity;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

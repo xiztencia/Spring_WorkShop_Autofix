@@ -1,8 +1,22 @@
 # Spring WorkShop Autofix
 ## **Project creation**
 
-- This Springboot project for the Java 19 course from ITHS was developed by Nicklas Johansson and Luis Gutierrez, Elena Ten, Rauf Rajput.
+- This is a car dealership for vehicle, maintenance and spare parts sale for all makes and model. The project is developed with Spring Boot for our Java 19 course ComplexJava. While the Backend is done in Spring Boot we also have used PostgrSQL for our database maintenance, Thymeleaf
+for our frontend and Heroku for deployment.
 
+Project is developed by:
+```ruby
+L, Gutierrez
+```
+```ruby
+E, Ten 
+```
+```ruby
+R, Rajput
+```
+```ruby
+N, Johansson
+```
 ## **Projects obstacles**
 
 - The most diffuculty in our project was to figure out the proper functionality for Security tokens and Spring Session. Here we had to split into separate api and web security classes.  

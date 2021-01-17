@@ -31,7 +31,7 @@
 |Response Body Exemple|
 |---|
 ```ruby
-  {
+{
   "id": 16,
   "username": "Kalle",
   "firstname": null,

@@ -9,33 +9,55 @@
 
 ![](https:/xiztencia/github.com//Spring_Workshop_Autofix/workflows/Java%20CI/badge.svg)
 
-# Endpoints
-## [Endpoint](#endpoint-1)
-## [Endpoint](#endpoint-2)
+# Endpoints 
+## [Client](#endpoint-1)
+## [Employee](#endpoint-2)
+## [SparePart](#endpoint-3)
+## [Maintenance](#endpoint-4)
+## [Vehicle](#endpoint-5)
 
 [![CircleCI](https://circleci.com/<VCS>/<ORG_NAME>/<PROJECT_NAME>.svg?style=svg&circle-token=<YOUR_STATUS_API_TOKEN>)](<LINK>)
-# GET
+# POST
 |Method|Description|URL|
 |---|---|--|
-|GET|Get all students from registry|http://localhost:8080/student-management-system/api/v1/student/getall|
-
+|POST|Create a user client to registry|http://localhost:8080/api/client/create|
+```ruby
+{
+	"username":"Kalle",
+	"email":"kalle@ankeborg.org",
+	"password":"skuldberg"
+}
+```
 |Response Body Exemple|
 |---|
 ```ruby
-  {Någon : JsonObject}
+  {
+  "id": 16,
+  "username": "Kalle",
+  "firstname": null,
+  "lastname": null,
+  "email": "kalle@ankeborg.org",
+  "password": "$2a$10$Z..kRuBj25u7flA14X3aJOqto0zQ.P91U0JsWYyZzji/dQvmBSJri",
+  "vehicles": [],
+  "maintenances": [],
+  "spareParts": []
+}
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET|Get student with given ID|http://localhost:8080/student-management-system/api/v1/student/searchById/{id}|
-
-|Response Body Example||
-|---|---|
-|Example URL| http://localhost:8080/student-management-system/api/v1/student/searchById/2|
-
+|POST|Get user token |http://localhost:8080/api/authenticate|
 ```ruby
-  {
-  "Någon":"JSON OBject"
-  }
+{
+	"username":"Kalle",
+	"password":"skuldberg"
+}
+```
+|Response Body Example|
+|---|
+```ruby
+{
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLYWxsZSIsImV4cCI6MTYxMDkwNzkyNCwiaWF0IjoxNjEwOTA3MzI0fQ.SnK3jnS3IeQsU5R5pS5qExjHecmPCsX5eyFmLYBQJvqv58Nns0Wg547d9wJK6LPCB5wxzhzQDd7OS_CC_jZQbg"
+}  
  ```
  |Method|Description|URL|
 |---|---|--|

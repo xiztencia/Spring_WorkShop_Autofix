@@ -5,7 +5,7 @@
 
 ## **Projects obstacles**
 
-- Bla bla bla
+- The most diffuculty in our project was to figure out the proper functionality for Security tokens and Spring Session. Here we had to split into separate api and web security classes.  
 
 ![](https:/xiztencia/github.com//Spring_Workshop_Autofix/workflows/Java%20CI/badge.svg)
 

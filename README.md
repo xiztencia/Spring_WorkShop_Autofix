@@ -16,7 +16,6 @@
 ## [Maintenance](#maintenance-4)
 ## [Vehicle](#vehicle-5)
 
-[![CircleCI](https://circleci.com/<VCS>/<ORG_NAME>/<PROJECT_NAME>.svg?style=svg&circle-token=<YOUR_STATUS_API_TOKEN>)](<LINK>)
 
 # Client
 # POST
@@ -140,3 +139,107 @@
 ```ruby
 Deleted Client with id: 3
 ```
+
+# Employee
+# POST
+|Method|Description|URL|
+|---|---|--|
+|POST|Create a user employee to registry |http://localhost:8080/api/employee/create|
+```ruby
+{
+	"username":"Kalle",
+	"email":"kalle@ankeborg.org",
+	"password":"skuldberg"
+}
+```
+|Response Body Exemple|
+|---|
+```ruby
+{
+  "id": 11,
+  "username": "Kalle",
+  "firstname": null,
+  "lastname": null,
+  "email": "kalle@ankeborg.org",
+  "password": "$2a$10$84q00vyscEmUJ30MVJR9Huj4bLPvIMnBmiuPmFH/GugwwSUrrC916"
+}
+```
+|Method|Description|URL|
+|---|---|--|
+|POST|Get user token |http://localhost:8080/api/authenticate|
+```ruby
+{
+	"username":"Kalle",
+	"password":"skuldberg"
+}
+```
+|Response Body Example|
+|---|
+```ruby
+{
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLYWxsZSIsImV4cCI6MTYxMDkwNzkyNCwiaWF0IjoxNjEwOTA3MzI0fQ.SnK3jnS3IeQsU5R5pS5qExjHecmPCsX5eyFmLYBQJvqv58Nns0Wg547d9wJK6LPCB5wxzhzQDd7OS_CC_jZQbg"
+}  
+ ```
+# PUT
+|Method|Description|URL|
+|---|---|--|
+|PUT|Update user employee in registry |http://localhost:8080/api/employee/update/{id}|
+```ruby
+{
+	"username":"user",
+	"firstname":"Luigi",
+	"password":"godkomplex"
+}
+```
+|Response Body Example|
+|---| 
+```ruby
+{
+  "id": 1,
+  "username": "admin",
+  "firstname": "Luigi",
+  "lastname": null,
+  "email": null,
+  "password": "$2a$10$mToxj3TdFIaPFoAf3gpAiOIH6B.oC6rGDZMD1nj7kqsHIN8dT/UMC"
+}
+```
+# GET
+|Method|Description|URL|
+|---|---|--|
+|GET|Find all employees from registry|http://localhost:8080/api/employee/findall|
+
+|Response Body Exemple|
+|---|
+```ruby
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "firstname": "admin",
+    "lastname": "admin",
+    "email": "admin",
+    "password": "$2a$10$2HqBA7Vg.ee533ZCtFsS4O2iWK0k/T8/L8Jiu2JlwCo4bfSpXSvNW"
+  }
+]
+```
+|Method|Description|URL|
+|---|---|--|
+|GET|Find a user employee by id from registry|http://localhost:8080/api/employee/id/{id}|
+
+|Response Body Example|
+|---|
+```ruby
+{"id":1,"username":"admin","firstname":"admin","lastname":"admin","email":"admin","password":"$2a$10$2HqBA7Vg.ee533ZCtFsS4O2iWK0k/T8/L8Jiu2JlwCo4bfSpXSvNW"}
+```
+# DELETE
+|Method|Description|URL|
+|---|---|--|
+|DELETE|Remove an existing user employee with given ID from registry|http://localhost:8080/api/employee/delete/{id}|
+
+|Response Body Example|
+|---|
+
+```ruby
+Deleted Employee with id: 11
+```
+

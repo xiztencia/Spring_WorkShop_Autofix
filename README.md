@@ -10,13 +10,15 @@
 ![](https:/xiztencia/github.com//Spring_Workshop_Autofix/workflows/Java%20CI/badge.svg)
 
 # Endpoints 
-## [Client](#endpoint-1)
-## [Employee](#endpoint-2)
-## [SparePart](#endpoint-3)
-## [Maintenance](#endpoint-4)
-## [Vehicle](#endpoint-5)
+## [Client](#client-1)
+## [Employee](#employee-2)
+## [SparePart](#sparepart-3)
+## [Maintenance](#maintenance-4)
+## [Vehicle](#vehicle-5)
 
 [![CircleCI](https://circleci.com/<VCS>/<ORG_NAME>/<PROJECT_NAME>.svg?style=svg&circle-token=<YOUR_STATUS_API_TOKEN>)](<LINK>)
+
+# Client
 # POST
 |Method|Description|URL|
 |---|---|--|

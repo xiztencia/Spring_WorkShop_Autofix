@@ -154,6 +154,7 @@ N, Johansson
 Deleted Client with id: 3
 ```
 
+
 # Employee
 # POST
 |Method|Description|URL|
@@ -257,11 +258,172 @@ Deleted Client with id: 3
 Deleted Employee with id: 11
 ```
 
+
 # SparePart
 # POST
 |Method|Description|URL|
 |---|---|--|
 |POST|Create a spare part category that only admin can do, if you don't put any sparepart and send an error message will occur "Fill in spare part name" |http://localhost:8080/api/sparepart/create|
+```ruby
+{
+    "part":"car wheel",
+    "category":"wheels",
+    "price":"549.0",
+    "quantity":"2"
+}
+```
+|Response Body Exemple|
+|---|
+```ruby
+{
+  "id": 13,
+  "part": "car wheel",
+  "category": "wheels",
+  "price": 549.0,
+  "quantity": 2,
+  "client": null
+}
+```
+# GET 
+|Method|Description|URL|
+|---|---|--|
+|GET| Find all spare parts in registry |http://localhost:8080/api/sparepart/findall
+
+|Response Body Example|
+|---|
+```ruby
+[
+  {
+    "id": 7,
+    "part": "car wheel",
+    "category": "wheels",
+    "price": 800.0,
+    "quantity": 1,
+    "client": null
+  },
+  {
+    "id": 8,
+    "part": "back wheel",
+    "category": "mirrors",
+    "price": 549.0,
+    "quantity": 1,
+    "client": null
+  },
+  {
+    "id": 9,
+    "part": "front light",
+    "category": "lights",
+    "price": 1200.0,
+    "quantity": 2,
+    "client": null
+  }
+]
+```
+|Method|Description|URL|
+|---|---|--|
+|GET| Find all spare parts by id in registry. If wrong ID is entered the message "The spare part id was not found" will occur |http://localhost:8080/api/sparepart/id/{id}|
+
+|Response Body Example|
+|---|
+```ruby
+{
+  "id": 9,
+  "part": "front light",
+  "category": "lights",
+  "price": 1200.0,
+  "quantity": 2,
+  "client": null
+}
+```
+|Method|Description|URL|
+|---|---|--|
+|GET| Find all spare parts by client id from registry.|http://localhost:8080/api/client/id/{id}|
+
+|Response Body Example|
+|---|
+```ruby
+{
+  "id": 3,
+  "username": "user",
+  "firstname": "user",
+  "lastname": "user",
+  "email": "user",
+  "password": "$2a$10$Wq8TcIxYsxEJGUFT1VME3O3Q2ne6txIUchwed3SvTnLJZs2dhRc1i",
+  "vehicles": [],
+  "maintenances": [],
+  "spareParts": [
+    {
+      "id": 10,
+      "part": "back wheel",
+      "category": "wheels",
+      "price": 800.0,
+      "quantity": 1
+    }
+  ]
+}
+```
+
+|Method|Description|URL|
+|---|---|--|
+|GET| find all spare parts by clients username, only the the person with admin role can access this|http://localhost:8080/api/sparepart/findallsparepartsbyclientusername/{nameUser}
+
+|Response Body Example|
+|---|
+```ruby
+[
+  {
+    "id": 10,
+    "part": "back wheel",
+    "category": "wheels",
+    "price": 800.0,
+    "quantity": 1
+  }
+]
+```
+
+# PUT
+|Method|Description|URL|
+|---|---|--|
+|PUT|Update a spare part by id in registry |http://localhost:8080/api/sparepart/update/{id}|
+```ruby
+{
+  "id": 9,
+  "part": "back light",
+  "category": "lights",
+  "price": 1100.0,
+  "quantity": 2,
+  "client": null
+}
+```
+|Response Body Example|
+|---| 
+```ruby
+{
+  "id": 9,
+  "part": "back light",
+  "category": "lights",
+  "price": 1100.0,
+  "quantity": 2,
+  "client": null
+}
+```
+# DELETE
+|Method|Description|URL|
+|---|---|--|
+|DELETE|Remove an existing spare part with given ID, only person with admin roles can do this |http://localhost:8080/api/sparepart/delete/{id}
+
+|Response Body Example|
+|---|
+```ruby
+Deleted Spare part with id: 9
+```
+
+
+# Vehicle
+# POST
+|Method|Description|URL|
+|---|---|--|
+|POST|Create a vehicle to registry |http://localhost:8080/api/vehicle/create|
 ```ruby
 {
     "part":"car wheel",
@@ -376,4 +538,3 @@ Deleted Employee with id: 11
 ```ruby
 Deleted Spare part with id: 9
 ```
-

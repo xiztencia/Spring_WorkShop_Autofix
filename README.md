@@ -329,8 +329,17 @@ Deleted Employee with id: 11
 # PUT
 |Method|Description|URL|
 |---|---|--|
-|PUT|Update user employee in registry |http://localhost:8080/api/employee/update/{id}|
-
+|PUT|Update a spare part by id in registry |http://localhost:8080/api/sparepart/update/{id}|
+```ruby
+{
+  "id": 9,
+  "part": "back light",
+  "category": "lights",
+  "price": 1100.0,
+  "quantity": 2,
+  "client": null
+}
+```
 |Response Body Example|
 |---| 
 ```ruby
@@ -351,5 +360,6 @@ Deleted Employee with id: 11
 |Response Body Example|
 |---|
 ```ruby
+Deleted Spare part with id: 9
 ```
 

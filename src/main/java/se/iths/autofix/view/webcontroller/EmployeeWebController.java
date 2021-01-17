@@ -5,16 +5,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Employee;
+import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.exception.ClientNotFoundException;
 import se.iths.autofix.jms.sender.Sender;
+import se.iths.autofix.repository.MaintenanceRepository;
 import se.iths.autofix.service.ClientService;
 import se.iths.autofix.service.EmployeeService;
 import se.iths.autofix.service.MaintenanceService;
 import se.iths.autofix.service.SparePartService;
+
+import javax.validation.Valid;
+import java.util.Date;
+import java.util.Optional;
 
 @Controller
 public class EmployeeWebController {
@@ -27,6 +33,9 @@ public class EmployeeWebController {
 
     @Autowired
     private MaintenanceService maintenanceService;
+
+    @Autowired
+    private MaintenanceRepository maintenanceRepository;
 
     @Autowired
     private SparePartService sparePartService;
@@ -71,10 +80,24 @@ public class EmployeeWebController {
         model.addAttribute("allMaintenances", maintenanceService.findAllMaintenances());
         return "Maintenance.html";
     }
+    @GetMapping("/editMaintenance")
+    public String editMaintenance(@PathVariable("id")Long id, Model model){
+                Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
+                model.addAttribute("maintenance",maintenance);
+        return "Maintenance.html";
+        }
+    @PostMapping("/updateMaintenance")
+    public String updateMaintenance(Maintenance maintenance){
+        maintenanceRepository.save(maintenance);
+        return "Maintenance";
+    }
+
+
+    }
 
 //    @GetMapping("/Employee")
 //    public String employees(Model model) throws EmployeeNotFoundException {
 //
 //        return "Employee.html";
 //    }
-}
+

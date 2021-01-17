@@ -8,6 +8,7 @@ import se.iths.autofix.exception.EmployeeNotFoundException;
 import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.repository.MaintenanceRepository;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -75,8 +76,7 @@ public class MaintenanceService {
     }
 
     public Iterable<Maintenance> findAllMaintenancesByClientUsername() {
-        Iterable<Maintenance> allMaintenancesByClientUsername = maintenanceRepository.findAllMaintenancesByClientUsername();
-        return allMaintenancesByClientUsername;
+        return maintenanceRepository.findAllMaintenancesByClientUsername();
     }
 }
 

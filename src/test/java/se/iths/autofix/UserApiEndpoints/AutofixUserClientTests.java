@@ -73,7 +73,11 @@ class AutofixUserClientTests {
     void userTrytoCreateClientIdReturnStatusOk() throws Exception{
         mockMvc.perform(post("/api/client/create")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"username\":\"kalle\",\"firstname\":\"kalle\",\"lastname\":\"anka\",\"email\":\"anka\",\"password\":\"anka\"}")
+                .content("{\"username\":\"kallle\"," +
+                        "\"firstname\":\"kalle\"," +
+                        "\"lastname\":\"anka\"," +
+                        "\"email\":\"anka\"," +
+                        "\"password\":\"anka\"}")
         ).andExpect(status().isOk());
     }
 
@@ -84,5 +88,4 @@ class AutofixUserClientTests {
         ).andExpect(status().isOk());
     }
     //</editor-fold>
-
 }

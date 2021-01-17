@@ -66,13 +66,6 @@ class AutofixUserSparePartTests {
     }
 
     @Test
-    void userTrytoAccessSparePartFindAllClientByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartsbyclientusername/Kalle")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
-    }
-
-    @Test
     void userTrytoAccessSparePartIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/sparepart/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -102,20 +95,6 @@ class AutofixUserSparePartTests {
                         "\"category\":\"Brake System\"," +
                         "\"quantity\":22}")
         ).andExpect(status().isForbidden());
-    }
-
-    @Test
-    void userTryToGetSparePartEmployeeByIdReturnOk() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployee/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
-    }
-
-    @Test
-    void userTrytoFinadAallSparePartAllEmployeeByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployeeusername")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
     }
     //</editor-fold>
 }

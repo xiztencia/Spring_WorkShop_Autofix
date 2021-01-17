@@ -104,20 +104,5 @@ class AutofixAdminUserSparePartTests {
                         "\"quantity\":22}")
         ).andExpect(status().isOk());
     }
-
-    @Test
-
-    void adminUserTryToGetSparePartEmployeeByIdReturnOk() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployee/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
-    }
-    @Test
-
-    void adminUserTrytoFinadAallSparePartAllEmployeeByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployeeusername")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
-    }
     //</editor-fold>
 }

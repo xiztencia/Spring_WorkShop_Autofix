@@ -35,7 +35,6 @@ class AutofixAnonymousUserVehicleTests {
         ).andExpect(status().isUnauthorized());
     }
 
-
     @Test
     @WithAnonymousUser
     void anonymousUserTrytoAccessVehicleIdReturnUnauthorized() throws Exception{
@@ -43,7 +42,6 @@ class AutofixAnonymousUserVehicleTests {
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
-
 
     @Test
     @WithAnonymousUser
@@ -63,7 +61,5 @@ class AutofixAnonymousUserVehicleTests {
                         "\"model\":V70}")
         ).andExpect(status().isUnauthorized());
     }
-
-
     //</editor-fold>
 }

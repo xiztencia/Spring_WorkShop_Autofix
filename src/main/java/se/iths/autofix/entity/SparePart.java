@@ -3,10 +3,7 @@ package se.iths.autofix.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Positive;
 
 @Entity
 public class SparePart {
@@ -50,7 +47,6 @@ public class SparePart {
     public Client getClient() {
         return client;
     }
-
 
     public Long getId() {
         return id;

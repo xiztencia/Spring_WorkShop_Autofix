@@ -3,7 +3,6 @@ package se.iths.autofix.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 

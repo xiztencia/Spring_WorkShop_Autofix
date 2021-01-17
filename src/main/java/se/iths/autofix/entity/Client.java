@@ -19,13 +19,13 @@ public class Client implements Serializable {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "vehicle_client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle_client", fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles = new HashSet<>();
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "mainten_client", fetch = FetchType.LAZY)
     private Set<Maintenance> maintenances = new HashSet<>();
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Set<SparePart> spareParts = new HashSet<>();
 
     public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {

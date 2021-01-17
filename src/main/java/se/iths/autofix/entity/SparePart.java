@@ -1,5 +1,7 @@
 package se.iths.autofix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
@@ -19,19 +21,18 @@ public class SparePart {
     private double price;
     private int quantity;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sparepart_client")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Client client;
 
-
-
-    public void setClient(Client client) {
+    public SparePart(@NotEmpty String part, String category, double price, int quantity, Client client) {
+        this.part = part;
+        this.category = category;
+        this.price = price;
+        this.quantity = quantity;
         this.client = client;
     }
 
-    public Client getClient() {
-        return client;
-    }
     public SparePart(String category, @NotEmpty String part, double price, int quantity) {
         this.category = category;
         this.part = part;
@@ -41,6 +42,15 @@ public class SparePart {
 
     public SparePart() {
     }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
 
     public Long getId() {
         return id;

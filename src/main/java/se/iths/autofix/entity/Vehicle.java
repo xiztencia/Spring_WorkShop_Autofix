@@ -1,5 +1,7 @@
 package se.iths.autofix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,9 +17,25 @@ public class Vehicle {
     private String maker;
     private String model;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Client vehicle_client;
 
+    public Vehicle(@NotEmpty String numberPlate, String maker, String model) {
+        this.numberPlate = numberPlate;
+        this.maker = maker;
+        this.model = model;
+    }
+
+    public Vehicle(@NotEmpty String numberPlate, String maker, String model, Client vehicle_client) {
+        this.numberPlate = numberPlate;
+        this.maker = maker;
+        this.model = model;
+        this.vehicle_client = vehicle_client;
+    }
+
+    public Vehicle() {
+    }
 
     public Client getClient() {
         return vehicle_client;
@@ -27,14 +45,7 @@ public class Vehicle {
         this.vehicle_client = client;
     }
 
-    public Vehicle(@NotEmpty String numberPlate, String maker, String model) {
-        this.numberPlate = numberPlate;
-        this.maker = maker;
-        this.model = model;
-    }
 
-    public Vehicle() {
-    }
 
     public Long getId() {
         return id;

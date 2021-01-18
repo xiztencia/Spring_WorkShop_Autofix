@@ -1,11 +1,9 @@
 package se.iths.autofix.entity;
 
-
-import org.apache.logging.log4j.util.StringBuilders;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,26 +12,19 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotEmpty
-    private String type;  //låt oss utgå ifrån ex. tre enkla alternativ: carWash, tireShift och annualService.
-    //så blir dessa obligatoriska att välja bland.
-    // private Vehicle vehicle;
+    private String type;
     private double price;
     private Date checkInDate;
     private Date checkOutDate;
     private String jobHistory;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "maintenance_client")
-    private Client client;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "maintenance_employee")
-    private Employee employee;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Client mainten_client;
 
     public void setClient(Client client) {
-        this.client = client;
+        this.mainten_client = client;
     }
 
     public Maintenance(@NotEmpty String type, double price, Date checkInDate, Date checkOutDate) {
@@ -42,8 +33,31 @@ public class Maintenance {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
+    public Maintenance(@NotEmpty String type, double price, Date checkInDate, Date checkOutDate,Client client) {
+        this.type = type;
+        this.price = price;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.mainten_client=client;
+    }
+    public Maintenance(@NotEmpty Long id,@NotEmpty String type, double price, Date checkInDate, Date checkOutDate, String jobHistory) {
+        this.id = id;
+        this.type = type;
+        this.price = price;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.jobHistory += jobHistory;
+    }
 
     public Maintenance() {
+    }
+
+    public Client getMainten_client() {
+        return mainten_client;
+    }
+
+    public void setMainten_client(Client mainten_client) {
+        this.mainten_client = mainten_client;
     }
 
     public Long getId() {
@@ -94,7 +108,5 @@ public class Maintenance {
         this.checkOutDate = checkOutDate;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+
 }

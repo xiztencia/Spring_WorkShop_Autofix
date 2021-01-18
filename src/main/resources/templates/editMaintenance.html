@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"> <!-- ISO-8859-1 -->
+    <title>Incoming Maintenance Requests</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+
+</head>
+<header><div th:replace="Navbar::header"></div></header>
+<body>
+<br>
+<br>
+<br>
+<form action="#" th:action="@{'/saveMaintanence/' + ${maintenance.id}}" th:object="${maintenance}" method="POST">
+<!--    <input type="hidden" th:name="id" th:value="id" th:field="*{id}"/>-->
+    <label for="price">Set Maintenance price</label>
+    <input type="number" th:field="*{price}" id="price" placeholder="Price">
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    <label for="checkInDate">Set Maintenance check in date</label>
+    <input type="date" th:field="*{checkInDate}" id="checkInDate" placeholder="checkInDate">
+    <span th:if="${#fields.hasErrors('checkInDate')}" th:errors="*{checkInDate}"></span>
+    <label for="checkOutDate">Set Maintenance check out date</label>
+    <input type="date" th:field="*{checkOutDate}" id="checkOutDate" placeholder="checkOutDate">
+    <span th:if="${#fields.hasErrors('checkOutDate')}" th:errors="*{checkOutDate}"></span>
+    <label for="checkInDate">Set Maintenance log message</label>
+    <input type="text" th:field="*{jobHistory}" id="jobHistory" placeholder="jobHistory">
+    <span th:if="${#fields.hasErrors('jobHistory')}" th:errors="*{jobHistory}"></span>
+    <input type="submit" value="Update Maintenance">
+    <br>
+</form>
+
+</body>
+</html>

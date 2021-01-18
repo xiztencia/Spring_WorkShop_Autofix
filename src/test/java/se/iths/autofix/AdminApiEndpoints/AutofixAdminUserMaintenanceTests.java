@@ -59,7 +59,7 @@ class AutofixAdminUserMaintenanceTests {
     @Test
 
     void adminUserTrytoAccessMaintenanceFindAllClientByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
+        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
@@ -95,21 +95,6 @@ class AutofixAdminUserMaintenanceTests {
                         "\"price\":2000," +
                         "\"checkInDate\":\"2020-01-01\"," +
                         "\"checkOutDate\":\"2020-12-31\"}")
-        ).andExpect(status().isOk());
-    }
-
-    @Test
-
-    void adminUserTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
-    }
-    @Test
-
-    void adminUserTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
-                .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
     //</editor-fold>

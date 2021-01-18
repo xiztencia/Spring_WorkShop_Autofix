@@ -1,11 +1,8 @@
 package se.iths.autofix.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class ShoppingCart {
@@ -13,24 +10,21 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    // private String type;
+    @Positive
     private int quantity;
+    @DecimalMin(value = "0.0")
     private double totalPrice;
 
-    //    @OneToMany(mappedBy = "shoppingcart_sales")
-//    private List<Sale> addedItemsOnCart;
+
     @OneToOne
     private Maintenance maintenance;
     @OneToOne
     private SparePart sparePart;
 
     public ShoppingCart() {
-
     }
 
     public ShoppingCart(int quantity, double totalPrice) {
-        //  this.type = type;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
@@ -43,13 +37,7 @@ public class ShoppingCart {
         this.id = id;
     }
 
-//    public String getType() {
-//        return type;
-//    }
-//
-//    public void setType(String type) {
-//        this.type = type;
-//    }
+
 
     public int getQuantity() {
         return quantity;
@@ -66,5 +54,4 @@ public class ShoppingCart {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
 }

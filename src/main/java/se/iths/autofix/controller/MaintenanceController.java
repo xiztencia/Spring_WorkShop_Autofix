@@ -1,12 +1,13 @@
 package se.iths.autofix.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.Maintenance;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.service.MaintenanceService;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path={"/api/maintenance"})
@@ -18,10 +19,18 @@ public class MaintenanceController {
         this.maintenanceService = maintenanceService;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
+
     @PostMapping("/create")
     public Maintenance createMaintenance(@RequestBody Maintenance maintenance) {
+        if(maintenance.getType().isEmpty()){
+            throw new BadInputFormatException("Fill in maintenance type.");
+        }
         return maintenanceService.createMaintenance(maintenance);
+    }
+
+    @PutMapping("/update/{id}")
+    public Maintenance updateMaintenance(@RequestBody Maintenance newMaintenance, @PathVariable Long id) {
+        return maintenanceService.updateMaintenance(newMaintenance, id);
     }
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
@@ -30,20 +39,25 @@ public class MaintenanceController {
         maintenanceService.addJobHistoryEvent(employee, message, id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Maintenance> findAllMaintenances() {
         return maintenanceService.findAllMaintenances();
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Maintenance> findMaintenanceById(@PathVariable Long id) {
-        return maintenanceService.findMaintenanceById(id);
+    public ResponseEntity<?> findMaintenanceById(@PathVariable Long id) {
+        if(id<=0){
+            throw new MaintenanceNotFoundException("The maintenance id was not found.");
+        }
+        return ResponseEntity.ok(maintenanceService.findMaintenanceById(id));
     }
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
-    public void deleteMaintenance(@PathVariable Long id) {
+    public ResponseEntity deleteMaintenance(@PathVariable Long id) {
         maintenanceService.deleteMaintenance(id);
+        return ResponseEntity.ok("Deleted Maintenance job with id: "+id);
     }
 
     @GetMapping("/findbyclient/{id}")
@@ -51,22 +65,9 @@ public class MaintenanceController {
         return maintenanceService.findAllMaintenancesByClientId(id);
     }
 
-    @GetMapping("/findallmaintenancessbyclientusername")
+    @GetMapping("/findallmaintenancesbyclientusername")
     Iterable<Maintenance> findAllMaintenancesByClientUsername() {
         return maintenanceService.findAllMaintenancesByClientUsername();
     }
-
-    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
-    @GetMapping("/findallmaintenancesbyemployee/{id}")
-    public Iterable<Maintenance> getAllMaintenancesByEmployee(@PathVariable Long id) {
-        return maintenanceService.findAllMaintenancesByEmployeeId(id);
-    }
-
-    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
-    @GetMapping("/findallmaintenancesbyemployeeusername")
-    Iterable<Maintenance> findAllMaintenancesByEmployeeUsername() {
-        return maintenanceService.findAllMaintenancesByEmployeeUsername();
-    }
-
 
 }

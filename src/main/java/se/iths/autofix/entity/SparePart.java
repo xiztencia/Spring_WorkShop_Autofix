@@ -1,5 +1,6 @@
 package se.iths.autofix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,26 +14,22 @@ public class SparePart {
 
     @NotEmpty
     private String part;
-
     private String category;
     private double price;
     private int quantity;
-    //    private String model;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sparepart_client")
-    private Client client;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sparepart_employee")
-    private Employee employee;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Client spare_client;
 
-    public void setClient(Client client) {
-        this.client = client;
+    public SparePart(@NotEmpty String part, String category, double price, int quantity, Client client) {
+        this.part = part;
+        this.category = category;
+        this.price = price;
+        this.quantity = quantity;
+        this.spare_client = client;
     }
 
-    public Client getClient() {
-        return client;
-    }
     public SparePart(String category, @NotEmpty String part, double price, int quantity) {
         this.category = category;
         this.part = part;
@@ -42,6 +39,20 @@ public class SparePart {
 
     public SparePart() {
     }
+
+    public void setClient(Client client) {
+        this.spare_client = client;
+    }
+
+    public void setSpare_client(Client client) {
+        this.spare_client = client;
+    }
+
+    public Client getSpare_client() {
+        return spare_client;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -83,7 +94,5 @@ public class SparePart {
         this.quantity = quantity;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+
 }

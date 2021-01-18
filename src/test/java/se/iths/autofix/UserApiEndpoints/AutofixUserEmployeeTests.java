@@ -84,5 +84,4 @@ class AutofixUserEmployeeTests {
         ).andExpect(status().isForbidden());
     }
     //</editor-fold>
-
 }

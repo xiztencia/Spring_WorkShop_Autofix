@@ -10,15 +10,11 @@ import java.util.List;
 @Repository
 public interface SparePartRepository extends CrudRepository<SparePart, Long> {
 
-    @Query("SELECT s FROM SparePart s WHERE s.client.id = :id")
+    @Query("SELECT s FROM SparePart s WHERE s.spare_client.id = :id")
     Iterable<SparePart> findSparePartsByClientId(Long id);
 
-    @Query("SELECT s FROM SparePart s WHERE s.client.username = :nameUser")
+    @Query("SELECT s FROM SparePart s WHERE s.spare_client.username = :nameUser")
     List<SparePart> findAllSparePartsByClientUsername(String nameUser);
 
-    @Query("SELECT s FROM SparePart s WHERE s.employee.id = :id")
-    Iterable<SparePart> findSparePartsByEmployeeId(Long id);
 
-    @Query("SELECT s FROM SparePart s WHERE s.employee.username = :#{ principal?.username }")
-    Iterable<SparePart> findAllSparePartsByEmployeeUsername();
 }

@@ -55,12 +55,12 @@ class AutofixUserMaintenanceTests {
     void userTrytoAccessMaintenanceFindAllReturnOk() throws Exception{
         mockMvc.perform(get("/api/maintenance/findall")
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
+        ).andExpect(status().isForbidden());
     }
 
     @Test
     void userTrytoAccessMaintenanceFindAllClientByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
+        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
@@ -94,21 +94,7 @@ class AutofixUserMaintenanceTests {
                         "\"price\":2000," +
                         "\"checkInDate\":\"2020-01-01\"," +
                         "\"checkOutDate\":\"2020-01-02\"}")
-        ).andExpect(status().isForbidden());
-    }
-
-    @Test
-    void userTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isForbidden());
-    }
-
-    @Test
-    void userTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnForbidden() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isForbidden());
+        ).andExpect(status().isOk());
     }
     //</editor-fold>
 }

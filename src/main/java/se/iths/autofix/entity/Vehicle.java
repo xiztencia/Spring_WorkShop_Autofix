@@ -1,5 +1,7 @@
 package se.iths.autofix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,17 +17,9 @@ public class Vehicle {
     private String maker;
     private String model;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "vehicle_client")
-    private Client client;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "vehicle_employee")
-    private Employee employee;
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Client vehicle_client;
 
     public Vehicle(@NotEmpty String numberPlate, String maker, String model) {
         this.numberPlate = numberPlate;
@@ -33,7 +27,30 @@ public class Vehicle {
         this.model = model;
     }
 
+    public Vehicle(@NotEmpty String numberPlate, String maker, String model, Client client) {
+        this.numberPlate = numberPlate;
+        this.maker = maker;
+        this.model = model;
+        this.vehicle_client = client;
+    }
+
     public Vehicle() {
+    }
+
+//    public Client getClient() {
+//        return vehicle_client;
+//    }
+
+    public void setClient(Client client) {
+        this.vehicle_client = client;
+    }
+
+    public void setVehicle_client(Client client) {
+        this.vehicle_client = client;
+    }
+
+    public Client getVehicle_client() {
+        return vehicle_client;
     }
 
     public Long getId() {
@@ -68,7 +85,5 @@ public class Vehicle {
         this.model = model;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+
 }

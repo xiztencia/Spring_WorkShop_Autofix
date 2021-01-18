@@ -76,20 +76,5 @@ class AutofixAnonymousUserSparePartTests {
                         "\"quantity\":22}")
         ).andExpect(status().isUnauthorized());
     }
-
-    @Test
-    @WithAnonymousUser
-    void anonymousUserTryToGetSparePartEmployeeByIdReturnUnauthrized() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployee/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
-    }
-    @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoFinadAallSparePartAllEmployeeByUsernameReturnUnauthorized() throws Exception{
-        mockMvc.perform(get("/api/sparepart/findallsparepartsbyemployeeusername")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
-    }
     //</editor-fold>
 }

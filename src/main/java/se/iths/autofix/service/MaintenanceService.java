@@ -3,8 +3,12 @@ package se.iths.autofix.service;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.Maintenance;
+import se.iths.autofix.exception.BadInputFormatException;
+import se.iths.autofix.exception.EmployeeNotFoundException;
+import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.repository.MaintenanceRepository;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -15,12 +19,32 @@ public class MaintenanceService {
 
     public MaintenanceService(MaintenanceRepository maintenanceRepository) {
         this.maintenanceRepository = maintenanceRepository;
-        //this.userService = userService;
-    }
+     }
 
     public Maintenance createMaintenance(Maintenance maintenance) {
-        //item.setUser(userService.getAuthenticatedClient());
+        if(maintenance.getPrice()>=0){
         return maintenanceRepository.save(maintenance);
+        }else{
+            throw new BadInputFormatException("Price can not be of negative value.");
+        }
+    }
+
+    public Maintenance updateMaintenance(Maintenance newMaintenance, Long id){
+        if(newMaintenance.getPrice()>=0) {
+            return maintenanceRepository.findById(id)
+                    .map(maintenance -> {
+                        maintenance.setType(newMaintenance.getType());
+                        maintenance.setPrice(newMaintenance.getPrice());
+                        maintenance.setCheckInDate(newMaintenance.getCheckInDate());
+                        maintenance.setCheckOutDate(newMaintenance.getCheckOutDate());
+                        maintenance.setJobHistory(newMaintenance.getJobHistory());
+                        return maintenanceRepository.save(maintenance);
+                    })
+                    .orElseThrow(() -> new MaintenanceNotFoundException("Maintenance has not been found.")
+                    );
+        }else {
+            throw new BadInputFormatException("Price can not be of negative value.");
+        }
     }
 
     public void deleteMaintenance(Long id) {
@@ -53,17 +77,7 @@ public class MaintenanceService {
     }
 
     public Iterable<Maintenance> findAllMaintenancesByClientUsername() {
-        Iterable<Maintenance> allMaintenancesByClientUsername = maintenanceRepository.findAllMaintenancesByClientUsername();
-        return allMaintenancesByClientUsername;
-    }
-
-    public Iterable<Maintenance> findAllMaintenancesByEmployeeId(Long id) {
-        return maintenanceRepository.findAllMaintenancesByEmployeeId(id);
-    }
-
-    public Iterable<Maintenance> findAllMaintenancesByEmployeeUsername() {
-        Iterable<Maintenance> allMaintenancesByEmployeeUsername = maintenanceRepository.findAllMaintenancesByEmployeeUsername();
-        return allMaintenancesByEmployeeUsername;
+        return maintenanceRepository.findAllMaintenancesByClientUsername();
     }
 }
 

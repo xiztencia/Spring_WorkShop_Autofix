@@ -38,7 +38,7 @@ class AutofixAnonymousUserMaintenanceTests {
     @Test
     @WithAnonymousUser
     void anonymousUserTrytoAccessMaintenanceFindAllClientByUsernameReturnForbidden() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
+        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
@@ -74,21 +74,6 @@ class AutofixAnonymousUserMaintenanceTests {
                         "\"price\":2000," +
                         "\"checkInDate\":2020-01-01," +
                         "\"checkOutDate\":2020-01-02}")
-        ).andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    @WithAnonymousUser
-    void anonymousUserTryToGetMaintenanceEmployeeByIdReturnUnauthrized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployee/1")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isUnauthorized());
-    }
-    @Test
-    @WithAnonymousUser
-    void anonymousUserTrytoFinadAallMaintenanceAllEmployeeByUsernameReturnUnauthorized() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyemployeeusername")
-                .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
     //</editor-fold>

@@ -22,7 +22,6 @@ import se.iths.autofix.security.jwt.config.JwtRequestFilter;
 
 
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -73,35 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        // Kolla upp CSRF
-//        http.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//        http.cors().and()
-//                .csrf().disable()
-//                .exceptionHandling()
-//                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/", "/home", "/client/create", "/authenticate").permitAll()
-//                .antMatchers("/h2-console/**").permitAll()
-//                .anyRequest()
-//                .authenticated()
-//             //   .antMatchers("/admin").hasRole("ADMIN")
-//                //.antMatchers("/client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
-//                .and()
-//                .formLogin()
-//                .loginPage("/login").permitAll()
-//                .and()
-//                .logout()
-//                .invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .permitAll();
-//        http.headers().frameOptions().disable();
-//    }
     @Configuration
     @Order(1)
     public class ApiSecurityAdapter extends WebSecurityConfigurerAdapter {
@@ -131,36 +101,22 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http // <= Security available for others (not /api/)
-//                .authorizeRequests()
-//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/resources/**").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .usernameParameter("email")
-//                .passwordParameter("password")
-//                .defaultSuccessUrl("/central", false)
-//                .failureForwardUrl("/login/fail")
-//                .and()
-//                .logout()
-//                .invalidateHttpSession(true)
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/") ------
                 .authorizeRequests()
                 .antMatchers("/", "/home","/signUp").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/createClient").permitAll()
+                .antMatchers("/MaintenanceRequest").hasRole("USER")
+                .antMatchers("/createMaintenanceAsClient").hasRole("USER")
                 .antMatchers("/Employee/**").hasRole("ADMIN")
+                .antMatchers("/Maintenance/**").hasRole("ADMIN")
                 .antMatchers("/createAdmin/**").hasRole("ADMIN")
-                .antMatchers("/saveUser/**").hasRole("ADMIN")
-
-                //  .antMatchers("/Client/**").hasAnyRole("ADMIN","USER")
+                .antMatchers("/editMaintenance/**").hasRole("ADMIN")
+                 .antMatchers("/saveMaintenance/**").hasRole("ADMIN")
+                .antMatchers("/CreateSparePart/**").hasRole("ADMIN")
+                .antMatchers("/saveSparePart").hasRole("ADMIN")
+                .antMatchers("/saveUser").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
-
-             //   .antMatchers("/Client").hasRole("USER") // TODO: Avvakta med denna om denna behövs eller ej
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
@@ -170,7 +126,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .permitAll()
                 .and()
-                .csrf().disable(); // ta bort disable om man vill ta bort åtkomst till /H2-console
+                .csrf().disable(); //TODO ta bort disable om man vill ta bort åtkomst till /H2-console
         http.headers().frameOptions().disable();
     }
 }

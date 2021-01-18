@@ -71,7 +71,7 @@ class AutofixAdminUserClientTests {
     void adminUserTrytoCreateClientIdReturnStatusOk() throws Exception{
         mockMvc.perform(post("/api/client/create")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"username\":\"kalle\",\"firstname\":\"kalle\",\"lastname\":\"anka\",\"email\":\"anka\",\"password\":\"anka\"}")
+                .content("{\"username\":\"Kajsa\",\"firstname\":\"kalle\",\"lastname\":\"anka\",\"email\":\"anka\",\"password\":\"anka\"}")
         ).andExpect(status().isOk());
     }
 

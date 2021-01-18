@@ -321,7 +321,7 @@ Deleted Employee with id: 11
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET| Find all spare parts by id in registry. If wrong ID is entered the message "The spare part id was not found" will occur |http://localhost:8080/api/sparepart/id/{id}|
+|GET| Find a spare part by id in registry. If wrong ID is entered the message "The spare part id was not found" will occur |http://localhost:8080/api/sparepart/id/{id}|
 
 |Response Body Example|
 |---|
@@ -337,7 +337,7 @@ Deleted Employee with id: 11
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET| Find all spare parts by client id from registry.|http://localhost:8080/api/client/id/{id}|
+|GET| Find all spare parts by client id from registry.|http://localhost:8080/api/sparepart/findbyclient/{id}|
 
 |Response Body Example|
 |---|
@@ -426,115 +426,110 @@ Deleted Spare part with id: 9
 |POST|Create a vehicle to registry |http://localhost:8080/api/vehicle/create|
 ```ruby
 {
-    "part":"car wheel",
-    "category":"wheels",
-    "price":"549.0",
-    "quantity":"2"
+    "numberPlate": "XYZ123",
+    "maker": "Honda",
+    "model": "Infinity",    
+    "client":       {
+    "id": 3,
+    "username": "user",
+    "firstname": "user",
+    "lastname": "user",
+    "email": "user",
+    "password": "$2a$10$eX8jNp4thIZvGRJMKaAl7.q3fwhOUcMZqJ6OHkC6D9vsd3CpSG6rm",
+    "vehicles": [],
+    "maintenances": [],
+    "spareParts": []
+  }
 }
 ```
 |Response Body Exemple|
 |---|
 ```ruby
 {
-  "id": 13,
-  "part": "car wheel",
-  "category": "wheels",
-  "price": 549.0,
-  "quantity": 2,
-  "client": null
+  "id": 11,
+  "numberPlate": "XYZ123",
+  "maker": "Honda",
+  "model": "Infinity"
 }
 ```
 # GET 
 |Method|Description|URL|
 |---|---|--|
-|GET| Find all spare parts in registry |http://localhost:8080/api/sparepart/findall
+|GET| Find all vehicles in registry |http://localhost:8080/api/vehicle/findall
 
 |Response Body Example|
 |---|
 ```ruby
 [
   {
-    "id": 7,
-    "part": "car wheel",
-    "category": "wheels",
-    "price": 800.0,
-    "quantity": 1,
-    "client": null
+    "id": 10,
+    "numberPlate": "ABC123",
+    "maker": "Toyota",
+    "model": "Lexus"
   },
   {
-    "id": 8,
-    "part": "back wheel",
-    "category": "mirrors",
-    "price": 549.0,
-    "quantity": 1,
-    "client": null
-  },
-  {
-    "id": 9,
-    "part": "front light",
-    "category": "lights",
-    "price": 1200.0,
-    "quantity": 2,
-    "client": null
+    "id": 11,
+    "numberPlate": "XYZ123",
+    "maker": "Honda",
+    "model": "Infinity"
   }
 ]
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET| Find all spare parts by id in registry. If wrong ID is entered the message "The spare part id was not found" will occur |http://localhost:8080/api/sparepart/id/{id}|
+|GET| Find a vehicle by id in registry. |http://localhost:8080/api/vehicle/id/{id}|
 
 |Response Body Example|
 |---|
 ```ruby
 {
-  "id": 9,
-  "part": "front light",
-  "category": "lights",
-  "price": 1200.0,
-  "quantity": 2,
-  "client": null
+  "id": 10,
+  "numberPlate": "ABC123",
+  "maker": "Toyota",
+  "model": "Levin"
 }
 ```
-|Method|Description|URL|
-|---|---|--|
-|GET| find all spare parts by client|http://localhost:8080/api/sparepart/findbyclient/{id}
-|Method|Description|URL|
-|---|---|--|
-|GET| find all spare parts by clients username, only the the person with admin role can access this|http://localhost:8080/api/sparepart/findallsparepartsbyclientusername/{nameUser}
-
 # PUT
 |Method|Description|URL|
 |---|---|--|
-|PUT|Update a spare part by id in registry |http://localhost:8080/api/sparepart/update/{id}|
+|PUT|Update a vehicle by id in registry |http://localhost:8080/api/vehicle/update/{id}|
 ```ruby
 {
-  "id": 9,
-  "part": "back light",
-  "category": "lights",
-  "price": 1100.0,
-  "quantity": 2,
-  "client": null
+  
+    "id": 10,
+    "numberPlate": "ABC123",
+    "maker": "Toyota",
+    "model": "Levin",
+    "client": {
+      "id": 5,
+      "username": "user2",
+      "firstname": "Jn",
+      "lastname": "Doe",
+      "email": "jhon_doe@google.com",
+      "password": "$2a$10$RemrvgmJpD5/7ToE0MSVd.WdhRhoRFgqrGiUtcOrQn5uiHtynr31S",
+      "vehicles":[],
+    "maintenances": [],
+    "spareParts": []
+  }
 }
 ```
 |Response Body Example|
 |---| 
 ```ruby
 {
-  "id": 9,
-  "part": "back light",
-  "category": "lights",
-  "price": 1100.0,
-  "quantity": 2,
-  "client": null
+  "id": 10,
+  "numberPlate": "ABC123",
+  "maker": "Toyota",
+  "model": "Levin"
 }
 ```
 # DELETE
 |Method|Description|URL|
 |---|---|--|
-|DELETE|Remove an existing spare part with given ID, only person with admin roles can do this |http://localhost:8080/api/sparepart/delete/{id}
+|DELETE|Remove an existing vehicle with given ID. |http://localhost:8080/api/vehicle/delete/{id}
 
 |Response Body Example|
 |---|
 ```ruby
-Deleted Spare part with id: 9
+Deleted Vehicle with id: 10
 ```

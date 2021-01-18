@@ -35,7 +35,7 @@ N, Johansson
 # POST
 |Method|Description|URL|
 |---|---|--|
-|POST|Create a user client to registry |http://localhost:8080/api/client/create|
+|POST| Create a user client to registry |http://localhost:8080/api/client/create|
 ```ruby
 {
 	"username":"Kalle",
@@ -60,7 +60,7 @@ N, Johansson
 ```
 |Method|Description|URL|
 |---|---|--|
-|POST|Get user token |http://localhost:8080/api/authenticate|
+|POST| Get user token |http://localhost:8080/api/authenticate|
 ```ruby
 {
 	"username":"Kalle",
@@ -77,7 +77,7 @@ N, Johansson
 # PUT
 |Method|Description|URL|
 |---|---|--|
-|PUT|Update user client in registry |http://localhost:8080/api/client/update/{id}|
+|PUT| Update user client in registry |http://localhost:8080/api/client/update/{id}|
 ```ruby
 {
 	"username":"user",
@@ -103,7 +103,7 @@ N, Johansson
 # GET
 |Method|Description|URL|
 |---|---|--|
-|GET|Find all clients from registry|http://localhost:8080/api/client/findall|
+|GET| Find all clients from registry |http://localhost:8080/api/client/findall|
 
 |Response Body Exemple|
 |---|
@@ -135,7 +135,7 @@ N, Johansson
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET|Find a user client by id from registry|http://localhost:8080/api/client/id/{id}|
+|GET| Find a user client by id from registry |http://localhost:8080/api/client/id/{id}|
 
 |Response Body Example|
 |---|
@@ -145,7 +145,7 @@ N, Johansson
 # DELETE
 |Method|Description|URL|
 |---|---|--|
-|DELETE|Remove an existing user client with given ID from registry|http://localhost:8080/api/client/delete/{id}|
+|DELETE| Remove an existing user client with given ID from registry |http://localhost:8080/api/client/delete/{id}|
 
 |Response Body Example|
 |---|
@@ -159,7 +159,7 @@ Deleted Client with id: 3
 # POST
 |Method|Description|URL|
 |---|---|--|
-|POST|Create a user employee to registry |http://localhost:8080/api/employee/create|
+|POST| Create a user employee to registry |http://localhost:8080/api/employee/create|
 ```ruby
 {
 	"username":"Kalle",
@@ -181,7 +181,7 @@ Deleted Client with id: 3
 ```
 |Method|Description|URL|
 |---|---|--|
-|POST|Get user token |http://localhost:8080/api/authenticate|
+|POST| Get user token |http://localhost:8080/api/authenticate|
 ```ruby
 {
 	"username":"Kalle",
@@ -198,7 +198,7 @@ Deleted Client with id: 3
 # PUT
 |Method|Description|URL|
 |---|---|--|
-|PUT|Update user employee in registry |http://localhost:8080/api/employee/update/{id}|
+|PUT| Update user employee in registry |http://localhost:8080/api/employee/update/{id}|
 ```ruby
 {
 	"username":"user",
@@ -221,7 +221,7 @@ Deleted Client with id: 3
 # GET
 |Method|Description|URL|
 |---|---|--|
-|GET|Find all employees from registry|http://localhost:8080/api/employee/findall|
+|GET| Find all employees from registry |http://localhost:8080/api/employee/findall|
 
 |Response Body Exemple|
 |---|
@@ -239,7 +239,7 @@ Deleted Client with id: 3
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET|Find a user employee by id from registry|http://localhost:8080/api/employee/id/{id}|
+|GET| Find a user employee by id from registry |http://localhost:8080/api/employee/id/{id}|
 
 |Response Body Example|
 |---|
@@ -249,7 +249,7 @@ Deleted Client with id: 3
 # DELETE
 |Method|Description|URL|
 |---|---|--|
-|DELETE|Remove an existing user employee with given ID from registry|http://localhost:8080/api/employee/delete/{id}|
+|DELETE| Remove an existing user employee with given ID from registry |http://localhost:8080/api/employee/delete/{id}|
 
 |Response Body Example|
 |---|
@@ -263,7 +263,7 @@ Deleted Employee with id: 11
 # POST
 |Method|Description|URL|
 |---|---|--|
-|POST|Create a spare part category that only admin can do, if you don't put any sparepart and send an error message will occur "Fill in spare part name" |http://localhost:8080/api/sparepart/create|
+|POST| Create a spare part category that only admin can do, if you don't put any sparepart and send an error message will occur "Fill in spare part name" |http://localhost:8080/api/sparepart/create|
 ```ruby
 {
     "part":"car wheel",
@@ -337,7 +337,7 @@ Deleted Employee with id: 11
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET| Find all spare parts by client id from registry.|http://localhost:8080/api/sparepart/findbyclient/{id}|
+|GET| Find all spare parts by client id from registry |http://localhost:8080/api/sparepart/findbyclient/{id}|
 
 |Response Body Example|
 |---|
@@ -365,7 +365,7 @@ Deleted Employee with id: 11
 
 |Method|Description|URL|
 |---|---|--|
-|GET| find all spare parts by clients username, only the the person with admin role can access this|http://localhost:8080/api/sparepart/findallsparepartsbyclientusername/{nameUser}
+|GET| Find all spare parts by clients username, only the the person with admin role can access this|http://localhost:8080/api/sparepart/findallsparepartsbyclientusername/{nameUser}
 
 |Response Body Example|
 |---|
@@ -384,7 +384,7 @@ Deleted Employee with id: 11
 # PUT
 |Method|Description|URL|
 |---|---|--|
-|PUT|Update a spare part by id in registry |http://localhost:8080/api/sparepart/update/{id}|
+|PUT| Update a spare part by id in registry |http://localhost:8080/api/sparepart/update/{id}|
 ```ruby
 {
   "id": 9,
@@ -410,7 +410,7 @@ Deleted Employee with id: 11
 # DELETE
 |Method|Description|URL|
 |---|---|--|
-|DELETE|Remove an existing spare part with given ID, only person with admin roles can do this |http://localhost:8080/api/sparepart/delete/{id}
+|DELETE| Remove an existing spare part with given ID, only person with admin roles can do this |http://localhost:8080/api/sparepart/delete/{id}
 
 |Response Body Example|
 |---|
@@ -423,7 +423,7 @@ Deleted Spare part with id: 9
 # POST
 |Method|Description|URL|
 |---|---|--|
-|POST|Create a vehicle to registry |http://localhost:8080/api/vehicle/create|
+|POST| Create a vehicle to registry |http://localhost:8080/api/vehicle/create|
 ```ruby
 {
     "numberPlate": "XYZ123",
@@ -477,7 +477,7 @@ Deleted Spare part with id: 9
 ```
 |Method|Description|URL|
 |---|---|--|
-|GET| Find a vehicle by id in registry. |http://localhost:8080/api/vehicle/id/{id}|
+|GET| Find a vehicle by id in registry |http://localhost:8080/api/vehicle/id/{id}|
 
 |Response Body Example|
 |---|
@@ -492,7 +492,7 @@ Deleted Spare part with id: 9
 # PUT
 |Method|Description|URL|
 |---|---|--|
-|PUT|Update a vehicle by id in registry |http://localhost:8080/api/vehicle/update/{id}|
+|PUT| Update a vehicle by id in registry |http://localhost:8080/api/vehicle/update/{id}|
 ```ruby
 {
   
@@ -526,7 +526,7 @@ Deleted Spare part with id: 9
 # DELETE
 |Method|Description|URL|
 |---|---|--|
-|DELETE|Remove an existing vehicle with given ID. |http://localhost:8080/api/vehicle/delete/{id}
+|DELETE| Remove an existing vehicle with given ID |http://localhost:8080/api/vehicle/delete/{id}
 
 |Response Body Example|
 |---|

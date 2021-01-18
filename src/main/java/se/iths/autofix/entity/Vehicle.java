@@ -27,25 +27,31 @@ public class Vehicle {
         this.model = model;
     }
 
-    public Vehicle(@NotEmpty String numberPlate, String maker, String model, Client vehicle_client) {
+    public Vehicle(@NotEmpty String numberPlate, String maker, String model, Client client) {
         this.numberPlate = numberPlate;
         this.maker = maker;
         this.model = model;
-        this.vehicle_client = vehicle_client;
+        this.vehicle_client = client;
     }
 
     public Vehicle() {
     }
 
-    public Client getClient() {
-        return vehicle_client;
-    }
+//    public Client getClient() {
+//        return vehicle_client;
+//    }
 
     public void setClient(Client client) {
         this.vehicle_client = client;
     }
 
+    public void setVehicle_client(Client client) {
+        this.vehicle_client = client;
+    }
 
+    public Client getVehicle_client() {
+        return vehicle_client;
+    }
 
     public Long getId() {
         return id;

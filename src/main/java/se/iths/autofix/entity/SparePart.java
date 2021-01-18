@@ -20,14 +20,14 @@ public class SparePart {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private Client client;
+    private Client spare_client;
 
     public SparePart(@NotEmpty String part, String category, double price, int quantity, Client client) {
         this.part = part;
         this.category = category;
         this.price = price;
         this.quantity = quantity;
-        this.client = client;
+        this.spare_client = client;
     }
 
     public SparePart(String category, @NotEmpty String part, double price, int quantity) {
@@ -41,12 +41,18 @@ public class SparePart {
     }
 
     public void setClient(Client client) {
-        this.client = client;
+        this.spare_client = client;
     }
 
-    public Client getClient() {
-        return client;
+    public void setSpare_client(Client client) {
+        this.spare_client = client;
     }
+
+    public Client getSpare_client() {
+        return spare_client;
+    }
+
+
 
     public Long getId() {
         return id;

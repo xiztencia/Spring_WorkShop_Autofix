@@ -65,7 +65,7 @@ public class MaintenanceController {
         return maintenanceService.findAllMaintenancesByClientId(id);
     }
 
-    @GetMapping("/findallmaintenancessbyclientusername")
+    @GetMapping("/findallmaintenancesbyclientusername")
     Iterable<Maintenance> findAllMaintenancesByClientUsername() {
         return maintenanceService.findAllMaintenancesByClientUsername();
     }

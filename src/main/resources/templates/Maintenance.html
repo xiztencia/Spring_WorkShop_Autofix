@@ -27,6 +27,7 @@ Maintenance Request from Costumers    </h1>
             <th> Check in date</th>
             <th> Check out date</th>
             <th> Maintenance Log</th>
+            <th>Settings</th>
         </tr>
         </thead>
         <tbody>
@@ -37,21 +38,16 @@ Maintenance Request from Costumers    </h1>
             <td th:text="${maintenance.checkInDate}"></td>
             <td th:text="${maintenance.checkOutDate}"></td>
             <td th:text="${maintenance.jobHistory}"></td>
+            <td>
+                <a th:href="@{'/editMaintenance/'+${maintenance.id}}">Edit</a>
+            </td>
 
         </tr>
         </tbody>
     </table>
 </div>
 <br>
-<form action="#" th:action="@{/updateMaintenance/{id}}" th:object="${maintenance}"  method="POST">
-    Input Maintenance ID <input type="number"  name="id"/>
-    Set Maintenance price <input type="number"th:field="*{price}" name="price"/>
-    Set Maintenance check in date <input type="date" th:field="*{checkin}" name="checkin"/>
-    Set Maintenance check out date <input type="date" th:field="*{checkout}" name="checkout"/>
-    Set Maintenance log message <input type="text" name="history"/>
-    <br>
-    <button name="submit" type="submit" value="0">Submit</button>
-</form>
+
 
 </body>
 </html>

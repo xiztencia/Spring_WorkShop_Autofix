@@ -2,7 +2,7 @@
 ## **Project creation**
 
 - This is a car dealership for vehicle, maintenance and spare parts sale for all makes and model. The project is developed with Spring Boot for our Java 19 course ComplexJava. While the Backend is done in Spring Boot we also have used PostgrSQL for our database maintenance, Thymeleaf
-for our frontend and Heroku for deployment.
+for our frontend and Heroku for deployment. The project har an inbuild H2 database that is triggered by default if no other external DB involved. 
 
 Project is developed by:
 ```ruby

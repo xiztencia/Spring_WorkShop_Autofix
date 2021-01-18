@@ -527,7 +527,8 @@ Deleted Spare part with id: 9
 
 |Method|Description|URL|
 |---|---|--|
-|GET| Find all maintenance by clients username |http://localhost:8080/api/sparepart/findallmaintenancesbyclientusername/{nameUser}
+|GET| Find all maintenance by clients username |http://localhost:8080/api/sparepart/findallmaintenancesbyclientusername|
+
 
 |Response Body Example|
 |---|
@@ -535,10 +536,19 @@ Deleted Spare part with id: 9
 [
   {
     "id": 10,
-    "part": "back wheel",
-    "category": "wheels",
+    "type": "Motor CheckUp",
     "price": 800.0,
-    "quantity": 1
+    "checkInDate": null,
+    "checkOutDate": null,
+    "jobHistory": ""
+  },
+  {
+    "id": 11,
+    "type": "Tire Shift",
+    "price": 600.0,
+    "checkInDate": null,
+    "checkOutDate": null,
+    "jobHistory": ""
   }
 ]
 ```

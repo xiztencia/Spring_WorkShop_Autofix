@@ -40,6 +40,15 @@ public class Maintenance {
         this.checkOutDate = checkOutDate;
         this.mainten_client=client;
     }
+    public Maintenance(@NotEmpty Long id,@NotEmpty String type, double price, Date checkInDate, Date checkOutDate, String jobHistory) {
+        this.id = id;
+        this.type = type;
+        this.price = price;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.jobHistory += jobHistory;
+    }
+
     public Maintenance() {
     }
 

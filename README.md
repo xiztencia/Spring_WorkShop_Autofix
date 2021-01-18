@@ -419,6 +419,168 @@ Deleted Spare part with id: 9
 ```
 
 
+# Maintenance
+# POST
+|Method|Description|URL|
+|---|---|--|
+|POST| Create a maintenance category in registry |http://localhost:8080/api/maintenance/create|
+```ruby
+{
+    "type": "Motor CheckUp",
+    "price": 800.0,
+    "checkInDate": null,
+    "checkOutDate": null,
+    "jobHistory": "",
+    "client":    {	"id": 3,
+			"username": "user",
+			"firstname": "user",
+			"lastname": "user",
+			"email": "user",
+			"password": "$2a$10$/LUuZbPNeCaRElaWuku3q.qK/yiD/0/n6xNlUWQ/axo1NLv9Av3PC",
+			"vehicles": [],
+			"maintenances": [],
+			"spareParts": []
+		}
+}
+```
+|Response Body Exemple|
+|---|
+```ruby
+{
+  "id": 12,
+  "type": "Wheel Storage",
+  "price": 800.0,
+  "checkInDate": null,
+  "checkOutDate": null,
+  "jobHistory": ""
+}
+```
+# GET 
+|Method|Description|URL|
+|---|---|--|
+|GET| Find all maintenance in registry |http://localhost:8080/api/maintenance/findall
+
+|Response Body Example|
+|---|
+```ruby
+[
+  {
+    "id": 13,
+    "type": "Motor CheckUp",
+    "price": 800.0,
+    "checkInDate": null,
+    "checkOutDate": null,
+    "jobHistory": ""
+  },
+  {
+    "id": 15,
+    "type": "Tire Change",
+    "price": 800.0,
+    "checkInDate": null,
+    "checkOutDate": null,
+    "jobHistory": ""
+  }
+]
+```
+|Method|Description|URL|
+|---|---|--|
+|GET| Find a maintenance by id in registry |http://localhost:8080/api/maintenance/id/{id}|
+
+|Response Body Example|
+|---|
+```ruby
+{
+  "id": 13,
+  "type": "Motor CheckUp",
+  "price": 800.0,
+  "checkInDate": null,
+  "checkOutDate": null,
+  "jobHistory": ""
+}
+```
+|Method|Description|URL|
+|---|---|--|
+|GET| Find all maintenance by client id from registry |http://localhost:8080/api/maintenance/findbyclient/{id}|
+
+|Response Body Example|
+|---|
+```ruby
+[
+  {
+    "id": 12,
+    "type": "Wheel Storage",
+    "price": 800.0,
+    "checkInDate": null,
+    "checkOutDate": null,
+    "jobHistory": ""
+  },
+  {
+    "id": 13,
+    "type": "Motor CheckUp",
+    "price": 800.0,
+    "checkInDate": null,
+    "checkOutDate": null,
+    "jobHistory": ""
+  }
+]
+```
+
+|Method|Description|URL|
+|---|---|--|
+|GET| Find all maintenance by clients username |http://localhost:8080/api/sparepart/findallmaintenancesbyclientusername/{nameUser}
+
+|Response Body Example|
+|---|
+```ruby
+[
+  {
+    "id": 10,
+    "part": "back wheel",
+    "category": "wheels",
+    "price": 800.0,
+    "quantity": 1
+  }
+]
+```
+
+# PUT
+|Method|Description|URL|
+|---|---|--|
+|PUT| Update a maintenance by id in registry |http://localhost:8080/api/maintenance/update/{id}|
+```ruby
+{
+  "id": 10,
+  "type": "Tire Change",
+  "price": 600.0,
+  "checkInDate": null,
+  "checkOutDate": null,
+  "jobHistory": ""
+}
+```
+|Response Body Example|
+|---| 
+```ruby
+{
+  "id": 10,
+  "type": "Tire Change",
+  "price": 600.0,
+  "checkInDate": null,
+  "checkOutDate": null,
+  "jobHistory": ""
+}
+```
+# DELETE
+|Method|Description|URL|
+|---|---|--|
+|DELETE| Remove an existing maintenance with given ID |http://localhost:8080/api/maintenance/delete/{id}
+
+|Response Body Example|
+|---|
+```ruby
+Deleted Maintenance job with id: 10
+```
+
+
 # Vehicle
 # POST
 |Method|Description|URL|

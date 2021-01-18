@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.jms.sender.Sender;
-import se.iths.autofix.security.AutofixClientPrincipal;
 import se.iths.autofix.service.ClientService;
 import se.iths.autofix.service.MaintenanceService;
 import se.iths.autofix.service.SparePartService;
@@ -20,12 +19,13 @@ public class ClientWebController {
 
     @Autowired
     private SparePartService sparePartService;
-    @Autowired
-    MaintenanceService maintenanceService;
-    @Autowired
-    ClientService clientService;
 
-    AutofixClientPrincipal autofixClientPrincipal;
+    @Autowired
+    private MaintenanceService maintenanceService;
+
+    @Autowired
+    private ClientService clientService;
+
     @Autowired
     private Sender jmsSender;
 

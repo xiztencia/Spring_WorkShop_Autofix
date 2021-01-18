@@ -59,7 +59,7 @@ class AutofixAdminUserMaintenanceTests {
     @Test
 
     void adminUserTrytoAccessMaintenanceFindAllClientByUsernameReturnOk() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
+        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }

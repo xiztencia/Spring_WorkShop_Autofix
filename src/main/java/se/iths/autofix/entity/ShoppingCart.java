@@ -25,7 +25,6 @@ public class ShoppingCart {
     }
 
     public ShoppingCart(int quantity, double totalPrice) {
-        //  this.type = type;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }

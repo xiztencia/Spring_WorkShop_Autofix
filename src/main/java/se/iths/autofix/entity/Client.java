@@ -1,8 +1,9 @@
 package se.iths.autofix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,13 +20,13 @@ public class Client implements Serializable {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "vehicle_client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle_client", fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles = new HashSet<>();
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "mainten_client", fetch = FetchType.LAZY)
     private Set<Maintenance> maintenances = new HashSet<>();
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "spare_client", fetch = FetchType.LAZY)
     private Set<SparePart> spareParts = new HashSet<>();
 
     public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {
@@ -78,12 +79,12 @@ public class Client implements Serializable {
 
     public void addSparePart(SparePart sparePart) {
         spareParts.add(sparePart);
-        sparePart.setClient(this);
+        sparePart.setSpare_client(this);
     }
 
     public void removeSparePart(SparePart sparePart) {
         spareParts.remove(sparePart);
-        sparePart.setClient(null);
+        sparePart.setSpare_client(null);
     }
 
     public Set<SparePart> getSpareParts() {

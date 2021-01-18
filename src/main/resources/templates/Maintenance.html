@@ -22,19 +22,25 @@ Maintenance Request from Costumers    </h1>
         <thead>
         <tr>
             <th> Maintenance ID</th>
+            <th> Maintenance type</th>
             <th> Price</th>
             <th> Check in date</th>
             <th> Check out date</th>
             <th> Maintenance Log</th>
+            <th>Settings</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="maintenance: ${allMaintenances}">
             <td th:text="${maintenance.id}"></td>
+            <td th:text="${maintenance.type}"></td>
             <td th:text="${maintenance.price}"></td>
             <td th:text="${maintenance.checkInDate}"></td>
             <td th:text="${maintenance.checkOutDate}"></td>
             <td th:text="${maintenance.jobHistory}"></td>
+            <td>
+                <a th:href="@{'/editMaintenance/'+${maintenance.id}}">Edit</a>
+            </td>
 
         </tr>
         </tbody>

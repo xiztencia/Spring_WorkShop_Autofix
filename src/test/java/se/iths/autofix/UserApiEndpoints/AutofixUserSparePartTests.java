@@ -1,7 +1,6 @@
 package se.iths.autofix.UserApiEndpoints;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -51,8 +49,8 @@ class AutofixUserSparePartTests {
         Client client = new Client("Kalle","Kalle","Anka","kalle@anka.com","kajsa");
         SparePart sparepart = new SparePart("Brake System", "brake disc", 666, 22);
         SparePart sparepart1 = new SparePart("Brake System2", "brake disc2", 666, 22);
-        sparepart.setClient(client);
-        sparepart1.setClient(client);
+        sparepart.setSpare_client(client);
+        sparepart1.setSpare_client(client);
         when(repository.findAllSparePartsByClientUsername("Kalle")).thenReturn(Arrays.asList(sparepart,sparepart1));
         when(repository.existsById(1L)).thenReturn(true);
         when(repository.findById(1L)).thenReturn( Optional.of(sparepart));

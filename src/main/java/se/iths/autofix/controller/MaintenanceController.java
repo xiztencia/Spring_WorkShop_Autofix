@@ -19,7 +19,7 @@ public class MaintenanceController {
         this.maintenanceService = maintenanceService;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
+
     @PostMapping("/create")
     public Maintenance createMaintenance(@RequestBody Maintenance maintenance) {
         if(maintenance.getType().isEmpty()){
@@ -39,6 +39,7 @@ public class MaintenanceController {
         maintenanceService.addJobHistoryEvent(employee, message, id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @GetMapping("/findall")
     public Iterable<Maintenance> findAllMaintenances() {
         return maintenanceService.findAllMaintenances();
@@ -54,8 +55,9 @@ public class MaintenanceController {
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
-    public void deleteMaintenance(@PathVariable Long id) {
+    public ResponseEntity deleteMaintenance(@PathVariable Long id) {
         maintenanceService.deleteMaintenance(id);
+        return ResponseEntity.ok("Deleted Maintenance job with id: "+id);
     }
 
     @GetMapping("/findbyclient/{id}")
@@ -63,22 +65,9 @@ public class MaintenanceController {
         return maintenanceService.findAllMaintenancesByClientId(id);
     }
 
-    @GetMapping("/findallmaintenancessbyclientusername")
+    @GetMapping("/findallmaintenancesbyclientusername")
     Iterable<Maintenance> findAllMaintenancesByClientUsername() {
         return maintenanceService.findAllMaintenancesByClientUsername();
     }
-
-//    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
-//    @GetMapping("/findallmaintenancesbyemployee/{id}")
-//    public Iterable<Maintenance> getAllMaintenancesByEmployee(@PathVariable Long id) {
-//        return maintenanceService.findAllMaintenancesByEmployeeId(id);
-//    }
-//
-//    @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
-//    @GetMapping("/findallmaintenancesbyemployeeusername")
-//    Iterable<Maintenance> findAllMaintenancesByEmployeeUsername() {
-//        return maintenanceService.findAllMaintenancesByEmployeeUsername();
-//    }
-
 
 }

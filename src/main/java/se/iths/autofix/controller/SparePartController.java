@@ -51,8 +51,9 @@ public class SparePartController {
 
     @PreAuthorize("hasAuthority('ADMIN') or hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
-    public void deleteSparePart(@PathVariable Long id) {
+    public ResponseEntity  deleteSparePart(@PathVariable Long id) {
         sparePartService.deleteSparePart(id);
+        return ResponseEntity.ok("Deleted Spare part with id: "+id);
     }
 
     @GetMapping("/findbyclient/{id}")

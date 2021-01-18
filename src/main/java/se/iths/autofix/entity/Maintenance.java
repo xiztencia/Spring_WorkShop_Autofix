@@ -1,7 +1,8 @@
 package se.iths.autofix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
@@ -18,13 +19,12 @@ public class Maintenance {
     private Date checkOutDate;
     private String jobHistory;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private Client client;
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Client mainten_client;
 
     public void setClient(Client client) {
-        this.client = client;
+        this.mainten_client = client;
     }
 
     public Maintenance(@NotEmpty String type, double price, Date checkInDate, Date checkOutDate) {
@@ -33,8 +33,31 @@ public class Maintenance {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
+    public Maintenance(@NotEmpty String type, double price, Date checkInDate, Date checkOutDate,Client client) {
+        this.type = type;
+        this.price = price;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.mainten_client=client;
+    }
+    public Maintenance(@NotEmpty Long id,@NotEmpty String type, double price, Date checkInDate, Date checkOutDate, String jobHistory) {
+        this.id = id;
+        this.type = type;
+        this.price = price;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.jobHistory += jobHistory;
+    }
 
     public Maintenance() {
+    }
+
+    public Client getMainten_client() {
+        return mainten_client;
+    }
+
+    public void setMainten_client(Client mainten_client) {
+        this.mainten_client = mainten_client;
     }
 
     public Long getId() {

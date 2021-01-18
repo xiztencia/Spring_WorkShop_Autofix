@@ -38,7 +38,7 @@ class AutofixAnonymousUserMaintenanceTests {
     @Test
     @WithAnonymousUser
     void anonymousUserTrytoAccessMaintenanceFindAllClientByUsernameReturnForbidden() throws Exception{
-        mockMvc.perform(get("/api/maintenance/findallmaintenancessbyclientusername")
+        mockMvc.perform(get("/api/maintenance/findallmaintenancesbyclientusername")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }

@@ -448,7 +448,7 @@ Deleted Spare part with id: 9
 ```ruby
 {
   "id": 12,
-  "type": "Wheel Storage",
+  "type": "Motor CheckUp",
   "price": 800.0,
   "checkInDate": null,
   "checkOutDate": null,

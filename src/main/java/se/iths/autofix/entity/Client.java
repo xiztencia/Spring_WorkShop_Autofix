@@ -37,14 +37,14 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-//    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password, Vehicle vehicles) {
-//        this.username = username;
-//        this.firstname = firstname;
-//        this.lastname = lastname;
-//        this.email = email;
-//        this.password = password;
-//        this.vehicles.add(vehicles);
-//    }
+    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password, Vehicle vehicles) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.vehicles.add(vehicles);
+    }
 
     public Client() {
     }

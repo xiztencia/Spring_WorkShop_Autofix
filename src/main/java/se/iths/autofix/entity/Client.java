@@ -1,8 +1,9 @@
 package se.iths.autofix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "mainten_client", fetch = FetchType.LAZY)
     private Set<Maintenance> maintenances = new HashSet<>();
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "spare_client", fetch = FetchType.LAZY)
     private Set<SparePart> spareParts = new HashSet<>();
 
     public Client(@NotEmpty String username, String firstname, String lastname, String email, String password) {
@@ -36,14 +37,14 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password, Vehicle vehicles) {
-        this.username = username;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-        this.vehicles.add(vehicles);
-    }
+//    public Client(@NotEmpty String username, String firstname, String lastname, String email, String password, Vehicle vehicles) {
+//        this.username = username;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.email = email;
+//        this.password = password;
+//        this.vehicles.add(vehicles);
+//    }
 
     public Client() {
     }
@@ -78,12 +79,12 @@ public class Client implements Serializable {
 
     public void addSparePart(SparePart sparePart) {
         spareParts.add(sparePart);
-        sparePart.setClient(this);
+        sparePart.setSpare_client(this);
     }
 
     public void removeSparePart(SparePart sparePart) {
         spareParts.remove(sparePart);
-        sparePart.setClient(null);
+        sparePart.setSpare_client(null);
     }
 
     public Set<SparePart> getSpareParts() {

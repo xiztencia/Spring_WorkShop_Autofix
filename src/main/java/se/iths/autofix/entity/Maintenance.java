@@ -13,7 +13,7 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //@NotEmpty
+    @NotEmpty
     private String type;
     private double price;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

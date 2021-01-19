@@ -18,6 +18,9 @@
 <br>
 <form action="#" th:action="@{'/saveMaintanence/' + ${maintenance.id}}" th:object="${maintenance}" method="POST">
 <!--    <input type="hidden" th:name="id" th:value="id" th:field="*{id}"/>-->
+    <label for="type">Set Maintenance type</label>
+    <input type="text" th:field="*{type}" id="type" placeholder="type">
+    <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
     <label for="price">Set Maintenance price</label>
     <input type="number" th:field="*{price}" id="price" placeholder="Price">
     <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>

@@ -50,7 +50,7 @@ public class ClientWebController {
         maintenance.setPrice(0);
         maintenance.setCheckInDate(new Date());
         maintenance.setCheckOutDate(new Date());
-        maintenance.setJobHistory("Order Placed by "+currentPrincipalName+" at "+ new Date() +" .");
+        maintenance.setJobHistory("Order Placed by "+currentPrincipalName+" at "+ new Date() +" .\n");
         maintenance.setClient(clientService.getClientByUsername(currentPrincipalName));
         maintenanceService.createMaintenance(maintenance);
         return "redirect:/MaintenanceRequest";

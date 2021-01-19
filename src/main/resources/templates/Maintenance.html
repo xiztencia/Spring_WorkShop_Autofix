@@ -27,7 +27,9 @@ Maintenance Request from Costumers    </h1>
             <th> Check in date</th>
             <th> Check out date</th>
             <th> Maintenance Log</th>
+            <th>Customer ID</th>
             <th>Settings</th>
+
         </tr>
         </thead>
         <tbody>
@@ -38,6 +40,7 @@ Maintenance Request from Costumers    </h1>
             <td th:text="${maintenance.checkInDate}"></td>
             <td th:text="${maintenance.checkOutDate}"></td>
             <td th:text="${maintenance.jobHistory}"></td>
+            <td th:text="${maintenance.mainten_client.id}"></td>
             <td>
                 <a th:href="@{'/editMaintenance/'+${maintenance.id}}">Edit</a>
             </td>

@@ -1,6 +1,7 @@
 package se.iths.autofix.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -12,10 +13,12 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotEmpty
+    //@NotEmpty
     private String type;
     private double price;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date checkInDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date checkOutDate;
     private String jobHistory;
 
@@ -46,7 +49,7 @@ public class Maintenance {
         this.price = price;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
-        this.jobHistory += jobHistory;
+        this.jobHistory = jobHistory + "\n";
     }
 
     public Maintenance() {

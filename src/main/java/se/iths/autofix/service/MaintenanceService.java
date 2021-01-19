@@ -37,7 +37,7 @@ public class MaintenanceService {
                         maintenance.setPrice(newMaintenance.getPrice());
                         maintenance.setCheckInDate(newMaintenance.getCheckInDate());
                         maintenance.setCheckOutDate(newMaintenance.getCheckOutDate());
-                        maintenance.setJobHistory(newMaintenance.getJobHistory());
+                       // maintenance.setJobHistory(newMaintenance.getJobHistory());
                         return maintenanceRepository.save(maintenance);
                     })
                     .orElseThrow(() -> new MaintenanceNotFoundException("Maintenance has not been found.")
@@ -67,7 +67,7 @@ public class MaintenanceService {
             throw new Exception();
 
         String jobHistory = servicejob.get().getJobHistory();
-        jobHistory = jobHistory + "\n " + LocalDate.now() + " : " + employee.getUsername() + " " + message;
+        jobHistory = jobHistory + "\n " + LocalDate.now() + " : " + employee.getUsername() + " " + message + "\n";
         servicejob.get().setJobHistory(jobHistory);
         maintenanceRepository.save(servicejob.get());
     }

@@ -40,6 +40,7 @@ public class ClientWebController {
     @GetMapping("/MaintenanceRequest")
     public String readMaintenance(Model model){
         model.addAttribute("maintenanceObj", new Maintenance());
+        model.addAttribute("clientMaintenance", maintenanceService.findAllMaintenancesByClientUsername());
         return "MaintenanceRequest";
     }
     @GetMapping("/createMaintenanceAsClient")
@@ -55,4 +56,5 @@ public class ClientWebController {
         maintenanceService.createMaintenance(maintenance);
         return "redirect:/MaintenanceRequest";
     }
+
 }

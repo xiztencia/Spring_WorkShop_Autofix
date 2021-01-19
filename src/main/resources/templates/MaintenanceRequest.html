@@ -14,6 +14,34 @@
 <br>
 <br>
 <br>
+<div class="container my-2">
+
+         <h1 th:inline="text">Maintenance Requests by [[${#httpServletRequest.remoteUser}]]</h1>
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th> Maintenance ID</th>
+            <th> Maintenance type</th>
+            <th> Price</th>
+            <th> Check in date</th>
+            <th> Check out date</th>
+            <th> Maintenance Log</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="maintenance: ${clientMaintenance}">
+            <td th:text="${maintenance.id}"></td>
+            <td th:text="${maintenance.type}"></td>
+            <td th:text="${maintenance.price}"></td>
+            <td th:text="${maintenance.checkInDate}"></td>
+            <td th:text="${maintenance.checkOutDate}"></td>
+            <td th:text="${maintenance.jobHistory}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
 Make a Maintenance Request
 <form action="#" th:action="@{/createMaintenanceAsClient}" th:object="${maintenanceObj}" method="GET">
     Maintenance Type : <label>

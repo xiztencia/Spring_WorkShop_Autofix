@@ -3,8 +3,6 @@ package se.iths.autofix;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 
 @SpringBootApplication
 public class AutofixApplication {

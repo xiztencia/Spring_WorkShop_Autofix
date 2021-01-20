@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
     <title>AutoFix</title>
@@ -25,9 +24,6 @@
                             <div class="col-sm-6 col-sm-offset-3">
                             <input type="submit" name="login-submit" id="login-submit"
                                    class="form-control btn btn-primary" value="Enter the world of Autofix" />
-                                <div sec:authentication="name">
-                                      The value of the "name" property of the authentication object should appear here.
-                                </div>
                             </div>
                         </form>
                     </div>

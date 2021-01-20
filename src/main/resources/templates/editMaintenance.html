@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"> <!-- ISO-8859-1 -->
+    <meta charset="UTF-8">
     <title>Incoming Maintenance Requests</title>
 
     <link rel="stylesheet"
@@ -17,7 +17,6 @@
 <br>
 <br>
 <form action="#" th:action="@{'/saveMaintanence/' + ${maintenance.id}}" th:object="${maintenance}" method="POST">
-<!--    <input type="hidden" th:name="id" th:value="id" th:field="*{id}"/>-->
     <label for="type">Set Maintenance type</label>
     <input type="text" th:field="*{type}" id="type" placeholder="type">
     <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>

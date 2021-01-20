@@ -25,16 +25,10 @@ public class ClientService {
     private ClientRepository clientRepository;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    // Constructor injection
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
-    // Setter injection
-//    @Autowired
-//    void setClientRepository(ClientRepository clientRepository) {
-//        this.clientRepository = clientRepository;
-//    }
 
 
     public Client createClient(Client client){

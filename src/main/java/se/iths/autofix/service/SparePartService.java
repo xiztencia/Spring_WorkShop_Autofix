@@ -1,10 +1,8 @@
 package se.iths.autofix.service;
 
 import org.springframework.stereotype.Service;
-import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.exception.BadInputFormatException;
-import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.exception.SparepartNotFoundException;
 import se.iths.autofix.repository.SparePartRepository;
 

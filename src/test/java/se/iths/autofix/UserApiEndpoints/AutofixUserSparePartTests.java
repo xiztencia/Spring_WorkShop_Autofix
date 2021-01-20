@@ -19,10 +19,8 @@ import se.iths.autofix.controller.SparePartController;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.repository.SparePartRepository;
-
 import java.util.Arrays;
 import java.util.Optional;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

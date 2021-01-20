@@ -45,7 +45,6 @@ public class ClientWebController {
     }
     @GetMapping("/createMaintenanceAsClient")
     public String saveMaintenance (Maintenance maintenance){
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         maintenance.setPrice(0);

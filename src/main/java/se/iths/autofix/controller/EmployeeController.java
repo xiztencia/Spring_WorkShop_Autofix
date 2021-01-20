@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.exception.BadInputFormatException;
 import se.iths.autofix.jms.sender.Sender;

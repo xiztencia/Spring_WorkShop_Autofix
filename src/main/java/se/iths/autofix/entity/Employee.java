@@ -2,9 +2,6 @@ package se.iths.autofix.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Employee {

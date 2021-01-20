@@ -18,9 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import se.iths.autofix.controller.VehicleController;
 import se.iths.autofix.entity.Vehicle;
 import se.iths.autofix.repository.VehicleRepository;
-
 import java.util.Optional;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

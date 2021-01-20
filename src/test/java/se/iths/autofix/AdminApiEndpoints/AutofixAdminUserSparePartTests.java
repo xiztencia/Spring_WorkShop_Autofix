@@ -19,10 +19,8 @@ import se.iths.autofix.controller.SparePartController;
 import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.SparePart;
 import se.iths.autofix.repository.SparePartRepository;
-
 import java.util.Arrays;
 import java.util.Optional;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -64,14 +62,12 @@ class AutofixAdminUserSparePartTests {
     }
 
     @Test
-
     void adminUserTrytoAccessSparePartFindAllClientByUsernameReturnOk() throws Exception{
         mockMvc.perform(get("/api/sparepart/findallsparepartsbyclientusername/Kalle")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
     @Test
-
     void adminUserTrytoAccessSparePartIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/sparepart/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -79,14 +75,12 @@ class AutofixAdminUserSparePartTests {
     }
 
     @Test
-
     void adminUserTrytoAccessSparePartClientIdReturnOk() throws Exception{
         mockMvc.perform(get("/api/sparepart/findbyclient/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
     @Test
-
     void adminUserTrytoDeleteSparePartIdReturnOk() throws Exception{
         mockMvc.perform(delete("/api/sparepart/delete/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -94,7 +88,6 @@ class AutofixAdminUserSparePartTests {
     }
 
     @Test
-
     void adminUserTrytoCreateSparePartIdReturnOk() throws Exception{
         mockMvc.perform(post("/api/sparepart/create")
                 .contentType(MediaType.APPLICATION_JSON)

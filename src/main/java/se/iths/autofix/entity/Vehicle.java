@@ -37,10 +37,6 @@ public class Vehicle {
     public Vehicle() {
     }
 
-//    public Client getClient() {
-//        return vehicle_client;
-//    }
-
     public void setClient(Client client) {
         this.vehicle_client = client;
     }

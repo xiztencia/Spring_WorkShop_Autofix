@@ -4,11 +4,8 @@ import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.exception.BadInputFormatException;
-import se.iths.autofix.exception.EmployeeNotFoundException;
 import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.repository.MaintenanceRepository;
-
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -37,7 +34,6 @@ public class MaintenanceService {
                         maintenance.setPrice(newMaintenance.getPrice());
                         maintenance.setCheckInDate(newMaintenance.getCheckInDate());
                         maintenance.setCheckOutDate(newMaintenance.getCheckOutDate());
-                       // maintenance.setJobHistory(newMaintenance.getJobHistory());
                         return maintenanceRepository.save(maintenance);
                     })
                     .orElseThrow(() -> new MaintenanceNotFoundException("Maintenance has not been found.")

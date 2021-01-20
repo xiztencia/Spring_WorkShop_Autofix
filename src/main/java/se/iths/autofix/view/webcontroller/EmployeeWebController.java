@@ -19,11 +19,6 @@ import se.iths.autofix.service.EmployeeService;
 import se.iths.autofix.service.MaintenanceService;
 import se.iths.autofix.service.SparePartService;
 
-import javax.validation.Valid;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
 
 @Controller
 public class EmployeeWebController {
@@ -52,7 +47,6 @@ public class EmployeeWebController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         jmsSender.sendMessage(currentPrincipalName+" Logged in",currentPrincipalName+" Logged in");
-
         model.addAttribute("clients", clientService.findAllClients());
         model.addAttribute("employees", employeeService.findAllEmployees());
         return "Employee.html";

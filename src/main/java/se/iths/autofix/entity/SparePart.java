@@ -1,7 +1,6 @@
 package se.iths.autofix.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -51,8 +50,6 @@ public class SparePart {
     public Client getSpare_client() {
         return spare_client;
     }
-
-
 
     public Long getId() {
         return id;

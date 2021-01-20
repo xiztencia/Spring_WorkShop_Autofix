@@ -6,10 +6,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.iths.autofix.entity.AuthGroup;
-import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
 import se.iths.autofix.exception.BadInputFormatException;
-import se.iths.autofix.exception.ClientNotFoundException;
 import se.iths.autofix.exception.EmployeeNotFoundException;
 import se.iths.autofix.repository.AuthGroupRepository;
 import se.iths.autofix.repository.EmployeeRepository;
@@ -27,16 +25,12 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    // Constructor injection
+
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
-    // Setter injection
-//    @Autowired
-//    void setClientRepository(ClientRepository clientRepository) {
-//        this.clientRepository = clientRepository;
-//    }
+
 
 
     public Employee createEmployee(Employee employee) {

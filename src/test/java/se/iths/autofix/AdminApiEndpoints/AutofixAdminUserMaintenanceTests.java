@@ -18,10 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import se.iths.autofix.controller.MaintenanceController;
 import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.repository.MaintenanceRepository;
-
 import java.util.Date;
 import java.util.Optional;
-
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

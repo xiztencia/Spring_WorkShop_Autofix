@@ -9,21 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import se.iths.autofix.controller.ClientController;
 import se.iths.autofix.controller.EmployeeController;
-import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
-import se.iths.autofix.repository.ClientRepository;
 import se.iths.autofix.repository.EmployeeRepository;
-import se.iths.autofix.service.EmployeeService;
-
 import java.util.Optional;
-
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -63,11 +56,11 @@ class AutofixAdminUserEmployeeTests {
 
     @Test
     void adminUserTrytoAccessEmployeeIdReturnOK() throws Exception{
-     //   EmployeeService mockEmployeeService = mock(EmployeeService.class);
+
         mockMvc.perform(get("/api/employee/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
-    //    System.out.println( verify(mockEmployeeService,times(1)).findEmployeeById(1L));
+
     }
 
     @Test

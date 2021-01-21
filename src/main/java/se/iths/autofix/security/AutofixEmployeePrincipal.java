@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import se.iths.autofix.entity.AuthGroup;
-import se.iths.autofix.entity.Client;
 import se.iths.autofix.entity.Employee;
 
 import java.util.*;

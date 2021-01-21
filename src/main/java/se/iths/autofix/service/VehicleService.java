@@ -2,10 +2,8 @@ package se.iths.autofix.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.entity.Vehicle;
 import se.iths.autofix.exception.BadInputFormatException;
-import se.iths.autofix.exception.MaintenanceNotFoundException;
 import se.iths.autofix.exception.VehicleNotFoundException;
 import se.iths.autofix.repository.VehicleRepository;
 
@@ -23,9 +21,6 @@ public class VehicleService {
     }
 
     public Vehicle createVehicle(Vehicle vehicle) throws BadInputFormatException{
-
-//        authGroupRepository.save(new AuthGroup(user.getUsername(), "USER"));
-//        authGroupRepository.save(new AuthGroup(user.getUsername(), "ADMIN"));
         return vehicleRepository.save(vehicle);
     }
 

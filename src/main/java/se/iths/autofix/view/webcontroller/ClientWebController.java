@@ -40,19 +40,20 @@ public class ClientWebController {
     @GetMapping("/MaintenanceRequest")
     public String readMaintenance(Model model){
         model.addAttribute("maintenanceObj", new Maintenance());
+        model.addAttribute("clientMaintenance", maintenanceService.findAllMaintenancesByClientUsername());
         return "MaintenanceRequest";
     }
     @GetMapping("/createMaintenanceAsClient")
     public String saveMaintenance (Maintenance maintenance){
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         maintenance.setPrice(0);
         maintenance.setCheckInDate(new Date());
         maintenance.setCheckOutDate(new Date());
-        maintenance.setJobHistory("Order Placed by "+currentPrincipalName+" at "+ new Date() +" .");
+        maintenance.setJobHistory("Order Placed by "+currentPrincipalName+" at "+ new Date() +" .\n");
         maintenance.setClient(clientService.getClientByUsername(currentPrincipalName));
         maintenanceService.createMaintenance(maintenance);
         return "redirect:/MaintenanceRequest";
     }
+
 }

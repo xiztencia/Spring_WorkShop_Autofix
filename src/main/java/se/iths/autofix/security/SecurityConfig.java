@@ -111,7 +111,7 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/Maintenance/**").hasRole("ADMIN")
                 .antMatchers("/createAdmin/**").hasRole("ADMIN")
                 .antMatchers("/editMaintenance/**").hasRole("ADMIN")
-                 .antMatchers("/saveMaintenance/**").hasRole("ADMIN")
+                .antMatchers("/saveMaintenance/**").hasRole("ADMIN")
                 .antMatchers("/CreateSparePart/**").hasRole("ADMIN")
                 .antMatchers("/saveSparePart").hasRole("ADMIN")
                 .antMatchers("/saveUser").hasRole("ADMIN")

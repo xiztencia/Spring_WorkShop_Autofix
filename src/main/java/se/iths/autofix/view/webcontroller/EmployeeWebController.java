@@ -19,9 +19,6 @@ import se.iths.autofix.service.EmployeeService;
 import se.iths.autofix.service.MaintenanceService;
 import se.iths.autofix.service.SparePartService;
 
-import javax.validation.Valid;
-import java.util.Date;
-import java.util.Optional;
 
 @Controller
 public class EmployeeWebController {
@@ -50,7 +47,6 @@ public class EmployeeWebController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         jmsSender.sendMessage(currentPrincipalName+" Logged in",currentPrincipalName+" Logged in");
-
         model.addAttribute("clients", clientService.findAllClients());
         model.addAttribute("employees", employeeService.findAllEmployees());
         return "Employee.html";
@@ -85,46 +81,19 @@ public class EmployeeWebController {
     public String readMaintenance(@PathVariable("id") Long id, Model model){
         Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
         model.addAttribute("maintenance", maintenance);
-        return "/editMaintenance";
+        return "editMaintenance.html";
     }
     @PostMapping("/saveMaintanence/{id}")
-    public String editMaintenance(
-//                                  @RequestParam(value = "price", required = false)double price,
-//                                  @RequestParam(value = "checkInDate", required = false)Date checkInDate,
-//                                  @RequestParam(value = "checkOutDate", required = false)Date checkOutDate,
-//                                  @RequestParam(value = "jobHistory")String jobHistory,
-        @PathVariable("id") Long id, @Valid Maintenance maintenance, BindingResult result, Model model) throws Exception {
-  //      Maintenance newMaintence = (Maintenance) model.getAttribute("maintenance");
-       // model.addAttribute("maintenance", maintenanceService.findMaintenanceById(id));
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentPrincipalName = authentication.getName();
-                // model.addAttribute("id", id);
-//                 maintenanceService.findMaintenanceById(id).get().setPrice(price);
-//                 maintenanceServicem.findMaintenanceById(id).get().setCheckInDate(checkInDate);
-//                 maintenanceService.findMaintenanceById(id).get().setCheckOutDate(checkOutDate);
-//                 maintenanceService.addJobHistoryEvent(employeeService.getEmployeeByName(currentPrincipalName),jobHistory,id);
-             //   Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
+    public String editMaintenance(@PathVariable("id") Long id, @ModelAttribute("maintenance") Maintenance maintenance, BindingResult result) throws Exception {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
        if(result.hasErrors()){
            maintenance.setId(id);
-           return "editMaintenance";}
-       // maintenanceService.updateMaintenance(maintenance,maintenance.getId());
-        maintenanceRepository.save(maintenance);
-      // model.addAttribute("updatedMaintenances", maintenanceService.findAllMaintenances());
-      //  maintenanceService.updateMaintenance(maintenance, maintenance.getId());
+           return "editMaintenance.html";}
+        maintenanceService.addJobHistoryEvent(employeeService.getEmployeeByName(currentPrincipalName),maintenance.getJobHistory(),id);
+        maintenanceService.updateMaintenance(maintenance, id);
         return "redirect:/Maintenance";
         }
-//    @PostMapping("/updateMaintenance")
-//    public String updateMaintenance(Maintenance maintenance){
-//        maintenanceRepository.save(maintenance);
-//        return "Maintenance";
-//    }
-
-
     }
 
-//    @GetMapping("/Employee")
-//    public String employees(Model model) throws EmployeeNotFoundException {
-//
-//        return "Employee.html";
-//    }
 

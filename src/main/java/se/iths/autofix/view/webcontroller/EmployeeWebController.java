@@ -81,7 +81,7 @@ public class EmployeeWebController {
     public String readMaintenance(@PathVariable("id") Long id, Model model){
         Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
         model.addAttribute("maintenance", maintenance);
-        return "/editMaintenance";
+        return "editMaintenance.html";
     }
     @PostMapping("/saveMaintanence/{id}")
     public String editMaintenance(@PathVariable("id") Long id, @ModelAttribute("maintenance") Maintenance maintenance, BindingResult result) throws Exception {
@@ -89,7 +89,7 @@ public class EmployeeWebController {
         String currentPrincipalName = authentication.getName();
        if(result.hasErrors()){
            maintenance.setId(id);
-           return "editMaintenance";}
+           return "editMaintenance.html";}
         maintenanceService.addJobHistoryEvent(employeeService.getEmployeeByName(currentPrincipalName),maintenance.getJobHistory(),id);
         maintenanceService.updateMaintenance(maintenance, id);
         return "redirect:/Maintenance";

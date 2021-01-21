@@ -81,7 +81,7 @@ public class EmployeeWebController {
     public String readMaintenance(@PathVariable("id") Long id, Model model){
         Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
         model.addAttribute("maintenance", maintenance);
-        return "/editMaintenance.html";
+        return "editMaintenance.html";
     }
     @PostMapping("/saveMaintanence/{id}")
     public String editMaintenance(@PathVariable("id") Long id, @ModelAttribute("maintenance") Maintenance maintenance, BindingResult result) throws Exception {

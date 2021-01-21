@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import se.iths.autofix.entity.Maintenance;
 import se.iths.autofix.jms.sender.Sender;
 import se.iths.autofix.service.ClientService;
@@ -50,10 +51,16 @@ public class ClientWebController {
         maintenance.setPrice(0);
         maintenance.setCheckInDate(new Date());
         maintenance.setCheckOutDate(new Date());
-        maintenance.setJobHistory("Order Placed by "+currentPrincipalName+" at "+ new Date() +" .\n");
+        maintenance.setJobHistory("/"+ new Date()+ "Order Placed by "+currentPrincipalName+" /.\n");
         maintenance.setClient(clientService.getClientByUsername(currentPrincipalName));
         maintenanceService.createMaintenance(maintenance);
         return "redirect:/MaintenanceRequest";
+    }
+    @GetMapping("/MaintenanceDetailsClient/{id}")
+    public String maintenanceDetails(@PathVariable("id") Long id, Model model){
+        Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
+        model.addAttribute("detailsClientMain", maintenance);
+        return "/MaintenanceDetailsClient";
     }
 
 }

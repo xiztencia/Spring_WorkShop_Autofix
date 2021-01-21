@@ -94,6 +94,12 @@ public class EmployeeWebController {
         maintenanceService.updateMaintenance(maintenance, id);
         return "redirect:/Maintenance";
         }
+    @GetMapping("/MaintenanceDetails/{id}")
+    public String maintenanceDetails(@PathVariable("id") Long id, Model model){
+        Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
+        model.addAttribute("details", maintenance);
+        return "/MaintenanceDetails";
+    }
     }
 
 

@@ -43,6 +43,8 @@ Maintenance Request from Customers    </h1>
             <td th:text="${maintenance.mainten_client.id}"></td>
             <td>
                 <a th:href="@{'/editMaintenance/'+${maintenance.id}}">Edit</a>
+                <a th:href="@{'/MaintenanceDetails/'+${maintenance.id}}">Details</a>
+
             </td>
 
         </tr>

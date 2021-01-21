@@ -63,7 +63,7 @@ public class MaintenanceService {
             throw new Exception();
 
         String jobHistory = servicejob.get().getJobHistory();
-        jobHistory = jobHistory + "\n " + LocalDate.now() + " : " + employee.getUsername() + " " + message + "\n";
+        jobHistory = jobHistory + "\n /" + LocalDate.now() + " : Employee: " + employee.getUsername() + " Log: " + message + "/ \n";
         servicejob.get().setJobHistory(jobHistory);
         maintenanceRepository.save(servicejob.get());
     }

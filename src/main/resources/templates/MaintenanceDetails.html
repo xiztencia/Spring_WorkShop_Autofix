@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Incoming Maintenance Requests</title>
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+
+</head>
+<header><div th:replace="Navbar::header"></div></header>
+<body>
+<br>
+<br>
+<div>
+  <h1>
+    Maintenance Details   </h1>
+
+    <div th:object="${details}">
+    <div>  Maintenance ID :<span th:text="${details.id}"></span></div>
+    <div>  Maintenance type :<span th:text="${details.type}"> </span></div>
+     <div> Price :<span th:text="${details.price}"> Price</span> </div>
+     <div> Check in date :<span th:text="${details.checkInDate}"> </span></div>
+     <div> Check out date :<span th:text="${details.checkOutDate}"></span></div>
+      <div> Maintenance Log :<span style="display: inline-block" th:text="${details.jobHistory}"> </span></div>
+     <div> Customer ID :<span th:text="${details.mainten_client.id}"></span></div>
+    </div>
+
+</div>
+<br>
+
+
+</body>
+</html>

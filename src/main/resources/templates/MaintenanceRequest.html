@@ -36,6 +36,9 @@
             <td th:text="${maintenance.checkInDate}"></td>
             <td th:text="${maintenance.checkOutDate}"></td>
             <td th:text="${maintenance.jobHistory}"></td>
+            <td>
+                <a th:href="@{'/MaintenanceDetailsClient/'+${maintenance.id}}">Details</a>
+            </td>
         </tr>
         </tbody>
     </table>

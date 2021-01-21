@@ -98,7 +98,7 @@ public class EmployeeWebController {
     public String maintenanceDetails(@PathVariable("id") Long id, Model model){
         Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
         model.addAttribute("details", maintenance);
-        return "/MaintenanceDetails";
+        return "MaintenanceDetails.html";
     }
     }
 

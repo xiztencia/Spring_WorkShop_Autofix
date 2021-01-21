@@ -60,7 +60,7 @@ public class ClientWebController {
     public String maintenanceDetails(@PathVariable("id") Long id, Model model){
         Maintenance maintenance = maintenanceService.findMaintenanceById(id).get();
         model.addAttribute("detailsClientMain", maintenance);
-        return "/MaintenanceDetailsClient";
+        return "MaintenanceDetailsClient.html";
     }
 
 }

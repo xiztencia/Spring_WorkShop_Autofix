@@ -10,7 +10,7 @@
     </parent>
     <groupId>se.iths</groupId>
     <artifactId>autofix</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <name>Autofix</name>
     <description>Demo project Car-parts seller</description>
     <packaging>jar</packaging>
